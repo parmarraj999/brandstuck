@@ -1,0 +1,49 @@
+.nav_container{
+    width: 97%;
+    position: fixed;
+    top: 4.5%;
+    left: 50%;
+    z-index: 9999;
+    transform: translate(-50%,0);
+    height: 70px;
+    border-radius: 3rem;
+    background: #a9a9a960;
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    .nav_links{
+        display: flex;
+        gap: 1.2rem;
+        .nav_link{
+            font-size: 18px;
+            color: black;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+    .nav_logo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 50%;
+        img{
+            width: 130px;
+        }
+    }
+    .nav_buttons{
+        display: flex;
+        gap: .5rem;
+        align-items: center;
+        .nav_button{
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

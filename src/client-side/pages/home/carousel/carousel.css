@@ -1,0 +1,87 @@
+.carousel-wrapper{
+    width: 100%;
+    height: calc(100vh - 30px);
+    position: relative;
+}
+.carousel-container {
+    overflow: hidden;
+    height: 100%;
+  }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  .carousel-slide {
+    min-width: 100%;
+  }
+  .carousel-slide img{
+    width: 100%;
+  }
+  .carousel-bubbles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 30px;
+    background: rgba(255,255,255,.3);
+    backdrop-filter: blur(20px);
+    position: absolute;
+    border-radius: 2rem;
+    top: 93%;
+    left: 50%;
+    transform: translate(-50%,0);
+  }
+  .carousel-bubble {
+    width: 12px;
+    height: 12px;
+    margin: 0 4px;
+    border-radius: 50%;
+    background-color: white;
+    transition: background-color 0.3s ease;
+  }
+  .carousel-bubble.active {
+    background-color: rgb(77, 77, 77);
+  }
+  .button_container{
+    display: flex;
+    gap: .5rem;
+    position: absolute;
+    top: 82%;
+    left: 50%;
+    transform: translate(-50%,0);
+  }
+  .shop-btn{
+    padding: .7rem 1.5rem;
+    background: white;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+    box-shadow: 4px 4px 20px rgba(0,0,0,.3);
+    display: flex;
+    align-items: center ;
+    gap: .5rem;
+  }
+  .custome-btn{
+    padding: .25rem .25rem;
+    background: #989898;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+    box-shadow: 4px 4px 20px rgba(0,0,0,.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+.custome-btn div{
+    text-wrap: nowrap;
+    padding: 0 1.2rem;
+    background: white;
+    height: 100%;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+}
