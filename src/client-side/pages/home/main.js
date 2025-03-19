@@ -5,6 +5,8 @@ import './main.css'
 import Marquee from './marquee/marquee'
 import Carousel from './carousel/carousel'
 import Text from './text-section/text'
+import MiddleImage from './middle-image-section/middleImage'
+import NewProduct from './new-product/newProduct'
 import TrendingProduct from './trending-product/trendingProduct'
 
 function Home() {
@@ -16,9 +18,9 @@ function Home() {
       <Marquee/>
       <Carousel/>
       <Text/>
+      <NewProduct/>
+      <MiddleImage/>
       <TrendingProduct/>
-      {/* <button onClick={toggleTheme}>Toggle Theme</button> */}
-
     </div>
   )
 }

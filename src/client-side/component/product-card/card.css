@@ -1,0 +1,34 @@
+.default-card {
+  height: 400px;
+}
+.default-card .card {
+  width: 95%;
+  height: 100%;
+  border: 1px solid grey;
+  display: grid;
+  align-items: center;
+  grid-template-rows: 10fr 2fr;
+  overflow: hidden;
+  gap: 0.4rem;
+  padding: 0.6rem;
+  border-radius: 2rem;
+}
+.default-card .card img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 1.5rem;
+}
+.default-card .card .card-detail {
+  width: 100%;
+  height: 100%;
+  padding: 0 0.6rem;
+}
+.default-card .card .card-detail h2 {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+.default-card .card .card-detail h3 {
+  color: grey;
+}/*# sourceMappingURL=card.css.map */

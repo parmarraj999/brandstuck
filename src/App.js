@@ -4,6 +4,7 @@ import Main from './client-side/pages/home/main';
 import { ThemeProvider } from './client-side/context/ThemeContext';
 import './client-side/styles/theme/theme.css'
 import './client-side/styles/typography/typography.css'
+import './client-side/styles/utility/utility.css'
 import Nav from './client-side/pages/nav/nav';
 
 import gsap from 'gsap';
