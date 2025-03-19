@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './nav.css';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../../context/ThemeContext';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 function Nav() {
+
+    const { theme, toggleTheme } = useContext(ThemeContext)
+
+    useGSAP(() => {
+        gsap.to('.nav_container', {
+         y: -20,
+            scrollTrigger: {
+                trigger:'.nav_container',
+                start: 'top 1%',
+                end: 'top -1%',
+                scrub: true,
+            },
+        });
+    })
+
     return (
         <div className='nav_container' >
             <div className='nav_links' >
+                <button onClick={toggleTheme}>Toggle Theme</button>
                 <Link className='nav_link'>Shop</Link>
                 <Link className='nav_link'>Brands</Link>
                 <Link className='nav_link'>Accessories</Link>
