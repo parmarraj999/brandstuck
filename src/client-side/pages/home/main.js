@@ -8,6 +8,7 @@ import Text from './text-section/text'
 import MiddleImage from './middle-image-section/middleImage'
 import NewProduct from './new-product/newProduct'
 import TrendingProduct from './trending-product/trendingProduct'
+import Outfit from './outfit-section/outfit'
 
 function Home() {
 
@@ -21,6 +22,7 @@ function Home() {
       <NewProduct/>
       <MiddleImage/>
       <TrendingProduct/>
+      <Outfit/>
     </div>
   )
 }

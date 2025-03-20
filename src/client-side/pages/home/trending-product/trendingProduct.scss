@@ -9,7 +9,14 @@
     .trending-wrapper{
         width: 90%;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
+        grid-template-columns: repeat(4, 1fr);
+    }
+    button{
+        padding: .7rem 2rem;
+        font-size: 18px;
+        font-weight: 600;
+        background: var(--button-bg);
+        color: var(--button-text);
+        border: none;
     }
 }

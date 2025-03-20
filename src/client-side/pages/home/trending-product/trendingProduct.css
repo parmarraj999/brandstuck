@@ -10,5 +10,13 @@
 .trending-product-container .trending-wrapper {
   width: 90%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+}
+.trending-product-container button {
+  padding: 0.7rem 2rem;
+  font-size: 18px;
+  font-weight: 600;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
 }/*# sourceMappingURL=trendingProduct.css.map */

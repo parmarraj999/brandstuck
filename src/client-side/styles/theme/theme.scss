@@ -3,15 +3,22 @@ $light-bg: #ffffff;
 $light-text: #333333;
 $dark-bg: #1a1a1a;
 $dark-text: #ffffff;
+$black-color:#000;
+$white-color:#fff;
+// Define theme
 
 [data-theme="light"] {
   --bg-color: #{$light-bg};
   --text-color: #{$light-text};
+  --button-bg: #{$black-color};
+  --button-text: #{$white-color};
 }
 
 [data-theme="dark"] {
   --bg-color: #{$dark-bg};
   --text-color: #{$dark-text};
+  --button-bg: #{$white-color};
+  --button-text: #{$black-color};
 }
  
 // body {

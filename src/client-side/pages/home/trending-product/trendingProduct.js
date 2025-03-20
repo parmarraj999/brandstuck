@@ -69,6 +69,7 @@ function TrendingProduct() {
                     })
                 }
             </div>
+            <button>Show Now</button>
         </div>
     )
 }
