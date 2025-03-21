@@ -1,1 +1,8 @@
-
+.default-button{
+    padding: .7rem 2rem;
+    font-size: 18px;
+    font-weight: 600;
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+}

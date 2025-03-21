@@ -1,1 +1,8 @@
-/*# sourceMappingURL=utility.css.map */
+.default-button {
+  padding: 0.7rem 2rem;
+  font-size: 18px;
+  font-weight: 600;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+}/*# sourceMappingURL=utility.css.map */

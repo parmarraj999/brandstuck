@@ -9,6 +9,8 @@ import MiddleImage from './middle-image-section/middleImage'
 import NewProduct from './new-product/newProduct'
 import TrendingProduct from './trending-product/trendingProduct'
 import Outfit from './outfit-section/outfit'
+import BrandList from './brand-list/brandList'
+import Customize from './customize-section/customize'
 
 function Home() {
 
@@ -23,6 +25,8 @@ function Home() {
       <MiddleImage/>
       <TrendingProduct/>
       <Outfit/>
+      <BrandList/>
+      <Customize/>
     </div>
   )
 }

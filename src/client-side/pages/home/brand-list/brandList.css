@@ -1,0 +1,25 @@
+.brand-list-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+.brand-list-container .brand-wrapper {
+  width: 85%;
+  height: 300px;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+.brand-list-container .brand-wrapper .brand-card {
+  gap: 1rem;
+}
+.brand-list-container .brand-wrapper .brand-card img {
+  width: 160px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}/*# sourceMappingURL=brandList.css.map */
