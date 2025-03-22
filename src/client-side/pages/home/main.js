@@ -11,6 +11,8 @@ import TrendingProduct from './trending-product/trendingProduct'
 import Outfit from './outfit-section/outfit'
 import BrandList from './brand-list/brandList'
 import Customize from './customize-section/customize'
+import Category from './category/category'
+import Store from './store-section/store'
 
 function Home() {
 
@@ -27,6 +29,8 @@ function Home() {
       <Outfit/>
       <BrandList/>
       <Customize/>
+      <Category/>
+      <Store/>
     </div>
   )
 }
