@@ -1,0 +1,54 @@
+.why-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .card-wrapper {
+        width: 88%;
+        display: flex;
+        align-items: center;
+        margin-top: 2rem;
+        justify-content: space-between;
+        gap: 2rem;
+        .card {
+            background: #e7e7e7;
+            width: 100%;
+            height: fit-content;
+            border-radius: 2rem;
+            padding: 1.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            .card-icon {
+                svg {
+                    width: 40px;
+                }
+            }
+            h1 {
+                font-size: 22px;
+            }
+            p {
+                font-size: 16px;
+                font-weight: 400;
+                color: grey;
+            }
+            .btn-container {
+                display: flex;
+                align-items: center;
+                justify-content: end;
+            }
+            button {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: black;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+            }
+        }
+    }
+}

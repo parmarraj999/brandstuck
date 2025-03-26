@@ -1,10 +1,10 @@
-.nav_container{
+.nav_container {
     width: 97%;
     position: fixed;
     top: 4.5%;
     left: 50%;
     z-index: 9999;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
     height: 70px;
     border-radius: 3rem;
     background: #a9a9a960;
@@ -13,10 +13,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
-    .nav_links{
+    .nav_links {
         display: flex;
         gap: 1.2rem;
-        .nav_link{
+        .nav_link {
             font-size: 18px;
             color: black;
             font-weight: 600;
@@ -24,26 +24,100 @@
             cursor: pointer;
         }
     }
-    .nav_logo{
+    .nav_logo {
         display: flex;
         align-items: center;
         justify-content: center;
         position: absolute;
         left: 50%;
-        img{
+        img {
             width: 130px;
         }
     }
-    .nav_buttons{
+    .nav_buttons {
         display: flex;
-        gap: .5rem;
+        gap: 0.5rem;
         align-items: center;
-        .nav_button{
+        .nav_button {
             width: 40px;
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
+            svg {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+}
+.menu-container {
+    width: 96vw;
+    min-height: 50vh;
+    padding: 1rem 2rem;
+    max-height: calc(100vh - 190px);
+    backdrop-filter: blur(20px);
+    background: #a9a9a960;
+    z-index: 999;
+    box-shadow:
+        5px 5px 20px rgba(0, 0, 0, 0.2),
+        -5px -5px 20px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    .item {
+        text-decoration: none;
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--text-color);
+    }
+    .active {
+        color: black;
+    }
+    button {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--text-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        svg {
+            color: var(--bg-color);
+            width: 25px;
+            height: 25px;
+        }
+    }
+}
+
+@media screen and (max-width: 765px) {
+    .nav_container {
+        top: 5%;
+        padding: 0 0.7rem;
+        height: 60px;
+        .nav_links {
+            display: none;
+        }
+        .nav_logo {
+            position: relative;
+            left: 2%;
+            img {
+                width: 100px;
+            }
+        }
+        .nav_buttons {
+            gap: 0.2rem;
+            .profile-button {
+                display: none;
+            }
         }
     }
 }

@@ -13,16 +13,17 @@ import BrandList from './brand-list/brandList'
 import Customize from './customize-section/customize'
 import Category from './category/category'
 import Store from './store-section/store'
+import Why from './why-section/why'
+import Map from './map/map'
+import Footer from '../footer/footer'
 
 function Home() {
-
-  const { theme, toggleTheme } = useContext(ThemeContext)
 
   return (
     <div className='home-container' >
       <Marquee/>
       <Carousel/>
-      <Text/>
+      {/* <Text/>
       <NewProduct/>
       <MiddleImage/>
       <TrendingProduct/>
@@ -31,6 +32,8 @@ function Home() {
       <Customize/>
       <Category/>
       <Store/>
+      <Why/>
+      <Map/> */}
     </div>
   )
 }

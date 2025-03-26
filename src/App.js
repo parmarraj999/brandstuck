@@ -9,6 +9,8 @@ import Nav from './client-side/pages/nav/nav';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Footer from './client-side/pages/footer/footer';
+import NavMen from './client-side/pages/nav/nav-menu';
 
 function App() {
 
@@ -18,10 +20,12 @@ function App() {
     <ThemeProvider>
       <div className="App">
         <BrowserRouter>
-        <Nav/>
+          <Nav />
+          {/* <NavMen/> */}
           <Routes>
             <Route path='/' element={<Main />} />
           </Routes>
+          {/* <Footer /> */}
         </BrowserRouter>
       </div>
     </ThemeProvider>
