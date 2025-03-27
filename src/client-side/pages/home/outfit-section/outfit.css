@@ -139,11 +139,12 @@
 }
 .outfit-container .grid-container .row-three {
   width: 100%;
-  height: 350px;
+  height: 300px;
   display: flex;
   gap: 1rem;
 }
 .outfit-container .grid-container .row-three .column-one {
+  width: 100%;
   height: 100%;
   overflow: hidden;
   position: relative;
@@ -156,6 +157,7 @@
 }
 .outfit-container .grid-container .row-three .column-one .image-container img {
   width: 100%;
+  height: 100%;
   border-radius: 10px;
 }
 .outfit-container .grid-container .row-three .column-one .image-container .detail {
@@ -191,6 +193,7 @@
 }
 .outfit-container .grid-container .row-three .column-two .image-container img {
   width: 100%;
+  height: 100%;
 }
 .outfit-container .grid-container .row-three .column-two .image-container .detail {
   width: 90%;
@@ -212,4 +215,27 @@
   font-size: 18px;
   color: white;
   text-transform: capitalize;
+}
+
+@media screen and (max-width: 765px) {
+  .outfit-container .grid-container {
+    width: 95%;
+  }
+  .outfit-container .grid-container .row-one {
+    height: 400px;
+  }
+  .outfit-container .grid-container .row-one .column-one .image-container .detail {
+    top: 75%;
+  }
+  .outfit-container .grid-container .row-one .column-two .image-container .detail {
+    top: 85%;
+  }
+  .outfit-container .grid-container .row-two {
+    height: -moz-fit-content;
+    height: fit-content;
+    border: 1px solid green;
+  }
+  .outfit-container .grid-container .row-two img {
+    height: 200px;
+  }
 }/*# sourceMappingURL=outfit.css.map */

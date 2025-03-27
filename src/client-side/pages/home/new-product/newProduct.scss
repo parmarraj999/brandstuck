@@ -8,8 +8,8 @@
     gap: 2.4rem;
     .slider-container {
         width: 90%;
-        height: 400px;
-        overflow: hidden;
+        height: fit-content;
+        // overflow: hidden;
         gap: 1rem;
     }
     .slider-button{

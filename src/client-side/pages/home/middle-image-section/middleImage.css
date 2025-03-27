@@ -10,3 +10,12 @@
     height: 55vh;
     border-radius: 1rem;
 }
+@media screen and (max-width:765px) {
+    .image-container{
+        height: 80vh;
+    }
+    .image-container img{
+        height: 30vh;
+        width: 95%;
+    }
+}

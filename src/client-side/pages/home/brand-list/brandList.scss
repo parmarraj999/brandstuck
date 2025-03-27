@@ -1,23 +1,49 @@
-.brand-list-container{
+.brand-list-container {
     width: 100%;
-    height:100vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    overflow: hidden;
     gap: 2rem;
-    .brand-wrapper{
-        width: 85%;
+    // .brand-wrapper{
+    //     width: 85%;
+    //     height: 300px;
+    //     display: flex;
+    //     justify-content: space-between;
+    //     gap: 1rem;
+    //     align-items: center;
+    //     .brand-card{
+    //         gap: 1rem;
+    //         img{
+    //             width: 160px;
+    //             object-fit: cover;
+    //         }
+    //     }
+    // }
+    .stock-ticker {
+        font-size: 15px;
         height: 300px;
+        overflow: hidden;
+        user-select: none;
+        background: transparent;
         display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-        align-items: center;
-        .brand-card{
-            gap: 1rem;
-            img{
-                width: 160px;
-                object-fit: cover;
+        gap: 60px;
+        .stock-ticker ul {
+            list-style: none;
+            flex-shrink: 0;
+            min-width: 50%;
+            border: 1px solid red;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--gap);
+            animation: scroll 15s linear infinite;
+            li{
+                img{
+                    width: 20px;
+                }
             }
         }
     }

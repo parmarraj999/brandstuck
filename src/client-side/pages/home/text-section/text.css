@@ -18,3 +18,10 @@
 .text-container h2 span{
     color: var(--text-color);
 }
+
+@media screen and (max-width:765px) {
+    .text-container h2{
+        width: 86%;
+        font-size: 1.5rem;
+    }
+}

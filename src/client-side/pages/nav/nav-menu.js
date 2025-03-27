@@ -2,9 +2,22 @@ import React, { useContext } from 'react';
 import './nav.css';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../context/ThemeContext';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 function NavMen() {
+
     const { theme, toggleTheme } = useContext(ThemeContext)
+
+    useGSAP(() => {
+        gsap.from('.menu-container', {
+            duration: 1,
+            opacity: 0,
+            ease: 'ease-in'
+        })
+    }
+    )
+
     return (
         <div className='menu-container' >
             <Link className="item active" >Home</Link>

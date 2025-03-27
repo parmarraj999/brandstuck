@@ -27,7 +27,7 @@ function BrandList() {
     return (
         <div className='brand-list-container' >
             <h1 className='section-heading' >Brands</h1>
-            <div className='brand-wrapper' >
+            {/* <div className='brand-wrapper' >
                 {
                     data.map((data) => {
                         return (
@@ -37,6 +37,31 @@ function BrandList() {
                         )
                     })
                 }
+            </div> */}
+            <div class="stock-ticker">
+                <ul>
+                    {
+                        data.map((data) => {
+                            return (
+                                <li className='brand-card' >
+                                    <img src={data.img} />
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+
+                <ul aria-hidden="true">
+                    {
+                        data.map((data) => {
+                            return (
+                                <li className='brand-card' >
+                                    <img src={data.img} />
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
             </div>
             <button className='default-button' >All Brands</button>
         </div>

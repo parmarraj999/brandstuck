@@ -33,3 +33,20 @@
     display: flex;
     align-items: center;
 }
+.mobile{
+    display: none;
+}
+
+
+@media screen and (max-width:765px) {
+    .customize-container{
+        height: 100vh;
+    }
+    .desktop{
+        display: none;
+    }
+    .mobile{
+        display: block;
+        height: 80vh;
+    }
+}

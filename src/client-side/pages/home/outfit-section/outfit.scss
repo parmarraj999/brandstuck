@@ -132,10 +132,11 @@
         }
         .row-three {
             width: 100%;
-            height: 350px;
+            height: 300px;
             display: flex;
             gap: 1rem;
             .column-one {
+                width: 100%;
                 height: 100%;
                 overflow: hidden;
                 position: relative;
@@ -146,6 +147,7 @@
                     overflow: hidden;
                     img {
                         width: 100%;
+                        height: 100%;
                         border-radius: 10px;
                     }
                     .detail {
@@ -180,6 +182,7 @@
                     overflow: hidden;
                     img {
                         width: 100%;
+                        height: 100%;
                     }
                     .detail {
                         width: 90%;
@@ -201,6 +204,38 @@
                             text-transform: capitalize;
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:765px) {
+    .outfit-container{
+        .grid-container{
+            width: 95%;
+            .row-one{
+                height: 400px;
+                .column-one{
+                    .image-container{
+                        .detail{
+                            top: 75%;
+                        }
+                    }
+                }
+                .column-two{
+                    .image-container{
+                        .detail{
+                            top: 85%;
+                        }
+                    }
+                }
+            }
+            .row-two{
+                height: fit-content;
+                border: 1px solid green;
+                img{
+                    height: 200px;
                 }
             }
         }

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './newProduct.css';
 import Slider from "react-slick";
 
@@ -9,13 +9,31 @@ import Card from '../../../component/product-card/card';
 function NewProduct() {
 
     let sliderRef = useRef(null);
-    const settings = {
-        dots: false,
-        infinite: true,
-        slidesToShow: 4,
-        centerPadding: "60px",
-        slidesToScroll: 1,
-    };
+    const [settings, setSettings] = useState({})
+
+    const width = window.innerWidth;
+
+    console.log(width)
+
+    useEffect(() => {
+        if (width < 768) {
+            setSettings({
+                dots: false,
+                infinite: true,
+                // centerMode :true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            })
+        } else {
+            setSettings({
+                dots: false,
+                infinite: true,
+                slidesToShow: 4,
+                centerPadding: "60px",
+                slidesToScroll: 1,
+            })
+        }
+    },[])
 
     const next = () => {
         sliderRef.slickNext();
@@ -89,7 +107,7 @@ function NewProduct() {
                 </div>
                 <button>Shop Now</button>
                 <div className='slide-btn' onClick={next}>
-                    <svg  style={{ width: "30px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
+                    <svg style={{ width: "30px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
                 </div>
             </div>
         </div >

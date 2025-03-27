@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 function Customize() {
     return (
         <div className='customize-container' >
-            <img src='../../../../assets/images/customise-banner.png' />
+            <img src='../../../../assets/images/customise-banner.png' className='desktop'/>
+            <img src='../../../../assets/images/customise-mobile.png' className='mobile'/>
             <Link className='custome-btn' >
                 <div>
                     Customize Your

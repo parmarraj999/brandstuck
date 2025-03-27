@@ -23,17 +23,17 @@ function Home() {
     <div className='home-container' >
       <Marquee/>
       <Carousel/>
-      {/* <Text/>
+      <Text/>
       <NewProduct/>
       <MiddleImage/>
       <TrendingProduct/>
       <Outfit/>
       <BrandList/>
       <Customize/>
-      <Category/>
-      <Store/>
-      <Why/>
-      <Map/> */}
+      {/* <Category/> */}
+      {/* <Store/> */}
+      {/* <Why/> */}
+      {/* <Map/> */}
     </div>
   )
 }

@@ -9,8 +9,8 @@
 }
 .new-product-container .slider-container {
   width: 90%;
-  height: 400px;
-  overflow: hidden;
+  height: -moz-fit-content;
+  height: fit-content;
   gap: 1rem;
 }
 .new-product-container .slider-button {

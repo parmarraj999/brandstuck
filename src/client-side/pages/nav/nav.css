@@ -55,20 +55,19 @@
 
 .menu-container {
   width: 96vw;
-  min-height: 50vh;
+  min-height: 46vh;
   padding: 1rem 2rem;
   max-height: calc(100vh - 190px);
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
-  background: rgba(169, 169, 169, 0.3764705882);
+  background: rgba(0, 0, 0, 0.2);
   z-index: 999;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2), -5px -5px 20px rgba(0, 0, 0, 0.2);
   position: absolute;
-  top: 8%;
+  top: 5%;
   left: 50%;
   transform: translate(-50%, 0);
   border-radius: 2rem;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -120,5 +119,8 @@
   }
   .nav_container .nav_buttons .profile-button {
     display: none;
+  }
+  .menu-container {
+    display: flex;
   }
 }/*# sourceMappingURL=nav.css.map */

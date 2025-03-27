@@ -62,9 +62,18 @@ function TrendingProduct() {
                 {
                     data.map((data, index) => {
                         return (
-                            <div style={{paddingTop:'15px'}} >
-                            <Card imageUrl={data.imageUrl} name={data.name} price={data.price} />
+                            // <div style={{paddingTop:'15px'}} >
+                            // <Card imageUrl={data.imageUrl} name={data.name} price={data.price} />
+                            //     </div>
+                            <div className='default-card'>
+                                <div className='card' >
+                                    <img src={data.imageUrl} />
+                                    <div className='card-detail' >
+                                        <h2>{data.name}</h2>
+                                        <h3>&#8377;{data.price}</h3>
+                                    </div>
                                 </div>
+                            </div>
                         )
                     })
                 }
