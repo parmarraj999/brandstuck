@@ -17,7 +17,7 @@ function Category() {
             img: 'https://i.pinimg.com/474x/89/8d/be/898dbedf746ccaa42496b214cd59049b.jpg',
         },
         {
-            name: 'Round Neck Tshirt',
+            name: 'Round Neck',
             img: 'https://i.pinimg.com/474x/fe/4a/7a/fe4a7aaa09f7ab7e88928032d261cc49.jpg',
         },
         {

@@ -1,5 +1,5 @@
 .nav_container {
-  width: 97%;
+  width: 96%;
   position: fixed;
   top: 4.5%;
   left: 50%;
@@ -51,6 +51,9 @@
 .nav_container .nav_buttons .nav_button svg {
   width: 30px;
   height: 30px;
+}
+.nav_container .nav_buttons .menu-button {
+  display: none;
 }
 
 .menu-container {

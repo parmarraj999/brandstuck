@@ -16,8 +16,8 @@
 }
 .footer-container .box-one h3 {
   font-size: 18px;
-  font-weight: 500;
-  color: white;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
 }
 .footer-container .box-one h2 {
   font-size: 4vw;
@@ -110,4 +110,24 @@
   font-weight: 600;
   color: black;
   padding: 0.8rem 0;
+}
+
+@media screen and (max-width: 765px) {
+  .footer-container .box-one {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .footer-container .box-one h3 {
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 1rem;
+  }
+  .footer-container .box-one h2 {
+    width: -moz-fit-content;
+    width: fit-content;
+    font-size: 7vw;
+  }
+  .footer-container .box-two {
+    flex-direction: column;
+    gap: 3rem;
+  }
 }/*# sourceMappingURL=footer.css.map */

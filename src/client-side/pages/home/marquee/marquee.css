@@ -4,7 +4,6 @@
     overflow: hidden;
     user-select: none;
     background: black;
-
     --gap: 20px;
     display: flex;
     gap: var(--gap);

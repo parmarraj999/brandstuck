@@ -1,12 +1,15 @@
 import React from 'react'
 import './marquee.css';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
 function Marquee() {
+
     return (
         <div class="stock-ticker">
             <ul>
                 <li class="minus">
-                    hello
+                    50% Off
                 </li>
                 <li class="plus">
                     hello
