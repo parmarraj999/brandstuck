@@ -11,6 +11,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Footer from './client-side/pages/footer/footer';
 import NavMen from './client-side/pages/nav/nav-menu';
+import Shop from './client-side/pages/shop/shop';
+import Marquee from './client-side/pages/home/marquee/marquee';
 
 function App() {
 
@@ -21,9 +23,11 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <Nav />
+          <Marquee/>
           {/* <NavMen/> */}
           <Routes>
             <Route path='/' element={<Main />} />
+            <Route path='/shop' element={<Shop />} />
           </Routes>
           <Footer />
         </BrowserRouter>
