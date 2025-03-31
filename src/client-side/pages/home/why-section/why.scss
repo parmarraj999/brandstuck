@@ -52,3 +52,12 @@
         }
     }
 }
+
+@media screen and (max-width:765px) {
+    .why-container{
+        height: 120vh;
+        .card-wrapper{
+            flex-direction: column;
+        }
+    }   
+}

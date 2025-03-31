@@ -21,7 +21,7 @@ function Home() {
 
   return (
     <div className='home-container' >
-      <Marquee/>
+      {/* <Marquee/> */}
       <Carousel/>
       <Text/>
       <NewProduct/>

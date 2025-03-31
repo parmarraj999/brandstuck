@@ -50,4 +50,13 @@
   align-items: center;
   justify-content: center;
   border: none;
+}
+
+@media screen and (max-width: 765px) {
+  .why-container {
+    height: 120vh;
+  }
+  .why-container .card-wrapper {
+    flex-direction: column;
+  }
 }/*# sourceMappingURL=why.css.map */

@@ -1,0 +1,103 @@
+.shop-container {
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  padding: 0 2rem;
+}
+.shop-container div h3 {
+  font-size: 16px;
+  font-weight: 500;
+}
+.shop-container .shop-heading {
+  font-size: 5vw;
+  font-weight: 500;
+  margin-top: 2rem;
+}
+.shop-container .filter-tag-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.shop-container .filter-tag-container .filter-tag {
+  padding: 0.4rem 1.5rem;
+  border: 1px solid black;
+  text-transform: capitalize;
+  cursor: pointer;
+  font-weight: 500;
+}
+.shop-container .functional-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.shop-container .functional-header .filter-button {
+  display: flex;
+  padding: 0.7rem 1.4rem;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+}
+.shop-container .functional-header .grid-button {
+  display: flex;
+  padding: 0.5rem 1.2rem;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 18px;
+  font-weight: 600;
+  background: #E7E7E7;
+}
+.shop-container .functional-header .grid-button h1 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.shop-container .functional-header .grid-button .line {
+  width: 1.5px;
+  height: 30px;
+  background: rgb(111, 111, 111);
+}
+.shop-container .functional-header .grid-button h2 {
+  font-size: 18px;
+  color: grey;
+  cursor: pointer;
+}
+.shop-container .product-list {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+@media screen and (max-width: 765px) {
+  .shop-container {
+    padding: 0 0.6rem;
+  }
+  .shop-container .filter-tag-container {
+    width: 100%;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .shop-container .filter-tag-container .filter-tag {
+    font-size: 16px;
+    text-wrap: nowrap;
+    padding: 0.3rem 1rem;
+  }
+  .shop-container .shop-heading {
+    font-size: 11vw;
+  }
+  .shop-container .functional-header .filter-button {
+    padding: 0.6rem 1rem;
+  }
+  .shop-container .functional-header .grid-button {
+    display: none;
+    padding: 0.6rem 1rem;
+  }
+  .shop-container .product-list {
+    gap: 0.6rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}/*# sourceMappingURL=shop.css.map */

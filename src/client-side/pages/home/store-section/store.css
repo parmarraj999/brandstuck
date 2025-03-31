@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column  ;
+    overflow: hidden;
     gap: 1.5rem;
 }
 .store-header{
@@ -26,6 +27,7 @@
 }
 .store-image{
     width: 100%;
+    min-width: 360px;
     height: 450px;
     object-fit: cover;
     display: flex;
@@ -53,4 +55,13 @@
 }
 .slide-btn svg{
     color: var(--text-color);
+}
+@media screen and (max-width:765px) {
+    .store-image-container{
+        width: 95%;
+        overflow: hidden;
+    }
+    .store-header h1{
+        font-size: 8vw;
+    }
 }

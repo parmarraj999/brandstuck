@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './store.css'
 import Slider from "react-slick";
 
@@ -7,14 +7,30 @@ import "slick-carousel/slick/slick-theme.css";
 
 function Store() {
 
-    const settings = {
-        className: "center",
-        centerMode: true,
-        infinite: true,
-        centerPadding: "60px",
-        slidesToShow: 3,
-        speed: 500,
-    };
+     const [settings, setSettings] = useState({})
+     const width = window.innerWidth;
+
+     useEffect(() => {
+             if (width < 768) {
+                 setSettings({
+                     dots: false,
+                     infinite: true,
+                     centerMode :true,
+                     slidesToShow: 1,
+                     slidesToScroll: 1,
+                     centerPadding:'20px'
+                 })
+             } else {
+                 setSettings({
+                    className: "center",
+                    centerMode: true,
+                    infinite: true,
+                    centerPadding: "60px",
+                    slidesToShow: 3,
+                    speed: 500,
+                 })
+             }
+         },[])
 
     let sliderRef = useRef(null);
 

@@ -7,6 +7,7 @@ function Footer() {
         <div className='footer-container' >
             <div className='box-one' >
                 <div>
+                        <img src='../../../../assets/images/logo-white.png' style={{width:'150px'}} />
                     <h3> Your ultimate destination for diverse,<br />
                         quality brands.</h3>
                     <h2>Brandstuck1@gmail.com</h2>

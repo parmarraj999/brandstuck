@@ -1,0 +1,107 @@
+.shop-container {
+    width: 100%;
+    height: fit-content;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    padding: 0 2rem;
+    div {
+        h3 {
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+    .shop-heading {
+        font-size: 5vw;
+        font-weight: 500;
+        margin-top: 2rem;
+    }
+    .filter-tag-container{
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        .filter-tag{
+            padding: .4rem 1.5rem;
+            border: 1px solid black;
+            text-transform: capitalize;
+            cursor: pointer;
+            font-weight: 500;
+        }
+    }
+    .functional-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 2rem;
+        .filter-button{
+            display: flex; 
+            padding: .7rem 1.4rem;
+            align-items: center;
+            gap: .8rem ;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+        }
+        .grid-button{
+            display: flex; 
+            padding: .5rem 1.2rem;
+            align-items: center;
+            gap: .8rem ;
+            font-size: 18px;
+            font-weight: 600;
+            background: #E7E7E7;
+            h1{
+                font-size: 18px;
+                font-weight: 500;
+            }
+            .line{
+                width: 1.5px;
+                height: 30px;
+                background: rgb(111, 111, 111);
+            }
+            h2{
+                font-size: 18px;
+                color: grey;
+                cursor: pointer;
+            }
+        }
+    }
+    .product-list{
+        margin-top: 3rem;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 1rem;
+    }
+}
+
+
+@media screen and (max-width:765px){
+    .shop-container{
+        padding: 0 .6rem;
+        .filter-tag-container{
+            width: 100%;
+            gap: .5rem;
+            flex-wrap: wrap;
+            .filter-tag{
+                font-size: 16px;
+                text-wrap: nowrap;
+                padding: .3rem 1rem;
+            }
+        }
+        .shop-heading{
+            font-size: 11vw;
+        }
+        .functional-header{
+            .filter-button{
+                padding: .6rem 1rem;
+            }
+            .grid-button{
+                display: none;
+                padding: .6rem 1rem;
+            }
+        }
+        .product-list{
+            gap: .6rem;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
