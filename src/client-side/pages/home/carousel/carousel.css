@@ -80,6 +80,41 @@
   display: flex;
   align-items: center;
   gap: .5rem;
+  overflow: hidden;
+  position: relative;
+ 
+  
+}
+.shop-btn::after{
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  left: -100%;
+  /* bottom: -100%; */
+  border-radius: 50%;
+  transition: all ease 0.3s;
+  z-index: -1;
+ 
+}
+.shop-btn:hover::after{
+  left: 0;
+  height: 40%;
+  width: 15%;
+  border-radius: 50%;
+  left: 70%;
+ 
+  
+}
+.shop-btn {
+  color: black;
+  text-decoration: none;
+  position: relative;
+  z-index: 9;
+}
+.shop-btn:hover  svg {
+  color: #fff
 }
 
 .custome-btn {

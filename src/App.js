@@ -9,6 +9,7 @@ import Nav from './client-side/pages/nav/nav';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Shery from "sheryjs";
 import Footer from './client-side/pages/footer/footer';
 import NavMen from './client-side/pages/nav/nav-menu';
 

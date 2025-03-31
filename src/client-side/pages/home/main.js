@@ -30,10 +30,10 @@ function Home() {
       <Outfit/>
       <BrandList/>
       <Customize/>
-      {/* <Category/> */}
-      {/* <Store/> */}
-      {/* <Why/> */}
-      {/* <Map/> */}
+      <Category/>
+      <Store/>
+      <Why/>
+      <Map/>
     </div>
   )
 }
