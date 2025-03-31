@@ -6,6 +6,10 @@
   grid-template-rows: 9fr 2fr 1fr;
   padding: 0.4rem;
   border-radius: 1rem;
+  transition: 0.3s all;
+}
+.product-card:hover {
+  transform: scale(1.04);
 }
 .product-card .product-image {
   width: 100%;

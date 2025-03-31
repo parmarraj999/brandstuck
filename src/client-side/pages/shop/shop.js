@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './shop.css';
 import { Link } from 'react-router-dom';
 import ProductCard from './product-card/productCard';
@@ -16,7 +16,7 @@ function Shop() {
         { text: 'Jacket' },
     ]
 
-    const [grid, setGrid] = useState('2')
+    const [grid, setGrid] = useState('4')
     const [filterPop,setFilterPop] = useState(false)
 
     const data = [
@@ -269,6 +269,16 @@ function Shop() {
         }
     ]
 
+    const width = window.innerWidth;
+
+    useEffect(()=>{
+        if(width < 765){
+            setGrid(2)
+        }else{
+            setGrid(4)
+        }
+    },[])
+
     return (
         <div className='shop-container' >
             {
@@ -277,7 +287,7 @@ function Shop() {
                 : ""
             }
             <div style={{ display: "flex", alignItems: 'center', gap: "1rem" }}>
-                <Link to='/' style={{ fontSize: '18px', textDecoration: "none", fontWeight: "600", color: "rgba(0,0,0,.4)" }}> Home </Link>
+                <Link to='/' style={{ fontSize: '16px', textDecoration: "none", fontWeight: "600", color: "rgba(0,0,0,.4)" }}> Home </Link>
                 <svg style={{ width: "20px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M1.99974 13.0001L1.9996 11.0002L18.1715 11.0002L14.2218 7.05044L15.636 5.63623L22 12.0002L15.636 18.3642L14.2218 16.9499L18.1716 13.0002L1.99974 13.0001Z"></path></svg>
                 <h3>Shopping Page</h3>
             </div>
@@ -312,7 +322,7 @@ function Shop() {
                         onClick={() => setGrid('6')}>6</h2>
                 </div>
             </div>
-            <div className='product-list' >
+            <div className='product-list' style={{gridTemplateColumns:`repeat(${grid},1fr)`}} >
                 {
                     data.map((data)=>{
                         return(

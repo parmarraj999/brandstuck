@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Router, Routes, UNSAFE_useScrollRestoration, useLocation } from 'react-router-dom';
 import './App.css';
 import Main from './client-side/pages/home/main';
 import { ThemeProvider } from './client-side/context/ThemeContext';
@@ -13,17 +13,32 @@ import Footer from './client-side/pages/footer/footer';
 import NavMen from './client-side/pages/nav/nav-menu';
 import Shop from './client-side/pages/shop/shop';
 import Marquee from './client-side/pages/home/marquee/marquee';
+import { useEffect } from 'react';
+
+// import { useScrollRestoration } from 'react-router-dom';
 
 function App() {
 
+
   gsap.registerPlugin(ScrollTrigger);
+
+  function ScrollToTop() {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+      window.scrollTo(0, 0); // Scroll to top on route change
+    }, [pathname]);
+
+    return null;
+  }
 
   return (
     <ThemeProvider>
       <div className="App">
         <BrowserRouter>
+        <ScrollToTop/>
           <Nav />
-          <Marquee/>
+          <Marquee />
           {/* <NavMen/> */}
           <Routes>
             <Route path='/' element={<Main />} />
