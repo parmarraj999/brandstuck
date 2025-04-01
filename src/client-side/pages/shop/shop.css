@@ -84,7 +84,10 @@
   cursor: pointer;
 }
 .shop-container .product-list {
-  margin-top: 2rem;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2.5rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
@@ -115,7 +118,8 @@
     padding: 0.6rem 1rem;
   }
   .shop-container .product-list {
-    gap: 0.6rem;
+    width: 98%;
+    gap: 0.4rem;
     grid-template-columns: repeat(2, 1fr);
   }
 }/*# sourceMappingURL=shop.css.map */
