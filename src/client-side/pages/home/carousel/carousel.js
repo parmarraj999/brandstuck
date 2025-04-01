@@ -114,11 +114,7 @@ export default function Carousel() {
         ))}
       </div>
       <div className='button_container' >
-<<<<<<< HEAD
-        <Link   className='shop-btn' >Shop Now
-=======
         <Link to='/shop' className='shop-btn' >Shop Now
->>>>>>> c56e816861232f1c3772d730ada07cd822c35e35
           <svg style={{width:"25px"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
         </Link>
         <Link className='custome-btn' >

@@ -15,6 +15,23 @@
         font-weight: 500;
         margin-top: 2rem;
     }
+    .filter-button-float{
+        display: flex; 
+        padding: .7rem 1.4rem;
+        align-items: center;
+        gap: .8rem ;
+        font-size: 18px;
+        font-weight: 600;
+        border: none;
+        position: sticky;
+        border: 1px solid grey;
+        top: 90%;
+        left: 50%;
+        transform: translate(-50%,0);
+        background: rgba(255,255,255,.6);
+        backdrop-filter: blur(10px);
+        border-radius: 5px;
+    }
     .filter-tag-container{
         display: flex;
         gap: 1rem;
@@ -31,7 +48,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-top: 2rem;
+        margin-top: 1rem;
         .filter-button{
             display: flex; 
             padding: .7rem 1.4rem;
@@ -66,7 +83,7 @@
         }
     }
     .product-list{
-        margin-top: 3rem;
+        margin-top: 2rem;
         display: grid;
         grid-template-columns: repeat(4,1fr);
         gap: 1rem;

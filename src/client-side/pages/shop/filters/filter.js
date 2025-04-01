@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './filter.css';
+import { useLocation } from 'react-router-dom';
 
 function Filter({ setFilterPop }) {
 
@@ -122,8 +123,19 @@ function Filter({ setFilterPop }) {
         { text: '20000' },
     ]
 
+     function ScrollToTop() {
+            const { pathname } = useLocation();
+        
+            useEffect(() => {
+              window.scrollTo(0, 0); // Scroll to top on route change
+            }, [pathname]);
+        
+            return null;
+          }
+
     return (
         <div className='filter-page-container' >
+            <ScrollToTop/>
             <div className='filter-wrapper' >
                 <div className='filter-header'>
                     <h2>Filter</h2>

@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import './nav.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ThemeContext } from '../../context/ThemeContext';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -17,6 +17,7 @@ function Nav() {
     useGSAP(() => {
         gsap.to('.nav_container', {
             y: -20,
+            opacity: 1,
             scrollTrigger: {
                 trigger: '.nav_container',
                 start: 'top 1%',
@@ -24,36 +25,84 @@ function Nav() {
                 scrub: true,
             },
         });
-        gsap.from(".nav_container",{
-            opacity:0,
-            delay:.5,
-            duration:1,
-            border:"2px solid white"
+        gsap.from(".nav_container", {
+            opacity: 0,
+            delay: .5,
+            duration: 1,
+            border: "2px solid white"
         })
-        gsap.from(".nav_link",{
-            opacity:0,
-            duration:1,
-            delay:.8,
-            stagger:.2
+        gsap.from(".nav_link", {
+            opacity: 0,
+            duration: 1,
+            delay: .8,
+            stagger: .2
         })
-        gsap.from(".nav_logo > img",{
-            opacity:0,
-            delay:.8,
+        gsap.from(".nav_logo > img", {
+            opacity: 0,
+            delay: .8,
         })
-        gsap.from(".nav_button",{
-            opacity:0,
-            duration:1,
-            delay:.8,
-            stagger:.2
+        gsap.from(".nav_button", {
+            opacity: 0,
+            duration: 1,
+            delay: .8,
+            stagger: .2
         })
 
     })
 
+    const { pathname } = useLocation();
+
+    console.log(pathname)
+
+    useEffect(() => {
+        if (pathname === '/shop') {
+
+        }
+    })
+
+    // hide nav bar on shopping page when scroll 
+
+    // const navbarRef = useRef(null);
+    // const [prevScrollPos, setPrevScrollPos] = useState(0);
+
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         const currentScrollPos = window.scrollY;
+    //         const navbarElement = navbarRef.current;
+
+    //         if (pathname === '/shop') {
+    //             if (navbarElement) {
+    //                 if (currentScrollPos > 180 && currentScrollPos > prevScrollPos) {
+    //                     // Scroll down
+    //                     gsap.to(navbarElement, {
+    //                         // y: '-200',
+    //                         opacity:0,
+    //                         duration: 1,
+    //                         ease: 'power2.out',
+    //                     });
+    //                 } else {
+    //                     // Scroll up    
+    //                     gsap.to(navbarElement, {
+    //                         opacity:1,
+    //                         duration: 1,
+    //                         ease: 'power2.out',
+    //                     });
+    //                 }
+    //             }
+    //         }
+
+    //         setPrevScrollPos(currentScrollPos);
+    //     };
+
+    //     window.addEventListener('scroll', handleScroll);
+
+    //     return () => window.removeEventListener('scroll', handleScroll);
+    // }, [prevScrollPos]);
 
     return (
-        <div className='nav_container' >
+        <div className='nav_container'  >
             <div className='nav_links' >
-                <button onClick={toggleTheme} >Toggle Theme</button>
+                {/* <button onClick={toggleTheme} >Toggle Theme</button> */}
                 <Link to='/shop' className='nav_link'>Shop</Link>
                 <Link className='nav_link'>Brands</Link>
                 <Link className='nav_link'>Accessories</Link>
