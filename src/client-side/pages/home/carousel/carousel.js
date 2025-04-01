@@ -25,19 +25,19 @@ const slides = [
 const slides2 = [
   {
     id: 1,
-    img: 'https://i.pinimg.com/474x/cf/b0/58/cfb058ab6bfd8c57d0c641ed32fba8c7.jpg',
+    img: 'https://i.pinimg.com/736x/cf/18/6a/cf186adde4e35db35604d78dcd0f4776.jpg',
   },
   {
     id: 2,
-    img: 'https://i.pinimg.com/474x/5f/69/cc/5f69cc30d9ca20d4e033c86469a1ffe9.jpg',
+    img: 'https://i.pinimg.com/474x/fc/ad/b4/fcadb4ad4c0bc1fb06853ac21bef9ed5.jpg',
   },
   {
     id: 3,
-    img: 'https://i.pinimg.com/736x/33/89/e3/3389e397b2ad284c4829208ac4765b6d.jpg',
+    img: 'https://i.pinimg.com/474x/43/fb/96/43fb967d6928fcddd30703460bdf92af.jpg',
   },
   {
     id: 4,
-    img: 'https://i.pinimg.com/474x/f1/c2/c9/f1c2c93af954792263f6558a70d8c5f4.jpg',
+    img: 'https://i.pinimg.com/474x/e5/58/c4/e558c46b9fef2bac460edebdfdebc550.jpg',
   },
 ]
 

@@ -16,13 +16,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .product-card .product-image .cart-button svg {
   width: 20px;
 }
 .product-card .product-image img {
   width: 100%;
-  max-height: 280px;
+  height: 280px;
   border-radius: 5px;
 }
 .product-card .product-detail {
@@ -39,6 +40,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   width: 260px;
+  font-family: "Roboto Mono", monospace;
 }
 .product-card .product-detail .price-detail {
   display: flex;
