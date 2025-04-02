@@ -1,0 +1,102 @@
+.cart-pop-container{
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,.4);
+    backdrop-filter: blur(5px);
+    position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .cart-pop-wrapper{
+        width: 30%;
+        height: fit-content;
+        background: white;
+        position: relative;
+        padding: .5rem 0;
+        .close-btn{
+            width: 40px;
+            height: 40px;
+            background: black;
+            position: absolute;
+            right: -2%;
+            top: -2%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image-container{
+            width: 100%;
+            height: 300px;
+            img{
+                height: 100%;
+                width: auto;
+            }
+        }
+        .product-detail{
+            width: 100%;
+            height: fit-content;
+            padding: .2rem .8rem;
+            font-family: "Roboto Mono", monospace;
+            h2{
+                font-size: 13px;
+            }
+            h3{
+                font-size: 13px;
+                text-transform: uppercase;
+            }
+            h4{
+                font-size: 15px;
+                font-family: "Roboto Mono", monospace;
+                text-transform: uppercase;
+                font-weight: 500;
+            }
+            h5{
+                font-size: 15px;
+                font-family: "Roboto Mono", monospace;
+                text-transform: uppercase;
+                font-weight: 500;
+                color: blue;
+            }
+            .size-container{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: .3rem;
+                margin-top: .2rem;
+                div{
+                    padding:.3rem 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    border: 1px solid black;
+                    text-transform: uppercase;
+                    font-size: 12px;
+                    border-radius: 4px;
+                }
+            }
+            .addBtn{
+                padding: .7rem 0;
+                background: black;
+                color: white;
+                margin-top: .3rem;
+                border-radius: 10px;
+                font-size: 14px;
+                text-transform: uppercase;
+                border: 1px solid black;
+                cursor: pointer;
+            }
+        }
+    }
+}
+@media screen and (max-width:765px) {
+    .cart-pop-container{
+        .cart-pop-wrapper{
+            width: 90%;
+        }
+    }
+}

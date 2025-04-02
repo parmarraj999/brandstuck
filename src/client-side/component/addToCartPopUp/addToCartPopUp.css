@@ -1,0 +1,101 @@
+.cart-pop-container {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  position: absolute;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-pop-container .cart-pop-wrapper {
+  width: 30%;
+  height: -moz-fit-content;
+  height: fit-content;
+  background: white;
+  position: relative;
+  padding: 0.5rem 0;
+}
+.cart-pop-container .cart-pop-wrapper .close-btn {
+  width: 40px;
+  height: 40px;
+  background: black;
+  position: absolute;
+  right: -2%;
+  top: -2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-pop-container .cart-pop-wrapper .image-container {
+  width: 100%;
+  height: 300px;
+}
+.cart-pop-container .cart-pop-wrapper .image-container img {
+  height: 100%;
+  width: auto;
+}
+.cart-pop-container .cart-pop-wrapper .product-detail {
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 0.2rem 0.8rem;
+  font-family: "Roboto Mono", monospace;
+}
+.cart-pop-container .cart-pop-wrapper .product-detail h2 {
+  font-size: 13px;
+}
+.cart-pop-container .cart-pop-wrapper .product-detail h3 {
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.cart-pop-container .cart-pop-wrapper .product-detail h4 {
+  font-size: 15px;
+  font-family: "Roboto Mono", monospace;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.cart-pop-container .cart-pop-wrapper .product-detail h5 {
+  font-size: 15px;
+  font-family: "Roboto Mono", monospace;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: blue;
+}
+.cart-pop-container .cart-pop-wrapper .product-detail .size-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+}
+.cart-pop-container .cart-pop-wrapper .product-detail .size-container div {
+  padding: 0.3rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid black;
+  text-transform: uppercase;
+  font-size: 12px;
+  border-radius: 4px;
+}
+.cart-pop-container .cart-pop-wrapper .product-detail .addBtn {
+  padding: 0.7rem 0;
+  background: black;
+  color: white;
+  margin-top: 0.3rem;
+  border-radius: 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 765px) {
+  .cart-pop-container .cart-pop-wrapper {
+    width: 90%;
+  }
+}/*# sourceMappingURL=addToCartPopUp.css.map */
