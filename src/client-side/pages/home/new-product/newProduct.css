@@ -11,6 +11,7 @@
   width: 90%;
   height: -moz-fit-content;
   height: fit-content;
+  overflow: hidden;
   gap: 1rem;
 }
 .new-product-container .slider-button {

@@ -69,6 +69,24 @@
 .nav_container .nav_buttons .menu-button {
   display: none;
 }
+.nav_container .nav_buttons .cart-button {
+  position: relative;
+}
+.nav_container .nav_buttons .cart-button .product-count {
+  width: 15px;
+  border-radius: 50%;
+  height: 15px;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: red;
+  color: white;
+  position: absolute;
+  right: 5%;
+  top: 5%;
+}
 
 .menu-container {
   width: 96vw;
@@ -135,7 +153,7 @@
     gap: 0.2rem;
   }
   .nav_container .nav_buttons .profile-button {
-    display: none;
+    display: flex;
   }
   .menu-container {
     display: flex;
