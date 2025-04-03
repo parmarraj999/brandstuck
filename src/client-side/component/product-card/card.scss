@@ -4,45 +4,82 @@
         min-width: 300px;
         width: 95%;
         height: fit-content;
-        border: 1px solid grey;
         display: grid;
         align-items: center;
-        grid-template-rows: 10fr 2fr;
         overflow: hidden;
         gap: 0.4rem;
-        padding: 0.5rem;
-        border-radius: 2rem;
         img {
             width: 100%;
             height: 320px;
             aspect-ratio: 1;
-            border-radius: 1.5rem;
+            border-radius: 10px;
         }
-        .card-detail {
-            width: 100%;
-            height: 100%;
-            padding: 0 0.6rem;
+        // .card-detail {
+        //     width: 100%;
+        //     height: 100%;
+        //     padding: 0 0.6rem;
+        //     display: flex;
+        //     flex-direction: column;
+        //     justify-content: center;
+        //     h2 {
+        //         font-size: 22px;
+        //         font-weight: 500;
+        //         color: var(--text-color);
+        //     }
+        //     h3 {
+        //         color: grey;
+        //     }
+        // }
+        .product-detail {
+            // border: 1px solid red;
+            margin-top: 0.2rem;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            gap: 0.2rem;
             h2 {
-                font-size: 22px;
-                font-weight: 500;
-                color: var(--text-color);
+                font-size: 14px;
+                text-transform: uppercase;
+                font-weight: 400;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 260px;
+                font-family: "Roboto Mono", monospace;
+                // text-wrap: nowrap;
             }
-            h3 {
-                color: grey;
+            .price-detail {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                h3 {
+                    font-size: 15px;
+                    font-weight: 500;
+                    font-family: "Roboto Mono", monospace;
+                }
+                .cancel{
+                    text-decoration: line-through;
+                    color: grey;
+                }
+                h4{
+                    font-size: 14px;
+                    color: red;
+                    text-transform: uppercase;
+                    font-weight: 500;
+                }
             }
         }
     }
 }
 @media screen and (max-width:765px) {
     .default-card{
-        height: 500px;
+        height: fit-content;
         .card{
             height: 100%;
             img{
                 height: 100%;
+            }
+            .product-detail{
+                padding: .2rem;
             }
         }
     }
