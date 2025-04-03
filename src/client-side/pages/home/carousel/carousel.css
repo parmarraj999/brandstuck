@@ -1,7 +1,8 @@
 .carousel-wrapper {
   width: 100%;
-  height: calc(100vh - 30px);
+  height: calc(100vh - 70px);
   position: relative;
+  /* border: 1px solid red; */
 }
 
 .carousel-container {
@@ -23,6 +24,12 @@
   width: 100%;
   overflow: hidden;
   display: none;
+}
+
+.carousel-container-mobile .carousel-track{
+  /* border: 1px solid green; */
+  height: 100%;
+  width: 100%;
 }
 
 .carousel-slide img {
@@ -186,7 +193,7 @@
 
 @media screen and (max-width:765px) {
   .button_container {
-    top: 78%;
+    top: 80%;
   }
 
   .shop-btn {
@@ -201,7 +208,7 @@
   }
 
   .carousel-bubbles {
-    top: 87%;
+    top: 90%;
   }
 
   .carousel-container {

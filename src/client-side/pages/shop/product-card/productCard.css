@@ -1,67 +1,92 @@
 .product-card {
   width: 100%;
-  height: 500px;
-  border: 1px solid grey;
-  display: grid;
-  grid-template-rows: 9fr 2fr 1fr;
-  padding: 0.4rem;
-  border-radius: 1rem;
-  transition: 0.3s all;
-}
-.product-card:hover {
-  transform: scale(1.04);
+  margin-top: 15px;
 }
 .product-card .product-image {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  overflow: hidden;
+  position: relative;
 }
-.product-card .product-image img {
-  width: 100%;
-  height: 100%;
-}
-.product-card .product-detail {
-  display: flex;
-  flex-direction: column;
-  margin-top: 0.3rem;
-  padding: 0.2rem;
-}
-.product-card .product-detail h2 {
-  font-size: 18px;
-  font-weight: 500;
-}
-.product-card .product-detail h3 {
-  font-size: 18px;
-  color: rgba(0, 0, 0, 0.5);
-}
-.product-card button {
-  width: 100%;
-  padding: 0.8rem 0;
-  font-size: 18px;
-  color: white;
-  background: black;
-  border-radius: 12px;
-  border: none;
+.product-card .product-image .cart-button {
+  position: absolute;
+  top: 4%;
+  right: 4%;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.8rem;
+  cursor: pointer;
 }
-.product-card button svg {
-  width: 25px;
+.product-card .product-image .cart-button svg {
+  width: 20px;
+}
+.product-card .product-image img {
+  width: 100%;
+  height: 280px;
+  border-radius: 5px;
+}
+.product-card .product-detail {
+  margin-top: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.product-card .product-detail h2 {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 260px;
+  font-family: "Roboto Mono", monospace;
+}
+.product-card .product-detail .price-detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-card .product-detail .price-detail h3 {
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Roboto Mono", monospace;
+}
+.product-card .product-detail .price-detail .cancel {
+  text-decoration: line-through;
+  color: grey;
+}
+.product-card .product-detail .price-detail h4 {
+  font-size: 14px;
+  color: red;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 @media screen and (max-width: 765px) {
   .product-card {
-    height: 350px;
-    padding: 0.3rem;
-    grid-template-rows: 8fr 3fr 1fr;
+    margin-top: 10px;
   }
-  .product-card button {
-    font-size: 16px;
+  .product-card .product-image .cart-button svg {
+    width: 17px;
   }
-  .product-card button svg {
-    width: 20px;
+  .product-card .product-image img {
+    height: 200px;
+  }
+  .product-card .product-detail h2 {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 170px;
+  }
+  .product-card .product-detail .price-detail h3 {
+    font-size: 12px;
+  }
+  .product-card .product-detail .price-detail .cancel {
+    text-decoration: line-through;
+  }
+  .product-card .product-detail .price-detail h4 {
+    font-size: 12px;
   }
 }/*# sourceMappingURL=productCard.css.map */
