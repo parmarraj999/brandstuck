@@ -16,6 +16,7 @@ import Shop from './client-side/pages/shop/shop';
 import Marquee from './client-side/pages/home/marquee/marquee';
 import { useEffect } from 'react';
 
+
 // import { useScrollRestoration } from 'react-router-dom';
 
 function App() {
@@ -38,14 +39,14 @@ function App() {
       <div className="App">
         <BrowserRouter>
         <ScrollToTop/>
-          <Nav />
-          <Marquee />
+          {/* <Nav /> */}
+          {/* <Marquee /> */}
           {/* <NavMen/> */}
           <Routes>
             <Route path='/' element={<Main />} />
             <Route path='/shop' element={<Shop />} />
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </BrowserRouter>
       </div>
     </ThemeProvider>
