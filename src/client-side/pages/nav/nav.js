@@ -82,6 +82,20 @@ function Nav() {
     //     })
     // }
 
+    // hide nav bar when cart page open 
+
+    useEffect(()=>{
+        if(pathname === "/cart"){
+            gsap.to(".nav_container",{
+                display:'none'
+            })
+        }else{
+            gsap.to(".nav_container",{
+                display:'flex'
+            })
+        }
+    },[pathname])
+
 
 
 

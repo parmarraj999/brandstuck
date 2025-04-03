@@ -1,4 +1,4 @@
-.cart-container {
+.cart-small-container {
     width: 30%;
     height: 83vh;
     background: white;
@@ -87,7 +87,7 @@
     grid-template-rows: 1fr 9fr 2fr;
 }
 @media screen and (max-width: 765px) {
-    .cart-container {
+    .cart-small-container {
         width: 98%;
         left: 50%;
         transform: translate(-50%, 0);
