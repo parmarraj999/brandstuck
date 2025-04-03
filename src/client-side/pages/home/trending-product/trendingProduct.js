@@ -70,7 +70,7 @@ function TrendingProduct() {
                                     <img src={data.imageUrl} />
                                     <div className='card-detail' >
                                         <h2>{data.name}</h2>
-                                        <h3>&#8377;{data.price}</h3>
+                                        <h3>RS.{data.price}</h3>
                                     </div>
                                 </div>
                             </div>
