@@ -17,6 +17,7 @@ import Marquee from './client-side/pages/home/marquee/marquee';
 import { useEffect } from 'react';
 import MainCart from './client-side/pages/cart-page/mainCart';
 import Brands from './client-side/pages/brands/brands';
+import ProductDetail from './client-side/pages/product-detail-page/product-detail';
 
 
 // import { useScrollRestoration } from 'react-router-dom';
@@ -47,6 +48,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Main />} />
             <Route path='/shop' element={<Shop />} />
+            <Route path='/product/:id' element={<ProductDetail/>}/>
             <Route path='/cart' element={<MainCart/>} />
             <Route path='/brands' element={<Brands/>} />
           </Routes>
