@@ -11,7 +11,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Shery from "sheryjs";
 import Footer from './client-side/pages/footer/footer';
-import NavMen from './client-side/pages/nav/nav-menu';
 import Shop from './client-side/pages/shop/shop';
 import Marquee from './client-side/pages/home/marquee/marquee';
 import { useEffect } from 'react';
@@ -43,8 +42,7 @@ function App() {
         <BrowserRouter>
         <ScrollToTop/>
           <Nav />
-          <Marquee />
-          {/* <NavMen/> */}
+          {/* <Marquee /> */}
           <Routes>
             <Route path='/' element={<Main />} />
             <Route path='/shop' element={<Shop />} />
@@ -52,7 +50,7 @@ function App() {
             <Route path='/cart' element={<MainCart/>} />
             <Route path='/brands' element={<Brands/>} />
           </Routes>
-          {/* <Footer /> */}
+          <Footer />
         </BrowserRouter>
       </div>
     </ThemeProvider>

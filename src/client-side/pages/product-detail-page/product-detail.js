@@ -1,6 +1,7 @@
 import React from 'react'
 import './product-detail.css'
 import { useParams } from 'react-router-dom'
+import CartSmall from '../../component/cartSmall/cartSmall'
 
 function ProductDetail() {
 
@@ -9,10 +10,11 @@ function ProductDetail() {
 
   return (
     <div className='product-detail-container'>
-      <div className='product-header' >
+      {/* <div className='product-header' >
         <div className='back-btn'>
           <svg style={{ width: "25px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
         </div>
+  
         <img src='../../../../assets/images/logo.png' />
         <div className='product-header-icons' >
           <div className='icon'>
@@ -25,7 +27,7 @@ function ProductDetail() {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 22C4 17.5817 7.58172 14 12 14C16.4183 14 20 17.5817 20 22H18C18 18.6863 15.3137 16 12 16C8.68629 16 6 18.6863 6 22H4ZM12 13C8.685 13 6 10.315 6 7C6 3.685 8.685 1 12 1C15.315 1 18 3.685 18 7C18 10.315 15.315 13 12 13ZM12 11C14.21 11 16 9.21 16 7C16 4.79 14.21 3 12 3C9.79 3 8 4.79 8 7C8 9.21 9.79 11 12 11Z"></path></svg>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className='product-details-wrapper' >
         <div className='product-image' >
           <img src='https://i.pinimg.com/474x/fc/27/17/fc2717f7cbcb1fd6816deeed62543133.jpg' />
@@ -51,8 +53,36 @@ function ProductDetail() {
             </div>
             <h5>50% off</h5>
           </div>
-          <div className='add-to-cart-box-container' > 
-
+          <div className='add-to-cart-box-container' >
+            <div style={{ display: "flex", alignItems: "center", justifyContent: 'space-between' }}>
+              <h2>choose size</h2>
+              <h4>[size chart]</h4>
+            </div>
+            <div className='size-box-container' >
+              <div className='size-box' >s</div>
+              <div className='size-box' >m</div>
+              <div className='size-box' >l</div>
+              <div className='size-box' >xl</div>
+              <div className='size-box' >xxl</div>
+            </div>
+            <button>Add to cart</button>
+            <p>NOTE : YOU CAN APPLY COUPON CODE WHILE CONFIrMING ORDER IN CART </p>
+          </div>
+          <div className='color-show' >
+          <h2>colors</h2>
+          <div className='colors-box' >
+            <div className='color-box' ></div>
+            <div className='color-box' ></div>
+            <div className='color-box' ></div>
+          </div>
+          </div>
+          <div className='shipping-details' >
+            <h2>shipping</h2>
+            <p>Your order will be dispatched within 24-48 hours</p>
+            <p>After dispatch, it takes about</p>
+            <li>4 to 7 working days for the rest of India.</li>
+            <p>We ship your order from Narsinghpur, Madhya Pradesh.</p>
+            <h2>delivery under 30 min in Narsinghpur,</h2>
           </div>
         </div>
       </div>

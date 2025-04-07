@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import './nav.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../context/ThemeContext';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import NavMen from './nav-menu';
 import CartSmall from '../../component/cartSmall/cartSmall';
+import { path } from 'motion/react-client';
 
 function Nav() {
 
@@ -13,54 +13,10 @@ function Nav() {
     const [openCart, setOpenCart] = useState(false)
 
     const { theme, toggleTheme } = useContext(ThemeContext)
+    const { pathname } = useLocation();
 
     const tl = gsap.timeline();
 
-    useGSAP(() => {
-        gsap.to('.nav_container', {
-            y: -20,
-            opacity: 1,
-            scrollTrigger: {
-                trigger: '.nav_container',
-                start: 'top 1%',
-                end: 'top -1%',
-                scrub: true,
-            },
-        });
-        gsap.from(".nav_container", {
-            opacity: 0,
-            delay: .5,
-            duration: 1,
-            border: "2px solid white"
-        })
-        gsap.from(".nav_link", {
-            opacity: 0,
-            duration: 1,
-            delay: .8,
-            stagger: .2
-        })
-        gsap.from(".nav_logo > img", {
-            opacity: 0,
-            delay: .8,
-        })
-        gsap.from(".nav_button", {
-            opacity: 0,
-            duration: 1,
-            delay: .8,
-            stagger: .2
-        })
-
-    })
-
-    const { pathname } = useLocation();
-
-    console.log(pathname)
-
-    useEffect(() => {
-        if (pathname === '/shop') {
-
-        }
-    }, [pathname])
 
     const screenWidth = window.innerWidth;
 
@@ -74,30 +30,14 @@ function Nav() {
         }
     }
 
-    // const closeCartFunc = () => {
-    //     setOpenCart(false)
-    //     gsap.to(".nav_container", {
-    //         background: '#a9a9a960',
-    //         boxShadow: 'none',
-    //     })
-    // }
-
     // hide nav bar when cart page open 
 
-    useEffect(()=>{
-        if(pathname === "/cart"){
-            gsap.to(".nav_container",{
-                display:'none'
-            })
-        }else{
-            gsap.to(".nav_container",{
-                display:'flex'
-            })
-        }
-    },[pathname])
 
 
-
+    const navigate = useNavigate();
+    const backBtn = () => {
+        navigate(-1)
+    }
 
     return (
         <div className='nav_container'  >
@@ -106,11 +46,13 @@ function Nav() {
             <CartSmall openCart={openCart} setOpenCart={setOpenCart} />
             {/* : ""
             } */}
-
+            <div onClick={backBtn} className='back-btn'>
+                <svg style={{ width: "25px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
+            </div>
             <div className='nav_links' >
                 {/* <button onClick={toggleTheme} >Toggle Theme</button> */}
                 <Link to='/shop' className='nav_link'>Shop</Link>
-                <Link className='nav_link'>Brands</Link>
+                <Link to='/brands' className='nav_link'>Brands</Link>
                 <Link className='nav_link'>Accessories</Link>
                 <Link className='nav_link'>Shoes</Link>
             </div>
@@ -128,7 +70,7 @@ function Nav() {
                 <div className='nav_button profile-button' >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 22C4 17.5817 7.58172 14 12 14C16.4183 14 20 17.5817 20 22H18C18 18.6863 15.3137 16 12 16C8.68629 16 6 18.6863 6 22H4ZM12 13C8.685 13 6 10.315 6 7C6 3.685 8.685 1 12 1C15.315 1 18 3.685 18 7C18 10.315 15.315 13 12 13ZM12 11C14.21 11 16 9.21 16 7C16 4.79 14.21 3 12 3C9.79 3 8 4.79 8 7C8 9.21 9.79 11 12 11Z"></path></svg>
                 </div>
-                
+
                 {
                     menu === "close" ?
                         <div className='nav_button menu-button' onClick={() => setMenu('open')} >
