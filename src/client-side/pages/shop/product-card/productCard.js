@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './productCard.css';
 import AddToCartPopUp from '../../../component/addToCartPopUp/addToCartPopUp';
+import SmallNav from '../../nav/smallNav';
 
 function ProductCard({ data }) {
 

@@ -10,63 +10,49 @@ function Brands() {
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo/"
+      "image": "../../../../assets/brand-logo/spykar.jpg"
     },
     {
       "name": "Mufti",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/mufti.png"
     },
     {
       "name": "U.S. Polo Assn.",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/us-polo.jpeg"
     },
     {
       "name": "Pepe Jeans",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/pepe-jeans.png"
     },
     {
       "name": "Snitch",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/snitch.jpeg"
     },
     {
       "name": "Selected Homme",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/selected-homme.png"
     },
     {
       "name": "Indigo Nation",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
-    },
-    {
-      "name": "Jack & Jones",
-      "types": [
-        "Clothes"
-      ],
-      "image": "../../../../assets/brand-logo"
-    },
-    {
-      "name": "Only & Sons",
-      "types": [
-        "Clothes"
-      ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/indigo-nation.jpg"
     },
     {
       "name": "Flying Machine",
@@ -74,35 +60,49 @@ function Brands() {
         "Clothes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/flying-machine.jpg"
+    },
+    {
+      "name": "Jack & Jones",
+      "types": [
+        "Clothes"
+      ],
+      "image": "../../../../assets/brand-logo/jack-jones.jpeg"
+    },
+    {
+      "name": "Only & Sons",
+      "types": [
+        "Clothes"
+      ],
+      "image": "../../../../assets/brand-logo/only-sons.png"
     },
     {
       "name": "United Colors of Benetton",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/united-colors-of-benetton.jpg"
     },
     {
       "name": "Wrogn",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/wrogn.png"
     },
     {
       "name": "Monte Carlo",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/monte-carlo.png"
     },
     {
       "name": "Zara",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/zara.png"
     },
     {
       "name": "Dsquared2",
@@ -111,14 +111,14 @@ function Brands() {
         "Shoes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/DSQUARED2.png"
     },
     {
       "name": "Killer",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/killer.png"
     },
     {
       "name": "G-Star",
@@ -127,21 +127,21 @@ function Brands() {
         "Accessories",
         "Shoes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/g-star.png"
     },
     {
       "name": "Nostrum",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/nostrum.png"
     },
     {
       "name": "The Bear House",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/The-Bear-House.png"
     },
     {
       "name": "Gas",
@@ -150,7 +150,7 @@ function Brands() {
         "Shoes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/gap.png"
     },
     {
       "name": "Tommy Hilfiger",
@@ -159,7 +159,7 @@ function Brands() {
         "Shoes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/tommy-hilfiger.jpeg"
     },
     {
       "name": "Gant",
@@ -168,7 +168,7 @@ function Brands() {
         "Accessories",
         "Shoes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/gant.png"
     },
     {
       "name": "Calvin Klein",
@@ -177,21 +177,21 @@ function Brands() {
         "Shoes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/calvin-klein.png"
     },
     {
       "name": "Souled Store",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/souled-store.jpeg"
     },
     {
       "name": "Louis Philippe",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/louis-philippe.png"
     },
     {
       "name": "Allen Solly",
@@ -200,14 +200,7 @@ function Brands() {
         "Shoes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
-    },
-    {
-      "name": "Uniqlo",
-      "types": [
-        "Clothes"
-      ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/allen-solly.png"
     },
     {
       "name": "Converse",
@@ -216,7 +209,14 @@ function Brands() {
         "Shoes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/converse.png"
+    },
+    {
+      "name": "Uniqlo",
+      "types": [
+        "Clothes"
+      ],
+      "image": "../../../../assets/brand-logo/uniqlo.jpeg"
     },
     {
       "name": "Puma",
@@ -225,14 +225,14 @@ function Brands() {
         "Shoes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/puma.png"
     },
     {
       "name": "Lee",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/lee.png"
     },
     {
       "name": "Adidas",
@@ -241,7 +241,7 @@ function Brands() {
         "Shoes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/Adidas.png"
     },
     {
       "name": "Roit Jeans",
@@ -255,7 +255,7 @@ function Brands() {
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/being-human.png"
     },
     {
       "name": "Manchester City",
@@ -263,7 +263,7 @@ function Brands() {
         "Clothes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/manchester.jpeg"
     },
     {
       "name": "Pro & Fit",
@@ -279,7 +279,7 @@ function Brands() {
         "Shoes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/Caterpillar.png"
     },
     {
       "name": "Armani Exchange",
@@ -288,7 +288,7 @@ function Brands() {
         "Shoes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/armani-exchange.jpeg"
     },
     {
       "name": "Reebok",
@@ -297,7 +297,7 @@ function Brands() {
         "Shoes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/reebok.png"
     },
     {
       "name": "Pull & Bear",
@@ -306,7 +306,7 @@ function Brands() {
         "Shoes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/pull-bear.jpeg"
     },
     {
       "name": "H&M",
@@ -314,7 +314,7 @@ function Brands() {
         "Clothes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/H&M.png"
     },
     {
       "name": "Bella Vita",
@@ -323,14 +323,14 @@ function Brands() {
         "Shoes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/bella-vita.jpg"
     },
     {
       "name": "Westos",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/westo.png"
     },
     {
       "name": "Lee Cooper",
@@ -338,7 +338,7 @@ function Brands() {
         "Clothes",
         "Shoes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/lee-cooper.png"
     },
     {
       "name": "Levi’s",
@@ -346,14 +346,14 @@ function Brands() {
         "Clothes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/levis.png"
     },
     {
       "name": "Roadstar",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/roadster.png"
     },
     {
       "name": "In Fuse",
@@ -362,7 +362,7 @@ function Brands() {
         "Shoes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/infuse.png"
     },
     {
       "name": "Gap",
@@ -370,28 +370,28 @@ function Brands() {
         "Clothes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/gap.png"
     },
     {
       "name": "Beat London",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/beat-london.jpeg"
     },
     {
       "name": "Big Star",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/big-star.png"
     },
     {
       "name": "Skechers",
       "types": [
         "Shoes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/sketchers.jpeg"
     },
     {
       "name": "New Balance",
@@ -400,7 +400,7 @@ function Brands() {
         "Clothes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/new-balance.png"
     },
     {
       "name": "Aeropostale",
@@ -408,14 +408,14 @@ function Brands() {
         "Clothes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/aeropostale.png"
     },
     {
       "name": "Blackberrys",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/blackberry.png"
     },
     {
       "name": "Van Heusen",
@@ -423,21 +423,21 @@ function Brands() {
         "Clothes",
         "Accessories"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/van-heusen.jpeg"
     },
     {
       "name": "Jockey",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/jockey.png"
     },
     {
       "name": "Unido",
       "types": [
         "Clothes"
       ],
-      "image": "../../../../assets/brand-logo"
+      "image": "../../../../assets/brand-logo/"
     }
   ]
 
@@ -457,13 +457,14 @@ function Brands() {
       <div className='brand-wrapper' >
         <div className='brand-wrapper-header' >
           <h2>Available brands</h2>
-          <div>200</div>
+          <div>{brandsData.length}</div>
         </div>
         <div className='brand-list' >
          {
           brandsData.map((data,index)=>{
             return(
               <div className='brand-box' >
+              <img src={data.image} />
                 </div>
             )
           })

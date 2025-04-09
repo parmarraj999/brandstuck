@@ -109,6 +109,7 @@
     top: 1%;
     left: 50%;
     transform: translate(-50%, 0);
+    z-index: 99999;
     display: flex;
     align-self: center;
     justify-content: space-between;

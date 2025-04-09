@@ -2,6 +2,7 @@ import React from 'react'
 import './product-detail.css'
 import { useParams } from 'react-router-dom'
 import CartSmall from '../../component/cartSmall/cartSmall'
+import SmallNav from '../nav/smallNav'
 
 function ProductDetail() {
 
@@ -28,6 +29,7 @@ function ProductDetail() {
           </div>
         </div>
       </div> */}
+      <SmallNav/>
       <div className='product-details-wrapper' >
         <div className='product-image' >
           <img src='https://i.pinimg.com/474x/fc/27/17/fc2717f7cbcb1fd6816deeed62543133.jpg' />
