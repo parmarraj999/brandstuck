@@ -1,5 +1,6 @@
 import React from 'react'
 import './brandList.css'
+import { Link } from 'react-router-dom'
 
 function BrandList() {
 
@@ -63,7 +64,7 @@ function BrandList() {
                     }
                 </ul>
             </div>
-            <button className='default-button' >All Brands</button>
+            <Link to='/brands' style={{textDecoration:"none"}} className='default-button' >All Brands</Link>
         </div>
     )
 }

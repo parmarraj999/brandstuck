@@ -68,7 +68,6 @@
             width: 100%;
             height: 85vh;
             overflow: scroll;
-            border: 1px solid red;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             .brand-box{
@@ -77,9 +76,48 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                border: 1px solid red;
+                border: 1px solid rgba(0, 0, 0, 0.1);
                 img{
                     width: 70%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:765px) {
+    .brands-container{
+        overflow: hidden;
+        min-height: 140vh;
+        .brand-header{
+            display: flex;
+            align-items: flex-end;
+            height: 20vh;
+            h1{
+                font-size: 7vw;
+            }
+        }
+        .brand-filters{
+            margin: 2rem auto 1rem auto;
+            .filter{
+                font-size: 14px;
+                padding:1rem;
+            }
+        }
+        .brand-wrapper{
+            width: 95%;
+            .brand-wrapper-header{
+                padding: .8rem 1rem;
+                h2{
+                    font-size: 18px;
+                }
+            }
+            .brand-list{
+                .brand-box{
+                    height: 180px;
+                    img{
+                        width: 80%;
+                    }
                 }
             }
         }

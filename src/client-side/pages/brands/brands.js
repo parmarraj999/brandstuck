@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './brands.css';
 import SmallNav from '../nav/smallNav';
 
@@ -243,13 +243,7 @@ function Brands() {
       ],
       "image": "../../../../assets/brand-logo/Adidas.png"
     },
-    {
-      "name": "Roit Jeans",
-      "types": [
-        "Clothes"
-      ],
-      "image": "../../../../assets/brand-logo"
-    },
+   
     {
       "name": "Being Human",
       "types": [
@@ -264,13 +258,6 @@ function Brands() {
         "Accessories"
       ],
       "image": "../../../../assets/brand-logo/manchester.jpeg"
-    },
-    {
-      "name": "Pro & Fit",
-      "types": [
-        "Clothes"
-      ],
-      "image": "../../../../assets/brand-logo"
     },
     {
       "name": "Caterpillar",
@@ -432,16 +419,17 @@ function Brands() {
       ],
       "image": "../../../../assets/brand-logo/jockey.png"
     },
-    {
-      "name": "Unido",
-      "types": [
-        "Clothes"
-      ],
-      "image": "../../../../assets/brand-logo/"
-    }
   ]
 
+  const [filterType, setFilterType] = useState('');
 
+  const handleFilterClick = (type) => {
+    setFilterType(type);
+  };
+
+
+  
+ 
   return (
     <div className='brands-container' >
       <SmallNav />
@@ -449,10 +437,10 @@ function Brands() {
         <h1>Choose you favourite <br /> brand</h1>
       </div>
       <div className='brand-filters' >
-      <div className='filter'>All</div>
-      <div className='filter'>Clothes</div>
-      <div className='filter'>Shoes</div>
-      <div className='filter'>Accessories</div>
+      <div className='filter'  onClick={() => handleFilterClick('')}>All</div>
+      <div className='filter'  onClick={() => handleFilterClick('Clothes')}>Clothes</div>
+      <div className='filter' onClick={() => handleFilterClick('Shoes')}>Shoes</div>
+      <div className='filter' onClick={() => handleFilterClick('Accessories')}>Accessories</div>
       </div>
       <div className='brand-wrapper' >
         <div className='brand-wrapper-header' >
