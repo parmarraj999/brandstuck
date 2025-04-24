@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './shop.css';
 import { Link } from 'react-router-dom';
 import ProductCard from './product-card/productCard';
 import Filter from './filters/filter';
+import { AllProductDataContext } from '../../../context/AllProductDataProvider';
 
 function Shop() {
 
@@ -18,6 +19,8 @@ function Shop() {
 
     const [grid, setGrid] = useState('4')
     const [filterPop, setFilterPop] = useState(false)
+
+    const {AllProductList} = useContext(AllProductDataContext)
 
     const data = [
         {
@@ -332,7 +335,7 @@ function Shop() {
             </div>
             <div className='product-list' style={{ gridTemplateColumns: `repeat(${grid},1fr)` }} >
                 {
-                    data.map((data) => {
+                    AllProductList.map((data) => {
                         return (
                             <ProductCard data={data} grid={grid} />
                         )
