@@ -3,6 +3,7 @@ import './cartSmall.css'
 import gsap from 'gsap'
 import CartProduct from './cart-product/cartProduct'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { AddOrderToFirestore } from '../../functions/placeOrder'
 
 function CartSmall({ openCart, setOpenCart }) {
 
@@ -69,6 +70,10 @@ function CartSmall({ openCart, setOpenCart }) {
         return null;
     }
 
+    const handleOrder = () =>{
+        AddOrderToFirestore();
+    }
+
     return (
         <div className='cart-small-container grid-system' ref={popupRef}>
             <div className='cart-header' >
@@ -98,7 +103,7 @@ function CartSmall({ openCart, setOpenCart }) {
                     <h3>rs. 13000</h3>
                 </div>
                 <h4>tax and shipping included</h4>
-                <button>Confirm order</button>
+                <button onClick={handleOrder}>Confirm order</button>
             </div>
         </div>
     )
