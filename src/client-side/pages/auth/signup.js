@@ -10,11 +10,11 @@ function Signup({ setLogin, setError, setLoading }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
     const [number, setNumber] = useState('')
-    const [userId, setUserId] = useState(uuidv4());
+    // const [userId, setUserId] = useState(uuidv4());
     const [status, setStatus] = useState('notSignUp')
 
     const handleSignUp = () => {
-        handleEmailPasswordAuth(setError, setLoading, name, email, password, userId, number,setStatus)
+        handleEmailPasswordAuth(setError, setLoading, name, email, password, number,setStatus)
     }
 
     const navigate = useNavigate();
@@ -22,7 +22,6 @@ function Signup({ setLogin, setError, setLoading }) {
     useEffect(() => {
         if (status === 'signUp') {
             window.localStorage.setItem("isLogIn", true)
-            window.localStorage.setItem("userId", userId);
             navigate('/profile')
         }
     }, [status])

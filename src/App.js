@@ -9,7 +9,6 @@ import Nav from './client-side/pages/nav/nav';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Shery from "sheryjs";
 import Footer from './client-side/pages/footer/footer';
 import Shop from './client-side/pages/shop/shop';
 import Marquee from './client-side/pages/home/marquee/marquee';
@@ -20,8 +19,7 @@ import ProductDetail from './client-side/pages/product-detail-page/product-detai
 import Auth from './client-side/pages/auth/auth';
 import { AllProductDataProvider } from './context/AllProductDataProvider';
 import Profile from './client-side/pages/profile/profile';
-import { collection, doc, getDocs, query } from 'firebase/firestore';
-import { db } from './firebase/firebaseConfig';
+import { UserCredentialProvider } from './context/userCredentialProvider';
 
 function App() {
 
@@ -80,28 +78,30 @@ function App() {
   // }, [userId]);
 
   return (
-    <AllProductDataProvider>
-      <ThemeProvider>
-        <div className="App">
-          <BrowserRouter>
-            <ScrollToTop />
-            <Nav />
-            {/* <Marquee /> */}
-            <Routes>
-              <Route path='/' element={<Main />} />
-              <Route path='/shop' element={<Shop />} />
-              <Route path='/product/:id' element={<ProductDetail />} />
-              <Route path='/cart' element={<MainCart />} />
-              <Route path='/brands' element={<Brands />} />
-              <Route path='/auth' element={<Auth />} />
-              <Route path='/profile' element={<Profile />} />
-              <Route path='*' element={<h1>404</h1>} />
-            </Routes>
-            <Footer />
-          </BrowserRouter>
-        </div>
-      </ThemeProvider>
-    </AllProductDataProvider>
+    <UserCredentialProvider>
+      <AllProductDataProvider>
+        <ThemeProvider>
+          <div className="App">
+            <BrowserRouter>
+              <ScrollToTop />
+              <Nav />
+              {/* <Marquee /> */}
+              <Routes>
+                <Route path='/' element={<Main />} />
+                <Route path='/shop' element={<Shop />} />
+                <Route path='/product/:id' element={<ProductDetail />} />
+                <Route path='/cart' element={<MainCart />} />
+                <Route path='/brands' element={<Brands />} />
+                <Route path='/auth' element={<Auth />} />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='*' element={<h1>404</h1>} />
+              </Routes>
+              <Footer />
+            </BrowserRouter>
+          </div>
+        </ThemeProvider>
+      </AllProductDataProvider>
+    </UserCredentialProvider>
   );
 }
 
