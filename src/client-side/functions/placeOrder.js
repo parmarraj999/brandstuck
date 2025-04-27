@@ -9,7 +9,8 @@ export const AddOrderToFirestore = async () => {
         { id: 'product3', name: 'Shoes', price: 80, quantity: 1 },
     ];
 
-    const userId = 'user123'; // Replace with the actual user ID. In a real app, get this from your auth system.
+    const userId = window.localStorage.getItem('userId'); 
+    console.log(userId)
 
     try {
         const orderData = {
@@ -20,16 +21,13 @@ export const AddOrderToFirestore = async () => {
             orderStatus: 'pending', // Initial order status
         };
 
-        // 1. Create a reference to the user's document.  We use doc() here.
         const userDocRef = doc(db, 'users', userId);
 
-        // 2. Create a reference to the 'orders' subcollection within the user's document.
-        const ordersCollectionRef = collection(userDocRef, 'orders'); // Corrected line
+        const ordersCollectionRef = collection(userDocRef, 'orders'); 
 
-        // 3. Add the order data to the 'orders' subcollection.
         const docRef = await addDoc(ordersCollectionRef, orderData);
         console.log('Order added with ID:', docRef.id, 'to user:', userId);
-        alert(`Order added successfully! Order ID: ${docRef.id} for User ID: ${userId}`); // Improved feedback
+        alert(`Order added successfully! Order ID: ${docRef.id} for User ID: ${userId}`);   
 
 
     } catch (error) {

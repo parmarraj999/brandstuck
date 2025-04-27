@@ -1,0 +1,80 @@
+.add-address-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background: rgba(0,0,0,.5);
+    /* backdrop-filter: blur(6px); */
+}
+.add-address-container .add-address-card{
+    width: 30%;
+    padding: 1rem 1.5rem;
+    background: white;
+    box-shadow: 6px 6px 15px rgba(0,0,0,.2);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    position: relative;
+}
+.add-address-card .header-img{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+.header-img h4{
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+.add-address-card img{
+    width: 40%;
+}
+.add-address-card h2{
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.add-address-card input{
+    height: 50px;
+    width: 100%;
+    padding: 0 1rem;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 15px;
+    border: 1px solid grey;
+}
+.add-address-card button{
+    width: 100%;
+    padding: 1rem 0 ;
+    background: black;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 15px;
+    border: none;
+}
+.add-address-card .close-btn{
+    position: absolute;
+    top: 3%;
+    right: 3%;
+    background: rgba(0,0,0,.2);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.add-address-card .close-btn svg{
+    width: 20px;
+}

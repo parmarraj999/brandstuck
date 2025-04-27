@@ -17,9 +17,9 @@ import MainCart from './client-side/pages/cart-page/mainCart';
 import Brands from './client-side/pages/brands/brands';
 import ProductDetail from './client-side/pages/product-detail-page/product-detail';
 import Auth from './client-side/pages/auth/auth';
-import { AllProductDataProvider } from './context/AllProductDataProvider';
 import Profile from './client-side/pages/profile/profile';
-import { UserCredentialProvider } from './context/userCredentialProvider';
+import { UserCredentialProvider } from './client-side/context/userCredentialProvider';
+import { AllProductDataProvider } from './client-side/context/AllProductDataProvider';
 
 function App() {
 

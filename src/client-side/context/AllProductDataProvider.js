@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { getFirestore, collection, query, orderBy, limit, getDocs, startAfter, endBefore } from "firebase/firestore";
-import { db } from "../firebase/firebaseConfig";
+import { db } from "../../firebase/firebaseConfig";
+
 
 export const AllProductDataContext = createContext();
 

@@ -4,7 +4,7 @@ import Footer from '../footer/footer';
 import SmallNav from '../nav/smallNav';
 import Login from './login';
 import Signup from './signup';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Auth() {
 
@@ -13,13 +13,14 @@ function Auth() {
   const [error, setError] = useState('')
 
   const navigate = useNavigate();
+  const {pathname} = useLocation();
   const isLogin = window.localStorage.getItem("isLogIn")
 
   useEffect(()=>{
     if(isLogin){
       navigate('/profile')
     }
-  },[])
+  },[pathname])
 
   return (
     <div className='auth-container' >

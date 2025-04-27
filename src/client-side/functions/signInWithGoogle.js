@@ -1,23 +1,9 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase/firebaseConfig";
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
-import { use } from "react";
 
 
 export const handleEmailPasswordAuth = (async (setError, setLoading, name, email, password, number, setStatus) => {
-
-
-    function generateUniqueId() {
-        const min = 10000; // Minimum 6-digit number
-        const max = 99999; // Maximum 6-digit number
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    const nameText = name.replace(/\s+/g, ''); // Remove spaces from the name
-    const userId = `stuck-member-${nameText}${generateUniqueId()}`;
-
-    const userDocRef = doc(db, 'users', userId);
-    const dataCollectionRef = collection(userDocRef, 'user-credentials');
 
     try {
         if (email, password) {
@@ -27,8 +13,12 @@ export const handleEmailPasswordAuth = (async (setError, setLoading, name, email
             console.log("User signed up:", user);
             if (user) {
 
+                const userDocRef = doc(db, 'users', user.uid);
+                const dataCollectionRef = collection(userDocRef, 'user-credentials');
+
+
                 await addDoc(dataCollectionRef, {
-                    userId: userId,
+                    uid: user.uid,
                     name: name,
                     email: email,
                     number: number,
@@ -36,7 +26,7 @@ export const handleEmailPasswordAuth = (async (setError, setLoading, name, email
                 })
                     .then(() => {
                         setStatus('signUp')
-                        window.localStorage.setItem("userId", userId);
+                        window.localStorage.setItem("userId", user.uid);
                     })
             }
 
@@ -51,7 +41,9 @@ export const handleEmailPasswordAuth = (async (setError, setLoading, name, email
 });
 
 
-export const handleLogInWithEmail = (async (setError, setLoading, email, password) => {
+export const handleLogInWithEmail = (async (setError, setLoading, email, password, setStatus) => {
+
+    
 
     try {
         if (email, password) {
@@ -60,6 +52,8 @@ export const handleLogInWithEmail = (async (setError, setLoading, email, passwor
             console.log("User login in:", user);
             if (user) {
                 window.localStorage.setItem("isLogIn", true)
+                window.localStorage.setItem("userId", user.uid);
+                setStatus('signUp')
             }
         }
     } catch (error) {
