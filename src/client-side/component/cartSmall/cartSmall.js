@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import './cartSmall.css'
 import gsap from 'gsap'
 import CartProduct from './cart-product/cartProduct'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { AddOrderToFirestore } from '../../functions/placeOrder'
+import { cartDataContext } from '../../context/cartDataProvider'
 
 function CartSmall({ openCart, setOpenCart }) {
 
@@ -60,19 +61,18 @@ function CartSmall({ openCart, setOpenCart }) {
         };
     }, [openCart, setOpenCart]);
 
-
     const navigate = useNavigate();
     const navigateTo = () =>{
         navigate('/cart')
     }
-
-    if (!openCart) {
-        return null;
-    }
+    const { cartItems, totalAmount, AddOrderTo } = useContext(cartDataContext)
 
     const handleOrder = () =>{
-        AddOrderToFirestore();
+        AddOrderTo();
     }
+
+    
+    // const [productsToAdd,setProductsToAdd] = useState([cartItems])
 
     return (
         <div className='cart-small-container grid-system' ref={popupRef}>
@@ -83,24 +83,27 @@ function CartSmall({ openCart, setOpenCart }) {
                 </div>
             </div>
             <div className='item-container' >
-                <CartProduct />
-                <CartProduct />
-                <CartProduct />
-                <CartProduct />
+                {
+                    cartItems.map((data)=>{
+                        return(
+                            <CartProduct data={data} setOpenCart={setOpenCart}/>
+                        )
+                    })
+                }
             </div>
             <div className='total-container' >
                 <div style={{ display: 'flex', alignItems: "center", justifyContent: "space-between" }}>
                     <h3>Subtotal :</h3>
-                    <h3>rs. 12000</h3>
+                    <h3>rs. {totalAmount}</h3>
                 </div>
                 <div style={{ display: 'flex', alignItems: "center", justifyContent: "space-between" }}>
                     <h3>shipping :</h3>
-                    <h3>+ rs. 100</h3>
+                    <h3>+ rs. 150</h3>
                 </div>
                 <hr style={{ marginTop: '.2rem' }} />
                 <div style={{ display: 'flex', alignItems: "center", justifyContent: "space-between" }}>
                     <h3>total :</h3>
-                    <h3>rs. 13000</h3>
+                    <h3>rs. {totalAmount + 150}</h3>
                 </div>
                 <h4>tax and shipping included</h4>
                 <button onClick={handleOrder}>Confirm order</button>

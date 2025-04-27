@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './addToCartPopUp.css'
+import { cartDataContext } from '../../context/cartDataProvider';
 
 function AddToCartPopUp({ setCartPopUp, cartPopUp, data }) {
 
     const [top, setTop] = useState(0);
+
+    const { addToCart } = useContext(cartDataContext)
 
     useEffect(() => {
         if (cartPopUp) {
             setTop(window.scrollY);
         }
     }, [cartPopUp]);
-
-
-
-    // const [chooseSize, setChooseSize] = useState('');
-
-    // const size = [
-    //     { text: 's' },
-    //     { text: 'm' },
-    //     { text: 'l' },
-    //     { text: 'xl' },
-    //     { text: 'xxl' },
-    // ]
-
 
     if (!cartPopUp) return null;
     return (
@@ -65,7 +55,10 @@ function AddToCartPopUp({ setCartPopUp, cartPopUp, data }) {
                             })
                         }
                     </div>
-                    <button className='addBtn'>Add to cart</button>
+                    <button className='addBtn' onClick={() =>{
+                         addToCart(data)
+                         setCartPopUp(false)
+                    }}>Add to cart</button>
                 </div>
             </div>
         </div>

@@ -20,6 +20,7 @@ import Auth from './client-side/pages/auth/auth';
 import Profile from './client-side/pages/profile/profile';
 import { UserCredentialProvider } from './client-side/context/userCredentialProvider';
 import { AllProductDataProvider } from './client-side/context/AllProductDataProvider';
+import { CartDataProvider } from './client-side/context/cartDataProvider';
 
 function App() {
 
@@ -78,30 +79,32 @@ function App() {
   // }, [userId]);
 
   return (
-    <UserCredentialProvider>
-      <AllProductDataProvider>
-        <ThemeProvider>
-          <div className="App">
-            <BrowserRouter>
-              <ScrollToTop />
-              <Nav />
-              {/* <Marquee /> */}
-              <Routes>
-                <Route path='/' element={<Main />} />
-                <Route path='/shop' element={<Shop />} />
-                <Route path='/product/:id' element={<ProductDetail />} />
-                <Route path='/cart' element={<MainCart />} />
-                <Route path='/brands' element={<Brands />} />
-                <Route path='/auth' element={<Auth />} />
-                <Route path='/profile' element={<Profile />} />
-                <Route path='*' element={<h1>404</h1>} />
-              </Routes>
-              <Footer />
-            </BrowserRouter>
-          </div>
-        </ThemeProvider>
-      </AllProductDataProvider>
-    </UserCredentialProvider>
+    <CartDataProvider>
+      <UserCredentialProvider>
+        <AllProductDataProvider>
+          <ThemeProvider>
+            <div className="App">
+              <BrowserRouter>
+                <ScrollToTop />
+                <Nav />
+                {/* <Marquee /> */}
+                <Routes>
+                  <Route path='/' element={<Main />} />
+                  <Route path='/shop' element={<Shop />} />
+                  <Route path='/product/:id' element={<ProductDetail />} />
+                  <Route path='/cart' element={<MainCart />} />
+                  <Route path='/brands' element={<Brands />} />
+                  <Route path='/auth' element={<Auth />} />
+                  <Route path='/profile' element={<Profile />} />
+                  <Route path='*' element={<h1>404</h1>} />
+                </Routes>
+                <Footer />
+              </BrowserRouter>
+            </div>
+          </ThemeProvider>
+        </AllProductDataProvider>
+      </UserCredentialProvider>
+    </CartDataProvider>
   );
 }
 

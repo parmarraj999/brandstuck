@@ -51,7 +51,6 @@ export const AllProductDataProvider = ({ children }) => {
                     id: doc.id,
                     ...doc.data(),
                 }));
-                console.log("productData", productData);
 
                 if (direction === "next") {
                     if (lastVisible) setPrevStack(prev => [...prev, firstVisible]);

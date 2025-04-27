@@ -46,7 +46,6 @@ export const UserCredentialProvider = ({ children }) => {
                 ...doc.data(), // Spread the address data
               });
             });
-            console.log(fetchedAddresses)
             setUserAddress(fetchedAddresses)
         } catch (error) {
 
