@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './information.css';
 import { useNavigate } from 'react-router-dom';
+import { UserCredentialContext } from '../../../context/userCredentialProvider';
 
 export default function Information() {
+
+  const {userCredential} = useContext(UserCredentialContext)
+
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    number: '',
+    name: 'Raj Parmar',
+    email: 'developersucks@gmail.com',
+    number: '8869959066',
     password: '••••••••••••'
   });
 

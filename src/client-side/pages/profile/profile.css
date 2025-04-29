@@ -4,8 +4,8 @@
   position: relative;
   padding: 1rem;
   display: flex;
-  align-items: center;
   justify-content: center;
+  background: #f4f3ee;
 }
 .profile-container .back-btn {
   display: flex;
@@ -14,12 +14,12 @@
   border: 1px solid black;
   width: -moz-fit-content;
   width: fit-content;
-  padding: 0.4rem 1.2rem 0.4rem 1rem;
+  padding: 0.5rem 1.2rem 0.5rem 1rem;
   border-radius: 2rem;
   cursor: pointer;
   transition: 0.2s all;
   position: absolute;
-  top: 2%;
+  top: 1%;
   left: 2%;
   font-size: 16px;
   font-weight: 500;
@@ -29,4 +29,76 @@
 }
 .profile-container .back-btn svg {
   width: 20px;
+}
+.profile-container .log-out-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid red;
+  color: red;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0.5rem 1.2rem 0.5rem 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: 0.2s all;
+  position: absolute;
+  top: 1%;
+  right: 2%;
+  font-size: 16px;
+  font-weight: 500;
+}
+.profile-container .log-out-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.profile-container .log-out-btn svg {
+  color: red;
+  width: 20px;
+}
+.profile-container .profileSelector {
+  margin-top: 5rem;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+@media screen and (max-width: 765px) {
+  .profile-container .profileSelector {
+    width: 98%;
+  }
+}
+.profile-container .profileSelector h1 {
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.profile-container .profileSelector .avatar {
+  width: 200px;
+}
+.profile-container .profileSelector .profileLabel {
+  font-size: 20px;
+  font-weight: 500;
+  color: #bd9e00;
+  margin-bottom: 1rem;
+}
+.profile-container .profileSelector .option-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.profile-container .profileSelector .option-list .profileOption {
+  width: 100%;
+  padding: 0.6rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profile-container .profileSelector .option-list .profileOption .profileName {
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+}
+.profile-container .profileSelector .option-list .profileOption svg {
+  color: black;
 }/*# sourceMappingURL=profile.css.map */

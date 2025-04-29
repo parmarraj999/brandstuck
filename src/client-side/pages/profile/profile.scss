@@ -1,31 +1,100 @@
-.profile-container{
+.profile-container {
     width: 100%;
     height: 100vh;
     position: relative;
     padding: 1rem;
     display: flex;
-    align-items: center;
     justify-content: center;
-    .back-btn{
+    background: #f4f3ee;
+    .back-btn {
         display: flex;
         align-items: center;
-        gap: .3rem;
+        gap: 0.3rem;
         border: 1px solid black;
         width: fit-content;
-        padding: .4rem 1.2rem .4rem 1rem;
+        padding: 0.5rem 1.2rem 0.5rem 1rem;
         border-radius: 2rem;
         cursor: pointer;
-        transition: .2s all;
+        transition: 0.2s all;
         position: absolute;
-        top: 2%;
+        top: 1%;
         left: 2%;
-        &:hover{
-            background: rgba(0,0,0,.1);
+        &:hover {
+            background: rgba(0, 0, 0, 0.1);
         }
-        svg{
+        svg {
             width: 20px;
         }
         font-size: 16px;
         font-weight: 500;
+    }
+    .log-out-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        border: 1px solid red;
+        color: red;
+        width: fit-content;
+        padding: 0.5rem 1.2rem 0.5rem 1rem;
+        border-radius: 2rem;
+        cursor: pointer;
+        transition: 0.2s all;
+        position: absolute;
+        top: 1%;
+        right: 2%;
+        &:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        svg {
+            color: red;
+            width: 20px;
+        }
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .profileSelector {
+        margin-top: 5rem;
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        @media screen and (max-width: 765px) {
+            width: 98%;
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .avatar {
+            width: 200px;
+        }
+        .profileLabel {
+            font-size: 20px;
+            font-weight: 500;
+            color: #bd9e00;
+            margin-bottom: 1rem;
+        }
+        .option-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            .profileOption {
+                width: 100%;
+                padding: 0.6rem 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .profileName {
+                    font-size: 18px;
+                    font-weight: 500;
+                    color: black;
+                }
+                svg {
+                    color: black;
+                }
+            }
+        }
     }
 }

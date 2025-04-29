@@ -11,6 +11,8 @@ export const UserCredentialProvider = ({ children }) => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
 
+    console.log(userCredential)
+
     const userId = window.localStorage.getItem('userId') || null;
 
     const fetchCredentials = async () => {
