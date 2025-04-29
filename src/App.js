@@ -23,6 +23,7 @@ import { AllProductDataProvider } from './client-side/context/AllProductDataProv
 import { CartDataProvider } from './client-side/context/cartDataProvider';
 import { OrderDataProvider } from './client-side/context/getOrderData';
 import Information from './client-side/pages/profile/information/information';
+import Address from './client-side/pages/profile/address/address';
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
                     <Route path='/auth' element={<Auth />} />
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/profile/information' element={<Information/>} />
+                    <Route path='/profile/address' element={<Address/>} />
                     <Route path='*' element={<h1>404</h1>} />
                   </Routes>
                   <Footer />
