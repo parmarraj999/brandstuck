@@ -1,0 +1,102 @@
+.inform-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.inform-container  .back-btn{
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    border: 1px solid black;
+    width: fit-content;
+    padding: .4rem 1.2rem .4rem 1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: .2s all;
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    
+    font-size: 16px;
+    font-weight: 500;
+}
+.back-btn svg{
+    width: 20px;
+}
+.userInfoForm {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    width: 30%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .userInfoForm h1 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+  
+  .userInfoForm .divider {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 20px 0 30px;
+  }
+  
+  .userInfoForm .formGroup {
+    margin-bottom: 20px;
+  }
+  
+  .userInfoForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .userInfoForm input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .userInfoForm .passwordField {
+    margin-bottom: 5px;
+  }
+  
+  .userInfoForm .changePasswordLink {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .userInfoForm .changePasswordLink:hover {
+    text-decoration: underline;
+  }
+  
+  .userInfoForm .updateButton {
+    background-color: #333333;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 40px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: block;
+    margin: 30px auto 0;
+    width: 150px;
+    text-align: center;
+  }
+  
+  .userInfoForm .updateButton:hover {
+    background-color: #222222;
+  }

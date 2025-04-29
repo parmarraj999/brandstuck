@@ -69,7 +69,6 @@ export const CartDataProvider = ({ children }) => {
         calculateTotal();
     }, [cartItems]); // Re-run effect if the 'products' array changes
 
-
     const contextValue = {
         cartItems: cartItems,
         totalAmount: totalAmount,
@@ -78,8 +77,6 @@ export const CartDataProvider = ({ children }) => {
         fetchCartData: fetchCartData,
         AddOrderTo: AddOrderTo
     };
-
-
 
     return (
         <cartDataContext.Provider value={contextValue}>
