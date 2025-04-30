@@ -1,0 +1,163 @@
+.order-detail-container {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+.order-detail-container .backBtn {
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  z-index: 99999;
+  width: 40px;
+  height: 40px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+@media screen and (max-width: 765px) {
+  .order-detail-container .backBtn {
+    display: flex;
+  }
+}
+.order-detail-container .order-detail-card {
+  width: 28%;
+  height: 95vh;
+  background: white;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  display: grid;
+  overflow: scroll;
+  grid-template-rows: 3fr 9fr;
+}
+@media screen and (max-width: 765px) {
+  .order-detail-container .order-detail-card {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+}
+.order-detail-container .order-detail-card .order-header {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.order-detail-container .order-detail-card .order-header img {
+  width: 30%;
+}
+.order-detail-container .order-detail-card .order-header h1 {
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 0.6rem;
+}
+.order-detail-container .order-detail-card .order-header p {
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+}
+.order-detail-container .order-detail-card .order-items {
+  width: 100%;
+  height: 100%;
+  padding: 0.4rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.order-detail-container .order-detail-card .order-items .item {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order-detail-container .order-detail-card .order-items .item h3 {
+  font-size: 14px;
+  font-weight: 500;
+}
+.order-detail-container .order-detail-card .order-items .item h4 {
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+.order-detail-container .order-detail-card .order-items .item h5 {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: grey;
+  margin-top: 0.2rem;
+}
+.order-detail-container .order-detail-card .order-items .item h6 {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+.order-detail-container .order-detail-card .order-summary {
+  width: 100%;
+  height: 200px;
+  background: #fcfcfc;
+  border: 1px solid #e8e8e8;
+  margin-top: 1rem;
+  border-radius: 1rem;
+}
+.order-detail-container .order-detail-card .order-summary .summary-header {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #e8e8e8;
+  font-size: 16px;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.order-detail-container .order-detail-card .order-summary .order-details {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.order-detail-container .order-detail-card .order-summary .order-details .order-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order-detail-container .order-detail-card .order-summary .order-details .order-item h2 {
+  font-size: 14px;
+  font-weight: 500;
+  color: grey;
+  text-transform: capitalize;
+}
+.order-detail-container .order-detail-card .order-summary .order-details .order-item h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(53, 53, 53);
+  text-transform: capitalize;
+}
+.order-detail-container .order-detail-card .cancel-btn {
+  width: 200px;
+  padding: 0.7rem 0;
+  background: red;
+  border-radius: 1rem;
+  margin: 1rem auto;
+  border: none;
+  font-size: 16px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}/*# sourceMappingURL=orderDetail.css.map */

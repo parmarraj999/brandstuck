@@ -24,6 +24,7 @@ import { CartDataProvider } from './client-side/context/cartDataProvider';
 import { OrderDataProvider } from './client-side/context/getOrderData';
 import Information from './client-side/pages/profile/information/information';
 import Address from './client-side/pages/profile/address/address';
+import YourOrder from './client-side/pages/profile/yourOrder/yourOrder';
 
 function App() {
 
@@ -61,6 +62,7 @@ function App() {
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/profile/information' element={<Information/>} />
                     <Route path='/profile/address' element={<Address/>} />
+                    <Route path='/profile/orders' element={<YourOrder/>} />
                     <Route path='*' element={<h1>404</h1>} />
                   </Routes>
                   <Footer />

@@ -40,7 +40,7 @@ function Nav() {
     }
 
     return (
-        <div className='nav_container' style={pathname === '/profile' || pathname === '/profile/information' || pathname === '/profile/address' ? {display:"none"} : {}}  >
+        <div className='nav_container' style={pathname === '/profile' || pathname === '/profile/information' || pathname === '/profile/address' || pathname === '/profile/orders' ? {display:"none"} : {}}  >
             {/* {
                 openCart ? */}
             <CartSmall openCart={openCart} setOpenCart={setOpenCart} />
