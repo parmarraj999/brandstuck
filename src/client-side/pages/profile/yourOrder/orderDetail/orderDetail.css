@@ -33,8 +33,6 @@
   height: 95vh;
   background: white;
   border-radius: 15px;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   display: grid;
   overflow: scroll;
@@ -62,11 +60,13 @@
   font-size: 22px;
   font-weight: 500;
   margin-top: 0.6rem;
+  text-transform: capitalize;
 }
 .order-detail-container .order-detail-card .order-header p {
   font-size: 15px;
   color: rgba(0, 0, 0, 0.5);
   font-weight: 500;
+  margin-top: 0.2rem;
 }
 .order-detail-container .order-detail-card .order-items {
   width: 100%;

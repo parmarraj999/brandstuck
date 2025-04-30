@@ -3,7 +3,7 @@ import './cartProduct.css'
 import { cartDataContext } from '../../../context/cartDataProvider'
 
 function CartProduct({ data }) {
-    console.log(data)
+    // console.log(data)
 
     const { removeFromCart } = useContext(cartDataContext)
 

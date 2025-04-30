@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import './orderDetail.css';
 
-function OrderDetail({ setDetailPop, detailPop }) {
+function OrderDetail({ setDetailPop, detailPop, currentData }) {
 
     const cardRef = useRef()
     useEffect(() => {
@@ -18,6 +18,21 @@ function OrderDetail({ setDetailPop, detailPop }) {
         };
     }, [detailPop]);
 
+    function formatDateFromTimestamp(timestamp) {
+        if (!timestamp || !timestamp.seconds) {
+            return ''; // Handle cases where the timestamp might be missing or invalid
+        }
+
+        const date = new Date(timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000);
+        const day = date.getDate();
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const month = monthNames[date.getMonth()];
+        const year = date.getFullYear();
+
+        return `${day} ${month} ${year}`;
+    }
+
     return (
         <div className='order-detail-container' >
             <div className='backBtn' onClick={() => {
@@ -29,30 +44,56 @@ function OrderDetail({ setDetailPop, detailPop }) {
             <div className='order-detail-card' ref={cardRef} >
                 <div className='order-header' >
                     <img src='../../../../assets/images/pending.jpeg' />
-                    <h1>Pending...</h1>
-                    <p>Your Order is Confirm and Packaging</p>
+                    <h1>{currentData.orderStatus}...</h1>
+                    {
+                        currentData.orderStatus === 'shipped'?
+                        <p>Your Order is Shipped</p>
+                        : ""
+                    }
+                    {
+                        currentData.orderStatus === 'pending'?
+                        <p>Your Order is Confirmed and Packaging</p>
+                        : ""
+                    }
+                    {
+                        currentData.orderStatus === 'delivered'?
+                        <p>Your Order is Delivered</p>
+                        : ""
+                    }
                 </div>
                 <div className='order-items' >
-                   
-                    <div className='item' >
-                        <div>
-                            <h3>#10231</h3>
-                            <h4>T-shirt // selected hommie</h4>
-                            <h5>size: L</h5>
-                        </div>
-                        <h6>rs.1000</h6>
-                    </div>
+
+                    {
+                        currentData.products.map((data) => {
+                            return (
+                                <div className='item' >
+                                    <div>
+                                        <h3>#{data.productId}</h3>
+                                        <h4>{data.name} // {data.brand}</h4>
+                                        <h5 style={{display:'flex',gap:'.5rem'}}>size: {
+                                            data.sizes.map((data)=>{
+                                                return(
+                                                    <div>{data}</div>
+                                                )
+                                            })
+                                            }</h5>
+                                    </div>
+                                    <h6>rs.{data.discountPrice}</h6>
+                                </div>
+                            )
+                        })
+                    }
 
                     <div className='order-summary' >
                         <div className='summary-header' >Order summary</div>
                         <div className='order-details' >
                             <div className='order-item' >
                                 <h2>Total amount</h2>
-                                <h3>rs.2300</h3>
+                                <h3>rs.{currentData.totalAmount}</h3>
                             </div>
                             <div className='order-item' >
                                 <h2>Order ID</h2>
-                                <h3>20342</h3>
+                                <h3>#{currentData.orderId}</h3>
                             </div>
                             <div className='order-item' >
                                 <h2>Shipping Address</h2>
@@ -64,11 +105,12 @@ function OrderDetail({ setDetailPop, detailPop }) {
                             </div>
                             <div className='order-item' >
                                 <h2>estimate delivery date</h2>
-                                <h3>1 may 2025</h3>
+                                <h3>{formatDateFromTimestamp(currentData.orderDate)}</h3>
                             </div>
                         </div>
                     </div>
-                <button className='cancel-btn' >Cancel Order</button>
+                    <button className='cancel-btn' >Cancel Order</button>
+                    <p style={{margin:'0 auto',fontSize:'14px',fontWeight:'400',color:'rgba(0,0,0,0.6)'}}>If order Shipped You can't cancel It</p>
                 </div>
             </div>
         </div>

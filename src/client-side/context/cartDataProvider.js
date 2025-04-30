@@ -14,9 +14,8 @@ export const CartDataProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const userId = window.localStorage.getItem("userId")
     const [totalAmount,setTotalAmount] = useState(0)
-    console.log(totalAmount)
 
-    console.log(cartItems)
+    // console.log(cartItems)
 
     const fetchCartData = () => {
         if (userId) {

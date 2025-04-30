@@ -107,7 +107,7 @@
   align-self: center;
   justify-content: space-between;
 }
-.small-nav-container .back-btn {
+.small-nav-container .back-btn-small {
   padding: 0.6rem;
   background: rgba(0, 0, 0, 0.1);
   display: flex;

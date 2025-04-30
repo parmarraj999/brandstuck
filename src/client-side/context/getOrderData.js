@@ -22,7 +22,7 @@ export const OrderDataProvider = ({ children }) => {
                 id: doc.id,
                 ...doc.data(),
             }));
-            setOrderData(ordersData)
+            setOrderData(ordersData.reverse())
             console.log(ordersData);
 
         } catch (err) {
