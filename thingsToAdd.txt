@@ -10,3 +10,4 @@
 
 1. add filter option on order page to easy access data 
 2. add feedback option for order cancelation 
+3. add a feature in profile page when click on back button of mobile then back to home page this is a bug 

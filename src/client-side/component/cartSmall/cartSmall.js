@@ -10,7 +10,6 @@ function CartSmall({ openCart, setOpenCart }) {
 
     useEffect(() => {
         if (openCart) {
-            document.body.style.overflow = 'hidden'
             gsap.fromTo(".cart-small-container", {
                 height: 0,
                 duration: .5
@@ -34,7 +33,6 @@ function CartSmall({ openCart, setOpenCart }) {
     useEffect(() => {
         function handleClickOutside(event) {
             if (popupRef.current && !popupRef.current.contains(event.target)) {
-                document.body.style.overflow = 'auto'
                 gsap.fromTo(".cart-small-container", {
                     height: "78vh",
                     duration: .5,

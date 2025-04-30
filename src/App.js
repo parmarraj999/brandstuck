@@ -41,6 +41,7 @@ function App() {
     return null;
   }
 
+
   return (
     <OrderDataProvider>
       <CartDataProvider>
@@ -60,9 +61,9 @@ function App() {
                     <Route path='/brands' element={<Brands />} />
                     <Route path='/auth' element={<Auth />} />
                     <Route path='/profile' element={<Profile />} />
-                    <Route path='/profile/information' element={<Information/>} />
-                    <Route path='/profile/address' element={<Address/>} />
-                    <Route path='/profile/orders' element={<YourOrder/>} />
+                    <Route path='/profile/information' element={<Information />} />
+                    <Route path='/profile/address' element={<Address />} />
+                    <Route path='/profile/orders' element={<YourOrder />} />
                     <Route path='*' element={<h1>404</h1>} />
                   </Routes>
                   <Footer />
