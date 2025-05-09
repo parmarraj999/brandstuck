@@ -16,7 +16,7 @@
         z-index: 99999;
         width: 40px;
         height: 40px;
-        display: none;
+        display: flex;
         align-items: center;
         justify-content: center;
         background: rgba(0, 0, 0, 0.1);
@@ -34,10 +34,14 @@
         display: grid;
         overflow: scroll;   
         grid-template-rows: 3fr 9fr;
+        position: relative;
         @media screen and (max-width:765px) {
             width: 100%;
-            height: 100vh;
+            height: fit-content;
             border-radius: 0;
+            display: flex;
+            flex-direction: column;
+
         }
         .order-header{
             width: 100%;
@@ -103,59 +107,59 @@
                 }
 
             }
-        }
-        .order-summary{
-            width: 100%;
-            height: 200px;
-            background: #fcfcfc;
-            border: 1px solid #e8e8e8;
-            margin-top: 1rem;
-            border-radius: 1rem;
-            .summary-header{
+            .order-summary-2{
                 width: 100%;
-                padding: .6rem 1rem;
-                border-bottom: 1px solid #e8e8e8;
-                font-size: 16px;
-                text-transform: capitalize;
-                font-weight: 500;
-            }
-            .order-details{
-                width: 100%;
-                padding: 1rem;
-                display: flex;
-                flex-direction: column;
-                gap: .5rem;
-                .order-item{
+                height: fit-content;
+                background: #fcfcfc;
+                border: 1px solid #e8e8e8;
+                margin-top: 1rem;
+                border-radius: 1rem;
+                .summary-header{
                     width: 100%;
+                    padding: .6rem 1rem;
+                    border-bottom: 1px solid #e8e8e8;
+                    font-size: 16px;
+                    text-transform: capitalize;
+                    font-weight: 500;
+                }
+                .order-details-summary{
+                    width: 100%;
+                    padding: 1rem;
                     display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    h2{
-                        font-size: 14px;
-                        font-weight: 500;
-                        color: grey;
-                        text-transform: capitalize;
-                    }
-                    h3{
-                        font-size: 14px;
-                        font-weight: 500;
-                        color: rgb(53, 53, 53);
-                        text-transform: capitalize;
+                    flex-direction: column;
+                    gap: .5rem;
+                    .order-item-summary{
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        h2{
+                            font-size: 14px;
+                            font-weight: 500;
+                            color: grey;
+                            text-transform: capitalize;
+                        }
+                        h3{
+                            font-size: 14px;
+                            font-weight: 500;
+                            color: rgb(53, 53, 53);
+                            text-transform: capitalize;
+                        }
                     }
                 }
             }
-        }
-        .cancel-btn{
-            width: 200px;
-            padding: .7rem 0;
-            background: red;
-            border-radius: 1rem;
-            margin: 1rem auto;
-            border: none;
-            font-size: 16px;
-            color: white;
-            font-weight: 500;
-            cursor: pointer;
+            .cancel-btn{
+                width: 200px;
+                padding: .7rem 0;
+                background: red;
+                border-radius: 1rem;
+                margin: 1rem auto;
+                border: none;
+                font-size: 16px;
+                color: white;
+                font-weight: 500;
+                cursor: pointer;
+            }
         }
     }
 }

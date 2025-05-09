@@ -66,7 +66,7 @@ function CartSmall({ openCart, setOpenCart }) {
     const { cartItems, totalAmount, AddOrderTo } = useContext(cartDataContext)
 
     const handleOrder = () =>{
-        AddOrderTo();
+        navigateTo();
     }
 
     

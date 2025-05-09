@@ -33,15 +33,16 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
         return `${day} ${month} ${year}`;
     }
 
+
     return (
         <div className='order-detail-container' >
+            <div className='order-detail-card' ref={cardRef} >
             <div className='backBtn' onClick={() => {
                 setDetailPop(false)
                 document.body.style.overflow = ''
             }} >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left"><path d="m15 18-6-6 6-6" /></svg>
             </div>
-            <div className='order-detail-card' ref={cardRef} >
                 <div className='order-header' >
                     <img src='../../../../assets/images/pending.jpeg' />
                     <h1>{currentData.orderStatus}...</h1>
@@ -84,26 +85,26 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
                         })
                     }
 
-                    <div className='order-summary' >
+                    <div className='order-summary-2' >
                         <div className='summary-header' >Order summary</div>
-                        <div className='order-details' >
-                            <div className='order-item' >
+                        <div className='order-details-summary' >
+                            <div className='order-item-summary' >
                                 <h2>Total amount</h2>
                                 <h3>rs.{currentData.totalAmount}</h3>
                             </div>
-                            <div className='order-item' >
+                            <div className='order-item-summary' >
                                 <h2>Order ID</h2>
                                 <h3>#{currentData.orderId}</h3>
                             </div>
-                            <div className='order-item' >
+                            <div className='order-item-summary' >
                                 <h2>Shipping Address</h2>
                                 <h3>saket nagar, bhopal</h3>
                             </div>
-                            <div className='order-item' >
+                            <div className='order-item-summary' >
                                 <h2>tracking ID</h2>
                                 <h3>-</h3>
                             </div>
-                            <div className='order-item' >
+                            <div className='order-item-summary' >
                                 <h2>estimate delivery date</h2>
                                 <h3>{formatDateFromTimestamp(currentData.orderDate)}</h3>
                             </div>

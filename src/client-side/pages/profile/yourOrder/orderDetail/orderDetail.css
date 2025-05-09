@@ -17,7 +17,7 @@
   z-index: 99999;
   width: 40px;
   height: 40px;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.1);
@@ -37,12 +37,16 @@
   display: grid;
   overflow: scroll;
   grid-template-rows: 3fr 9fr;
+  position: relative;
 }
 @media screen and (max-width: 765px) {
   .order-detail-container .order-detail-card {
     width: 100%;
-    height: 100vh;
+    height: -moz-fit-content;
+    height: fit-content;
     border-radius: 0;
+    display: flex;
+    flex-direction: column;
   }
 }
 .order-detail-container .order-detail-card .order-header {
@@ -108,15 +112,16 @@
   font-weight: 500;
   margin-top: 0.2rem;
 }
-.order-detail-container .order-detail-card .order-summary {
+.order-detail-container .order-detail-card .order-items .order-summary-2 {
   width: 100%;
-  height: 200px;
+  height: -moz-fit-content;
+  height: fit-content;
   background: #fcfcfc;
   border: 1px solid #e8e8e8;
   margin-top: 1rem;
   border-radius: 1rem;
 }
-.order-detail-container .order-detail-card .order-summary .summary-header {
+.order-detail-container .order-detail-card .order-items .order-summary-2 .summary-header {
   width: 100%;
   padding: 0.6rem 1rem;
   border-bottom: 1px solid #e8e8e8;
@@ -124,32 +129,32 @@
   text-transform: capitalize;
   font-weight: 500;
 }
-.order-detail-container .order-detail-card .order-summary .order-details {
+.order-detail-container .order-detail-card .order-items .order-summary-2 .order-details-summary {
   width: 100%;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.order-detail-container .order-detail-card .order-summary .order-details .order-item {
+.order-detail-container .order-detail-card .order-items .order-summary-2 .order-details-summary .order-item-summary {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.order-detail-container .order-detail-card .order-summary .order-details .order-item h2 {
+.order-detail-container .order-detail-card .order-items .order-summary-2 .order-details-summary .order-item-summary h2 {
   font-size: 14px;
   font-weight: 500;
   color: grey;
   text-transform: capitalize;
 }
-.order-detail-container .order-detail-card .order-summary .order-details .order-item h3 {
+.order-detail-container .order-detail-card .order-items .order-summary-2 .order-details-summary .order-item-summary h3 {
   font-size: 14px;
   font-weight: 500;
   color: rgb(53, 53, 53);
   text-transform: capitalize;
 }
-.order-detail-container .order-detail-card .cancel-btn {
+.order-detail-container .order-detail-card .order-items .cancel-btn {
   width: 200px;
   padding: 0.7rem 0;
   background: red;

@@ -95,17 +95,21 @@
 .item-title {
   font-weight: 500;
   margin-bottom: 5px;
+  text-transform: uppercase;
 }
 
 .item-author {
-  font-size: 14px;
-  color: #666;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #222222;
+  line-height: .9;
 }
 
 .item-price {
   font-weight: 500;
   min-width: 70px;
   text-align: right;
+  text-transform: uppercase;
 }
 
 .order-summary {
