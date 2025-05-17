@@ -25,8 +25,7 @@ import { OrderDataProvider } from './client-side/context/getOrderData';
 import Information from './client-side/pages/profile/information/information';
 import Address from './client-side/pages/profile/address/address';
 import YourOrder from './client-side/pages/profile/yourOrder/yourOrder';
-import CashfreePayment from './cashfree/cashfree';
-
+import Razorpay from './razorpay/razorpay';
 function App() {
 
 
@@ -42,6 +41,9 @@ function App() {
     return null;
   }
 
+  // id : rzp_test_tOx8HQJeN0joUt
+  // key : 7wCQQM4bctPgljwEp4HX53Ob
+
 
   return (
     <OrderDataProvider>
@@ -52,7 +54,7 @@ function App() {
               <div className="App">
                 <BrowserRouter>
                   <ScrollToTop />
-                  {/* <Nav /> */}
+                  <Nav />
                   {/* <Marquee /> */}
                   <Routes>
                     <Route path='/' element={<Main />} />
@@ -61,12 +63,12 @@ function App() {
                     <Route path='/cart' element={<MainCart />} />
                     <Route path='/brands' element={<Brands />} />
                     <Route path='/auth' element={<Auth />} />
-                    <Route path='/cashfree' element={<CashfreePayment />} />
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/profile/information' element={<Information />} />
                     <Route path='/profile/address' element={<Address />} />
                     <Route path='/profile/orders' element={<YourOrder />} />
                     <Route path='*' element={<h1>404</h1>} />
+                    <Route path='/razorpay' element={<Razorpay/>} />
                   </Routes>
                   <Footer />
                 </BrowserRouter>
