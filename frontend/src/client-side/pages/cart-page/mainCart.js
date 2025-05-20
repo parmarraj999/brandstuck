@@ -7,31 +7,6 @@ export default function MainCart() {
 
   const [promoCode, setPromoCode] = useState('');
 
-  const items = [
-    {
-      title: "The Future We Choose",
-      author: "Christiana Figueres",
-      price: 13.99,
-      image: "/api/placeholder/60/80"
-    },
-    {
-      title: "A Natural History of Dragons",
-      author: "Marie Brennan",
-      price: 9.99,
-      image: "/api/placeholder/60/80"
-    },
-    {
-      title: "James",
-      author: "Percival Everett",
-      price: 14.99,
-      image: "/api/placeholder/60/80"
-    }
-  ];
-
-  const subtotal = items.reduce((sum, item) => sum + item.price, 0);
-  const tax = 0;
-  const total = subtotal;
-
   const navigate = useNavigate();
   const handleBack = () => {
     navigate(-1)
@@ -43,6 +18,10 @@ export default function MainCart() {
 
   const { cartItems, removeFromCart } = useContext(cartDataContext)
   console.log(cartItems)
+
+  const subtotal = cartItems.reduce((sum, item) =>  + Number(item.price), 0) - 150;
+  const tax = 0;
+  const total = subtotal;
 
   return (
     <div className="checkout">
@@ -64,7 +43,7 @@ export default function MainCart() {
               <div className="item-details">
                 <div className="item-title">{item.name}</div>
                 <div className="item-author">{item.brand}</div>
-                <div className='delete-btn' style={{marginTop:".2rem"}} onClick={() => removeFromCart(item.docId)}>
+                <div className='delete-btn' style={{ marginTop: ".2rem" }} onClick={() => removeFromCart(item.docId)}>
                   <svg style={{ width: '15px' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z"></path></svg>
                 </div>
               </div>
@@ -72,34 +51,36 @@ export default function MainCart() {
             </div>
           ))}
 
+          <div className="promo-section">
+            <h3 className="promo-title">Promo code</h3>
+            <div className="promo-input">
+              <input
+                type="text"
+                placeholder="Enter code"
+                value={promoCode}
+                onChange={(e) => setPromoCode(e.target.value)}
+              />
+              <button className="apply-button">Apply</button>
+            </div>
+          </div>
+
           <div className="order-summary">
             <div className="summary-row">
               <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span>RS.{subtotal}</span>
             </div>
             <div className="summary-row">
-              <span>Tax (0.00%)</span>
-              <span>${tax.toFixed(2)}</span>
+              <span>Shipping Fees</span>
+              <span>RS.150</span>
             </div>
             <div className="summary-row total">
               <span>Total</span>
-              <span>${total.toFixed(2)}</span>
+              <span>RS.{total + 150}</span>
             </div>
           </div>
         </div>
 
-        <div className="promo-section">
-          <h3 className="promo-title">Promo code</h3>
-          <div className="promo-input">
-            <input
-              type="text"
-              placeholder="Enter code"
-              value={promoCode}
-              onChange={(e) => setPromoCode(e.target.value)}
-            />
-            <button className="apply-button">Apply</button>
-          </div>
-        </div>
+
 
         <div className="complete-section">
           <button className="complete-button">Complete Purchase</button>
