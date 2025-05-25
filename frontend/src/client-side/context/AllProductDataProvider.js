@@ -8,6 +8,7 @@ export const AllProductDataContext = createContext();
 export const AllProductDataProvider = ({ children }) => {
 
     const [AllProductList, setAllProductList] = useState([]);
+    const [ filterProductList, setFilterProductList ] = useState([]);
 
     const pageSize = 20;
 
@@ -65,6 +66,7 @@ export const AllProductDataProvider = ({ children }) => {
                 }
 
                 setAllProductList(productData)
+                setFilterProductList(productData);
             }
         } catch (error) {
             console.error("Error fetching products:", error);
@@ -73,12 +75,14 @@ export const AllProductDataProvider = ({ children }) => {
         setLoading(false);
     };
 
+    
+
     useEffect(() => {
         fetchProducts("next")
     }, [])
 
     return (
-        <AllProductDataContext.Provider value={{AllProductList,setAllProductList,fetchProducts,prevStack}}>
+        <AllProductDataContext.Provider value={{AllProductList,setAllProductList,fetchProducts,prevStack, filterProductList ,setFilterProductList}}>
             {children}
         </AllProductDataContext.Provider>
     )
