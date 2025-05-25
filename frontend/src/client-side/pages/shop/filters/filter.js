@@ -1,30 +1,38 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './filter.css';
 import { useLocation } from 'react-router-dom';
+import { AllProductDataContext } from '../../../context/AllProductDataProvider';
 
 function Filter({ setFilterPop }) {
 
     const categoryFilter = [
-        { text: 'cap' },
-        { text: 'perfume' },
-        { text: 'round-neck' },
-        { text: 'polo t-shirt' },
-        { text: 'half shirt' },
-        { text: 'shirt' },
-        { text: 'shackets' },
-        { text: 'sweatshirts' },
-        { text: 'hoodies' },
-        { text: 'kurta' },
-        { text: 'belts' },
-        { text: 'trousers' },
-        { text: 'jeans' },
-        { text: 'joggers' },
-        { text: 'denim short' },
-        { text: 'shorts' },
-        { text: 'lower pajama' },
-        { text: 'socks' },
-        { text: 'shoes' },
-        { text: 'wallets' },
+        { "text": "All" },
+        { "text": "Hoodie" },
+        { "text": "Sweatshirt" },
+        { "text": "Shacket" },
+        { "text": "Modi Jacket" },
+        { "text": "Jacket" },
+        { "text": "Trousers" },
+        { "text": "Cargo" },
+        { "text": "Jogger" },
+        { "text": "Jeans" },
+        { "text": "Kurta Pajama Set" },
+        { "text": "Shirts" },
+        { "text": "Half Shirts" },
+        { "text": "Polo T-shirt" },
+        { "text": "Round Neck T-shirt" },
+        { "text": "Pajama" },
+        { "text": "Lower" },
+        { "text": "Denim Shorts" },
+        { "text": "Shorts" },
+        { "text": "Underwear" },
+        { "text": "Innerwear" },
+        { "text": "Cap" },
+        { "text": "Belt" },
+        { "text": "Wallet" },
+        { "text": "Perfume" },
+        { "text": "Shoes" },
+        { "text": "Socks" }
     ]
 
     const sizeFilter = [
@@ -95,7 +103,7 @@ function Filter({ setFilterPop }) {
     ];
 
     const [searchTerm, setSearchTerm] = useState('');
-    const [filteredData, setFilteredData] = useState(brandFilter);
+    const [filterBrand, setFilterBrand] = useState(brandFilter);
 
     const handleSearch = (event) => {
         const term = event.target.value;
@@ -104,7 +112,7 @@ function Filter({ setFilterPop }) {
         const results = brandFilter.filter((item) =>
             item.text.toLowerCase().includes(term.toLowerCase())
         );
-        setFilteredData(results);
+        setFilterBrand(results);
     };
 
     const [minPrice, setMinPrice] = useState(0);
@@ -123,19 +131,35 @@ function Filter({ setFilterPop }) {
         { text: '20000' },
     ]
 
-     function ScrollToTop() {
-            const { pathname } = useLocation();
-        
-            useEffect(() => {
-              window.scrollTo(0, 0); // Scroll to top on route change
-            }, [pathname]);
-        
-            return null;
-          }
+    function ScrollToTop() {
+        const { pathname } = useLocation();
+
+        useEffect(() => {
+            window.scrollTo(0, 0); // Scroll to top on route change
+        }, [pathname]);
+
+        return null;
+    }
+
+    const { AllProductList, filterProductList, setFilterProductList } = useContext(AllProductDataContext)
+
+    const handleFilterChange = (category) => {
+        // setSelectedCategory(category);
+        if (category === "all") {
+            setFilterProductList(AllProductList);
+        } else {
+            const filtered = AllProductList.filter(product => product.subCategory === category);
+            setFilterProductList(filtered);
+            console.log(filtered);
+            setFilterPop(false)
+            document.body.style.overflow = '';
+
+        }
+    };
 
     return (
         <div className='filter-page-container' >
-            <ScrollToTop/>
+            <ScrollToTop />
             <div className='filter-wrapper' >
                 <div className='filter-header'>
                     <h2>Filter</h2>
@@ -146,13 +170,14 @@ function Filter({ setFilterPop }) {
                         <svg style={{ width: "25px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>
                     </div>
                 </div>
+                <p style={{fontSize:'14px',color:"white"}}>Some Filters Is Not Working we Are Working On It!</p>
                 <div className='default-box-class' >
                     <h3>Category</h3>
                     <div className='wrapper' >
                         {
                             categoryFilter.map((data) => {
                                 return (
-                                    <div className='box'>
+                                    <div className='box' onClick={() => handleFilterChange(data.text)} >
                                         {data.text}
                                     </div>
                                 )
@@ -184,7 +209,7 @@ function Filter({ setFilterPop }) {
                     />
                     <div className='wrapper' >
                         {
-                            filteredData.map((data) => {
+                            brandFilter.map((data) => {
                                 return (
                                     <div className='box' >
                                         {data.text}
@@ -216,7 +241,7 @@ function Filter({ setFilterPop }) {
                         {
                             priceFilter.map((data) => {
                                 return (
-                                    <div className='box'onClick={()=>setMinPrice(data.text)} >
+                                    <div className='box' onClick={() => setMinPrice(data.text)} >
                                         &#8377; {data.text}
                                     </div>
                                 )

@@ -10,11 +10,20 @@
             font-weight: 500;
         }
     }
-    .shop-heading {
-        font-size: 5vw;
-        font-weight: 500;
-        margin-top: 2rem;
-        font-family: "Roboto", sans-serif;
+    .heading-container{
+        // border: 1px solid red;
+        height: 150px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        .shop-heading {
+            font-size: 3.5rem;
+            font-weight: 500;
+            font-family: "Roboto", sans-serif;
+            
+        }
     }
     .filter-button-float{
         display: flex; 
@@ -48,7 +57,6 @@
     .functional-header{
         display: flex;
         align-items: center;
-        justify-content: space-between;
         margin-top: 1rem;
         .filter-button{
             display: flex; 
@@ -58,6 +66,21 @@
             font-size: 18px;
             font-weight: 600;
             border: none;
+            @media screen and (max-width: 765px){
+                z-index: 10;
+                position: fixed;
+                bottom: 1%;
+                left: 50%;
+                transform: translate(-50%,0);
+                width: 40%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 50px;
+                background: #d8ff68;
+                box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+                border-radius: 10px;
+            }
         }
         .grid-button{
             display: flex; 
@@ -84,12 +107,11 @@
         }
     }
     .product-list{
-        width: 85%;
+        width: 100%;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 2.5rem;
         display: grid;
-        grid-template-columns: repeat(4,1fr);
+        grid-template-columns: repeat(5,1fr);
         gap: 1rem;
     }
 }

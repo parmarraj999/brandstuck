@@ -10,10 +10,17 @@
   font-size: 16px;
   font-weight: 500;
 }
-.shop-container .shop-heading {
-  font-size: 5vw;
+.shop-container .heading-container {
+  height: 150px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.shop-container .heading-container .shop-heading {
+  font-size: 3.5rem;
   font-weight: 500;
-  margin-top: 2rem;
   font-family: "Roboto", sans-serif;
 }
 .shop-container .filter-button-float {
@@ -49,7 +56,6 @@
 .shop-container .functional-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-top: 1rem;
 }
 .shop-container .functional-header .filter-button {
@@ -60,6 +66,23 @@
   font-size: 18px;
   font-weight: 600;
   border: none;
+}
+@media screen and (max-width: 765px) {
+  .shop-container .functional-header .filter-button {
+    z-index: 10;
+    position: fixed;
+    bottom: 1%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background: #d8ff68;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
 }
 .shop-container .functional-header .grid-button {
   display: flex;
@@ -85,12 +108,11 @@
   cursor: pointer;
 }
 .shop-container .product-list {
-  width: 85%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2.5rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
 }
 
