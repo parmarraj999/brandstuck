@@ -20,85 +20,14 @@ export default function MainCart() {
   const { cartItems, removeFromCart } = useContext(cartDataContext)
   console.log(cartItems)
 
-<<<<<<< HEAD
-   const loadRazorpayScripts = () => {
-        return new Promise((resolve, reject) => {
-            const razorpayScript = document.createElement('script');
-            razorpayScript.src = 'https://checkout.razorpay.com/v1/checkout.js';
-            razorpayScript.onload = () => resolve(true);
-            razorpayScript.onerror = () => reject('Failed to load Razorpay SDK.');
-            document.body.appendChild(razorpayScript);
 
-            const axiosScript = document.createElement('script');
-            axiosScript.src = 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js';
-            document.body.appendChild(axiosScript);
-        });
-    };
-
-  const handlePayment=async(e)=>{
-      try {
-            const res = await loadRazorpayScripts();
-            if (!res) {
-                alert('Failed to load Razorpay SDK. Check your internet connection.');
-                return;
-            }
-
-            const response = await axios.post(`http://localhost:8080/payment/create/orderId`, {amount:total});
-            const { amount, currency, id } = response.data;
-
-            const options = {
-                key: '7wCQQM4bctPgljwEp4HX53Ob',
-                amount: amount,
-                currency: currency,
-                name: "CarespaceX",
-                description: "Messenger of Health",
-                order_id: id,
-                handler: async function (response) {
-                    try {
-                        const verifyResponse = await axios.post(`http://localhost:8080/payment/api/payment/verify/bed`, {
-                            razorpayOrderId: response.razorpay_order_id,
-                            razorpayPaymentId: response.razorpay_payment_id,
-                            signature: response.razorpay_signature,
-                            total,
-      
-                        });
-                        alert('Payment verified successfully');
-                    } catch (error) {
-                        console.error('Payment verification failed:', error);
-                        alert('Payment verification failed');
-                    }
-                },
-                prefill: {
-                    name: "diulhdiu",
-                    email: "ABC@gmail.com",
-                    contact: "1111111111"
-                },
-                notes: {
-                    address: "Razorpay Corporate Office"
-                },
-                theme: {
-                    color: "#000099"
-                }
-            };
-
-            const rzp1 = new Razorpay(options);
-            rzp1.on('payment.failed', function (response) {
-                alert('Payment Failed');
-            });
-            rzp1.open();
-
-        } catch (error) {
-            console.error('Error during payment creation:', error);
-            alert('Error during payment creation. Please try again.');
-        }
-  }
-
-
-=======
   const subtotal = cartItems.reduce((sum, item) =>  + Number(item.price), 0) - 150;
   const tax = 0;
   const total = subtotal;
->>>>>>> b6624f9b7c9b7d3910110dabaefb13f29766af0b
+
+  const handlePayment = () =>{
+    
+  }
 
   return (
     <div className="checkout">

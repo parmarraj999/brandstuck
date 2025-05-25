@@ -25,7 +25,7 @@ import { OrderDataProvider } from './client-side/context/getOrderData';
 import Information from './client-side/pages/profile/information/information';
 import Address from './client-side/pages/profile/address/address';
 import YourOrder from './client-side/pages/profile/yourOrder/yourOrder';
-import Razorpay from './razorpay/razorpay';
+import Payment from './razorpay/payment';
 function App() {
 
 
@@ -54,7 +54,7 @@ function App() {
               <div className="App">
                 <BrowserRouter>
                   <ScrollToTop />
-                  <Nav />
+                  {/* <Nav /> */}
                   {/* <Marquee /> */}
                   <Routes>
                     <Route path='/' element={<Main />} />
@@ -68,7 +68,7 @@ function App() {
                     <Route path='/profile/address' element={<Address />} />
                     <Route path='/profile/orders' element={<YourOrder />} />
                     <Route path='*' element={<h1>404</h1>} />
-                    <Route path='/razorpay' element={<Razorpay/>} />
+                    <Route path='/razorpay' element={<Payment/>} />
                   </Routes>
                   <Footer />
                 </BrowserRouter>
