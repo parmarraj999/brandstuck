@@ -15,11 +15,12 @@
     "leaflet": "^1.9.4",
     "lucide-react": "^0.503.0",
     "motion": "^12.6.2",
+    "razorpay": "^2.9.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.3.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-slick": "^0.30.3",
     "sheryjs": "^1.0.0-beta.0.1.8",
     "slick-carousel": "^1.8.1",
@@ -50,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack-cli": "^6.0.1"
   }
 }

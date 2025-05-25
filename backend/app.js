@@ -1,27 +1,47 @@
-const express = require("express");
-const app = express();
-const port = 5000;
-const cors = require("cors");
-require("dotenv").config();
+let express = require('express');
+let app = express();
+let cors = require('cors');
+const cookieParser = require('cookie-parser');
+let dotenv = require('dotenv');
+let session = require('express-session');
+const Payment = require('./Models/payment');
+const Razorpay = require('razorpay');
 
-app.use(express.json());  
-app.use(cors());
-const bodyParser = require('body-parser');
-const { default: Razorpay } = require("../frontend/src/razorpay/razorpay");
 
-// Parse JSON and URL-encoded form data
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true })); 
+  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json()); 
+  dotenv.config();
+
+    app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+}));
+
+
+var corsOptions = {
+    origin: process.env.FRONTEND_URL,
+    optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
+app.listen(8080, () => {
+    console.log('Server is running on port 8080');
+});
 
 const razorpay = new Razorpay({
     key_id: 'rzp_test_tOx8HQJeN0joUt',   
     key_secret: '7wCQQM4bctPgljwEp4HX53Ob'  
   });
-  
-  app.post('/create/orderId', async (req, res) => {
+
+
+ app.post('/create/orderId', async (req, res) => {
+  console.log("working");
 
     const options = {
       amount: req.body.price*100,
+
       currency: "INR",
     };
   
@@ -39,6 +59,11 @@ const razorpay = new Razorpay({
       res.status(500).send('Error creating order');
     }
   });
+
+app.get("/", async (req, res) => {
+  res.send("Hello World!");
+});
+
   
   app.post('/api/payment/verify', async (req, res) => {
     const { razorpayOrderId, razorpayPaymentId, signature } = req.body;
@@ -50,7 +75,6 @@ const razorpay = new Razorpay({
       .digest('hex');
   
     if (generatedSignature === signature) {
-      console.log('payment successfyll')
       try {
         // Update the payment status in the database
         await Payment.findOneAndUpdate(
@@ -85,6 +109,7 @@ const razorpay = new Razorpay({
       res.status(400).send('Payment verification failed');
     }
   });
+
 
 
   app.post('/api/payment/verify/bed', async (req, res) => {
@@ -128,7 +153,6 @@ const razorpay = new Razorpay({
       res.status(400).send('Payment verification failed');
     }
   });
-// Starting Server
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+
+
+
