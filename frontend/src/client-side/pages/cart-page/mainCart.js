@@ -20,7 +20,10 @@ export default function MainCart() {
   const { cartItems, removeFromCart } = useContext(cartDataContext)
   console.log(cartItems)
 
-<<<<<<< HEAD
+ const subtotal = cartItems.reduce((sum, item) =>  + Number(item.price), 0) - 150;
+  const tax = 0;
+  const total = subtotal;
+
    const loadRazorpayScripts = () => {
         return new Promise((resolve, reject) => {
             const razorpayScript = document.createElement('script');
@@ -93,12 +96,6 @@ export default function MainCart() {
         }
   }
 
-
-=======
-  const subtotal = cartItems.reduce((sum, item) =>  + Number(item.price), 0) - 150;
-  const tax = 0;
-  const total = subtotal;
->>>>>>> b6624f9b7c9b7d3910110dabaefb13f29766af0b
 
   return (
     <div className="checkout">
