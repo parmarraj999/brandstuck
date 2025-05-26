@@ -221,7 +221,7 @@
   font-weight: 500;
   cursor: pointer;
   margin-bottom: 15px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .terms {
@@ -229,4 +229,17 @@
   color: #777;
   text-align: center;
   margin: 0;
+}
+.promo-message{
+  width: 100%;
+  padding: .8rem;
+  border: 1px solid red;
+  margin-top: 1rem;
+  border-radius: 10px;
+}
+.promo-message p{
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: red;
 }

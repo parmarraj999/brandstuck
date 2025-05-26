@@ -8,7 +8,8 @@ export const AllProductDataContext = createContext();
 export const AllProductDataProvider = ({ children }) => {
 
     const [AllProductList, setAllProductList] = useState([]);
-    const [ filterProductList, setFilterProductList ] = useState([]);
+    const [filterProductList, setFilterProductList] = useState([]);
+    const [coupons, setCoupons] = useState([]);
 
     const pageSize = 20;
 
@@ -75,14 +76,20 @@ export const AllProductDataProvider = ({ children }) => {
         setLoading(false);
     };
 
-    
+    const fetchCoupons = async () => {
+        const querySnapshot = await getDocs(collection(db, "coupons"));
+        const couponsData = querySnapshot.docs.map(doc => doc.data());
+        setCoupons(couponsData);
+        console.log("Coupons fetched:", couponsData);
+    };
 
     useEffect(() => {
         fetchProducts("next")
+        fetchCoupons();
     }, [])
 
     return (
-        <AllProductDataContext.Provider value={{AllProductList,setAllProductList,fetchProducts,prevStack, filterProductList ,setFilterProductList}}>
+        <AllProductDataContext.Provider value={{ AllProductList, setAllProductList, fetchProducts, prevStack, filterProductList, setFilterProductList, coupons }}>
             {children}
         </AllProductDataContext.Provider>
     )

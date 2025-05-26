@@ -54,7 +54,7 @@ function App() {
               <div className="App">
                 <BrowserRouter>
                   <ScrollToTop />
-                  {/* <Nav /> */}
+                  <Nav />
                   {/* <Marquee /> */}
                   <Routes>
                     <Route path='/' element={<Main />} />

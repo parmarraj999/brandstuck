@@ -22,18 +22,33 @@ exports.createOrder = async (req, res) => {
 
 // Handle Razorpay Webhook
 exports.verifyPayment = async (req, res) => {
-  const secret = process.env.RAZORPAY_WEBHOOK_SECRET;
+  const secret = 'webhookSecret5122';
 
   const shasum = crypto.createHmac("sha256", secret);
   shasum.update(JSON.stringify(req.body));
   const digest = shasum.digest("hex");
 
   if (digest === req.headers["x-razorpay-signature"]) {
-    const paymentData = req.body;
+    console.log("✔️ Payment verified successfully");
 
-    await db.collection("payments").add(paymentData);
-    res.status(200).json({ status: "ok" });
+    const paymentData = req.body.payload.payment.entity;
+
+    // Add data to Firestore 'payments' collection
+    await db.collection("payments").doc('payment-doc').add({
+      payment_id: paymentData.id,
+      order_id: paymentData.order_id,
+      email: paymentData.email,
+      contact: paymentData.contact,
+      amount: paymentData.amount,
+      status: paymentData.status,
+      created_at: new Date()
+    })
+    .then(() => {
+      console.log("✔️ Payment recorded in Firestore");
+    })
+    res.status(200).json({ status: "Payment recorded in Firestore" });
   } else {
-    res.status(400).json({ status: "invalid signature" });
+    console.log("❌ Invalid signature");
+    res.status(400).json({ status: "Invalid signature" });
   }
 };

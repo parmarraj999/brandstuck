@@ -3,12 +3,18 @@ import './cart.css';
 import { useNavigate } from 'react-router-dom';
 import { cartDataContext } from '../../context/cartDataProvider';
 import axios from 'axios';
+import { makePayment } from '../../context/makePayment';
+import { AllProductDataContext } from '../../context/AllProductDataProvider';
 
 export default function MainCart() {
-  const [promoCode, setPromoCode] = useState('');
   const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
+  const [couponCode, setCouponCode] = useState("");
+  const [discountAmount, setDiscountAmount] = useState(0);
+  const [shippingCharge, setShippingCharge] = useState(150);
+  const [message, setMessage] = useState("");
 
   const { cartItems, removeFromCart } = useContext(cartDataContext);
+  const { coupons } = useContext(AllProductDataContext)
 
   const navigate = useNavigate();
   const handleBack = () => {
@@ -19,13 +25,42 @@ export default function MainCart() {
     document.body.style.overflow = 'auto';
   });
 
-  const handlePayment=async(e)=>{
-     
+  const handlePayment = async (e) => {
+    console.log(cartItems)
+    makePayment(total)
   }
 
-  const subtotal = cartItems.reduce((sum, item) =>  + Number(item.price), 0) - 150;
-  const tax = 0;
-  const total = subtotal;
+  const subtotal = cartItems.reduce((acc, item) => acc + Number(item.discountPrice), 0);
+  const tax = 150;
+  const total = subtotal + tax - discountAmount;
+
+  const applyCoupon = () => {
+    const coupon = coupons.find(c => c.couponName.toLowerCase() === couponCode.toLowerCase());
+
+    if (coupon) {
+      let discountValue = 0;
+
+      // if discount percentage available
+      if (coupon.discount > 0) {
+        discountValue = Math.round((subtotal * coupon.discount) / 100);
+        setMessage(`${coupon.discount}% discount applied! You saved ₹${discountValue}`);
+      }
+      // else use fixed amount
+      else if (coupon.amount > 0) {
+        discountValue = coupon.amount;
+        setMessage(`₹${coupon.amount} discount applied!`);
+      }
+      else {
+        setMessage("This coupon has no discount.");
+      }
+
+      setDiscountAmount(discountValue);
+    } else {
+      setMessage("Invalid coupon code!");
+      setDiscountAmount(0);
+      setShippingCharge(150); // reset shipping
+    }
+  };
 
   return (
     <div className="checkout">
@@ -80,15 +115,15 @@ export default function MainCart() {
           <div className="order-summary">
             <div className="summary-row">
               <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span>RS.{subtotal.toFixed(2)}</span>
             </div>
             <div className="summary-row">
-              <span>Tax (0.00%)</span>
-              <span>${tax.toFixed(2)}</span>
+              <span>Shipping</span>
+              <span>RS.{tax.toFixed(2)}</span>
             </div>
             <div className="summary-row total">
               <span>Total</span>
-              <span>${total.toFixed(2)}</span>
+              <span>RS.{total.toFixed(2)}</span>
             </div>
           </div>
         </div>
@@ -98,12 +133,19 @@ export default function MainCart() {
           <div className="promo-input">
             <input
               type="text"
-              placeholder="Enter code"
-              value={promoCode}
-              onChange={(e) => setPromoCode(e.target.value)}
+              value={couponCode}
+              placeholder="Enter coupon code"
+              onChange={(e) => setCouponCode(e.target.value)}
             />
-            <button className="apply-button">Apply</button>
+            <button className="apply-button" onClick={applyCoupon}>Apply</button>
           </div>
+          {
+            message ?
+              <div className='promo-message' >
+                <p>{message}</p>
+              </div>
+              : ''
+          }
         </div>
 
         <div className="complete-section">
