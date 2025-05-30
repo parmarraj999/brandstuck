@@ -26,6 +26,8 @@ import Information from './client-side/pages/profile/information/information';
 import Address from './client-side/pages/profile/address/address';
 import YourOrder from './client-side/pages/profile/yourOrder/yourOrder';
 import Payment from './razorpay/payment';
+import PrivacyPolicy from './client-side/pages/legal-page/privacyPolicy';
+import TermsAndConditions from './client-side/pages/legal-page/termCondition';
 function App() {
 
 
@@ -69,6 +71,8 @@ function App() {
                     <Route path='/profile/orders' element={<YourOrder />} />
                     <Route path='*' element={<h1>404</h1>} />
                     <Route path='/razorpay' element={<Payment/>} />
+                    <Route path='/privacy-policy' element={<PrivacyPolicy/>} />
+                    <Route path='/terms-and-conditions' element={<TermsAndConditions/>} />
                   </Routes>
                   <Footer />
                 </BrowserRouter>

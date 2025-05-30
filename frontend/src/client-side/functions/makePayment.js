@@ -1,7 +1,9 @@
 import axios from "axios";
+import { AddOrderToFirestore } from "./placeOrder";
 
-export const makePayment = async (amount) => {
-    const { data } = await axios.post("https://9b64-2409-40e3-505e-fd78-3943-5b02-aee1-f54f.ngrok-free.app/api/payment/create-order", {
+export const makePayment = async (amount, cartItems) => {
+
+    const { data } = await axios.post("https://7c9f-2409-4063-6cc9-6562-88ec-28c2-6c15-8939.ngrok-free.app/api/payment/create-order", {
       amount: amount, // ₹5
       currency: "INR",
       receipt: "receipt#1",
@@ -17,6 +19,8 @@ export const makePayment = async (amount) => {
       handler: function (response) {
         alert("Payment successful!");
         console.log(response);
+        AddOrderToFirestore(cartItems, amount)
+
       },
       prefill: {
         name: "Your Name",

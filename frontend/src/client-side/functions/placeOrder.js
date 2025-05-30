@@ -1,6 +1,7 @@
 import { addDoc, collection, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
 import { v4 as uuidv4 } from 'uuid'; // Import uuid for generating unique IDs
+import { useNavigate } from "react-router-dom";
 
 export const AddOrderToFirestore = async (cartItems, totalAmount) => {
 
@@ -29,7 +30,7 @@ export const AddOrderToFirestore = async (cartItems, totalAmount) => {
         if (cartItems && cartItems.length > 0) {
             const docRef = await addDoc(ordersCollectionRef, orderData);
             console.log('Order added with ID:', docRef.id, 'to user:', userId);
-            alert(`Order added successfully! Order ID: ${docRef.id} for User ID: ${userId}`);
+            // navigate('/profile/orders')
         }
 else{
     console.log('not added')

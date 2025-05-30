@@ -1,0 +1,21 @@
+.privacy-policy{
+    padding: 5rem 2rem;
+    font-family: "Roboto Mono", monospace; 
+}
+.privacy-policy ul{
+    padding-left: 15px;
+}
+.privacy-policy ul li{
+    margin: .4rem 0;
+    font-size: 14px;
+    color: rgb(101, 101, 101);
+}
+.privacy-policy h1{
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+.privacy-policy p{
+    font-size: 14px;
+    color: rgb(101, 101, 101);
+}

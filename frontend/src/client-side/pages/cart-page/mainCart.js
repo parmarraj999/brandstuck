@@ -3,8 +3,8 @@ import './cart.css';
 import { useNavigate } from 'react-router-dom';
 import { cartDataContext } from '../../context/cartDataProvider';
 import axios from 'axios';
-import { makePayment } from '../../context/makePayment';
 import { AllProductDataContext } from '../../context/AllProductDataProvider';
+import { makePayment } from '../../functions/makePayment';
 
 export default function MainCart() {
   const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
@@ -27,7 +27,7 @@ export default function MainCart() {
 
   const handlePayment = async (e) => {
     console.log(cartItems)
-    makePayment(total)
+    makePayment(total, cartItems)
   }
 
   const subtotal = cartItems.reduce((acc, item) => acc + Number(item.discountPrice), 0);
