@@ -2,8 +2,12 @@ import { addDoc, collection, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
 import { v4 as uuidv4 } from 'uuid'; // Import uuid for generating unique IDs
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserCredentialContext } from "../context/userCredentialProvider";
 
 export const AddOrderToFirestore = async (cartItems, totalAmount) => {
+
+    const { userCredential } = useContext(UserCredentialContext)
 
     const userId = window.localStorage.getItem('userId');
 
@@ -24,11 +28,15 @@ export const AddOrderToFirestore = async (cartItems, totalAmount) => {
         };
 
         const userDocRef = doc(db, 'users', userId);
+        const orderDocRef = doc(db, 'orders', uuidv4()+userCredential.name)
 
-        const ordersCollectionRef = collection(userDocRef, 'orders');
+        const userOrdersCollectionRef = collection(userDocRef, 'orders');
 
         if (cartItems && cartItems.length > 0) {
-            const docRef = await addDoc(ordersCollectionRef, orderData);
+            const docRef = await addDoc(userOrdersCollectionRef, orderData);
+            await addDoc(collection(db,'payments'),{
+                orderData
+            })
             console.log('Order added with ID:', docRef.id, 'to user:', userId);
             // navigate('/profile/orders')
         }

@@ -19,9 +19,9 @@ function Footer() {
             </div>
             <div className='box-two' >
                 <ul>
-                    <Link className='item'>Products</Link>
-                    <Link className='item'>Brand</Link>
                     <Link className='item'>Contact Us</Link>
+                    <Link to='/privacy-policy' className='item'>Privacy Policy</Link>
+                    <Link to='/terms-and-conditions' className='item'>Terms and Conditions</Link>
                 </ul>
                 <div className='detail-box' >
                     <div>

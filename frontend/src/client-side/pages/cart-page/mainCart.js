@@ -31,7 +31,7 @@ export default function MainCart() {
   }
 
   const subtotal = cartItems.reduce((acc, item) => acc + Number(item.discountPrice), 0);
-  const tax = 150;
+  const tax = cartItems.leng > 0 ? 150 : 0;
   const total = subtotal + tax - discountAmount;
 
   const applyCoupon = () => {
