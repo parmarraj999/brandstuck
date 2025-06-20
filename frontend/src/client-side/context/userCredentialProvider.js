@@ -7,13 +7,31 @@ export const UserCredentialContext = createContext([]);
 export const UserCredentialProvider = ({ children }) => {
 
     const [userCredential, setUserCredential] = useState([]);
-    const [userAddress,setUserAddress] = useState([]);
+    const [userAddress, setUserAddress] = useState([]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
 
-    // console.log(userCredential)  
+    // console.log(userCredential)
 
     const userId = window.localStorage.getItem('userId') || null;
+
+    const fetchUserAddresses = async() => {
+        try {
+            const addressCollectionRef = collection(db, 'users', userId, 'address');
+            const querySnapshot = await getDocs(addressCollectionRef);
+
+            const fetchedAddresses = [];
+            querySnapshot.forEach((doc) => {
+                fetchedAddresses.push({
+                    id: doc.id, // Include the document ID
+                    ...doc.data(), // Spread the address data
+                });
+            });
+            setUserAddress(fetchedAddresses)
+        } catch (error) {
+
+        }
+    }
 
     const fetchCredentials = async () => {
         try {
@@ -33,25 +51,12 @@ export const UserCredentialProvider = ({ children }) => {
                 setError('No user data found for this user.');
             }
             setLoading(false);
+            fetchUserAddresses();
         } catch (err) {
             setError(err.message || 'Failed to fetch user data');
             setLoading(false);
         }
-        try {
-            const addressCollectionRef = collection(db, 'users', userId, 'address');
-            const querySnapshot = await getDocs(addressCollectionRef);
-      
-            const fetchedAddresses = [];
-            querySnapshot.forEach((doc) => {
-              fetchedAddresses.push({
-                id: doc.id, // Include the document ID
-                ...doc.data(), // Spread the address data
-              });
-            });
-            setUserAddress(fetchedAddresses)
-        } catch (error) {
 
-        }
     };
 
     useEffect(() => {
@@ -63,7 +68,7 @@ export const UserCredentialProvider = ({ children }) => {
     }, [userId])
 
     return (
-        <UserCredentialContext.Provider value={{ userCredential, setUserCredential, userAddress, setUserAddress, fetchCredentials }}>
+        <UserCredentialContext.Provider value={{ userCredential, setUserCredential, userAddress, setUserAddress, fetchCredentials ,fetchUserAddresses}}>
             {children}
         </UserCredentialContext.Provider>
     )

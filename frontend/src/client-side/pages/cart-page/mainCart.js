@@ -5,6 +5,7 @@ import { cartDataContext } from '../../context/cartDataProvider';
 import axios from 'axios';
 import { AllProductDataContext } from '../../context/AllProductDataProvider';
 import { makePayment } from '../../functions/makePayment';
+import { UserCredentialContext } from '../../context/userCredentialProvider';
 
 export default function MainCart() {
   const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
@@ -15,6 +16,7 @@ export default function MainCart() {
 
   const { cartItems, removeFromCart } = useContext(cartDataContext);
   const { coupons } = useContext(AllProductDataContext)
+  const { userCredential } = useContext(UserCredentialContext);
 
   const navigate = useNavigate();
   const handleBack = () => {
@@ -27,7 +29,7 @@ export default function MainCart() {
 
   const handlePayment = async (e) => {
     console.log(cartItems)
-    makePayment(total, cartItems)
+    makePayment(total, cartItems, userCredential)
   }
 
   const subtotal = cartItems.reduce((acc, item) => acc + Number(item.discountPrice), 0);

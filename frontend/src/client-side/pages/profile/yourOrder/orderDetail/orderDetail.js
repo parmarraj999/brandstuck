@@ -3,6 +3,8 @@ import './orderDetail.css';
 
 function OrderDetail({ setDetailPop, detailPop, currentData }) {
 
+    console.log(currentData);
+
     const cardRef = useRef()
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -61,6 +63,7 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
                         <p>Your Order is Delivered</p>
                         : ""
                     }
+                    <p>{currentData.address}</p>
                 </div>
                 <div className='order-items' >
 

@@ -28,6 +28,7 @@ import YourOrder from './client-side/pages/profile/yourOrder/yourOrder';
 import Payment from './razorpay/payment';
 import PrivacyPolicy from './client-side/pages/legal-page/privacyPolicy';
 import TermsAndConditions from './client-side/pages/legal-page/termCondition';
+import AddAddressPage from './client-side/pages/profile/address/addAddress/addAddress';
 function App() {
 
 

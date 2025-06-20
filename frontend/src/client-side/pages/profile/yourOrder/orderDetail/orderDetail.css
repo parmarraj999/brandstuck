@@ -41,9 +41,14 @@
 }
 @media screen and (max-width: 765px) {
   .order-detail-container .order-detail-card {
+    height: 100vh;
     width: 100%;
-    height: -moz-fit-content;
-    height: fit-content;
+  }
+}
+@media screen and (max-width: 765px) {
+  .order-detail-container .order-detail-card {
+    width: 100%;
+    height: 100vh;
     border-radius: 0;
     display: flex;
     flex-direction: column;
