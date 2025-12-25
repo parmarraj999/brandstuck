@@ -14,7 +14,6 @@ import Shop from './client-side/pages/shop/shop';
 import Marquee from './client-side/pages/home/marquee/marquee';
 import { useEffect } from 'react';
 import MainCart from './client-side/pages/cart-page/mainCart';
-import Brands from './client-side/pages/brands/brands';
 import ProductDetail from './client-side/pages/product-detail-page/product-detail';
 import Auth from './client-side/pages/auth/auth';
 import Profile from './client-side/pages/profile/profile';
@@ -29,6 +28,9 @@ import Payment from './razorpay/payment';
 import PrivacyPolicy from './client-side/pages/legal-page/privacyPolicy';
 import TermsAndConditions from './client-side/pages/legal-page/termCondition';
 import AddAddressPage from './client-side/pages/profile/address/addAddress/addAddress';
+import RefundPolicy from './client-side/pages/legal-page/refundPolicy';
+import ShippingPolicy from './client-side/pages/legal-page/shippingPolicy';
+import ContactPage from './client-side/pages/contactUs/contact';
 function App() {
 
 
@@ -64,7 +66,7 @@ function App() {
                     <Route path='/shop' element={<Shop />} />
                     <Route path='/product/:id' element={<ProductDetail />} />
                     <Route path='/cart' element={<MainCart />} />
-                    <Route path='/brands' element={<Brands />} />
+                    {/* <Route path='/brands' element={<Brands />} /> */}
                     <Route path='/auth' element={<Auth />} />
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/profile/information' element={<Information />} />
@@ -74,6 +76,10 @@ function App() {
                     <Route path='/razorpay' element={<Payment/>} />
                     <Route path='/privacy-policy' element={<PrivacyPolicy/>} />
                     <Route path='/terms-and-conditions' element={<TermsAndConditions/>} />
+                    <Route path='/refund-policy' element={<RefundPolicy/>} />
+                    <Route path='/shipping-policy' element={<ShippingPolicy/>} />
+                    <Route path='/shipping-policy' element={<ShippingPolicy/>} />
+                    <Route path='/contact' element={<ContactPage/>} />
                   </Routes>
                   <Footer />
                 </BrowserRouter>

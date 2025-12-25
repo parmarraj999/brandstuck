@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './addToCartPopUp.css'
 import { cartDataContext } from '../../context/cartDataProvider';
+import { useNavigate } from 'react-router-dom';
 
 function AddToCartPopUp({ setCartPopUp, cartPopUp, data }) {
 
@@ -13,6 +14,19 @@ function AddToCartPopUp({ setCartPopUp, cartPopUp, data }) {
             setTop(window.scrollY);
         }
     }, [cartPopUp]);
+
+    const userId = window.localStorage.getItem("userId");
+    const navigate = useNavigate();
+
+    const handleAddToCart = () => {
+        if(!userId) {   
+            alert("Please login to add items to cart");
+            navigate('/auth');
+            return;
+        }
+        addToCart(data)
+        setCartPopUp(false)
+    }
 
     if (!cartPopUp) return null;
     return (
@@ -55,10 +69,7 @@ function AddToCartPopUp({ setCartPopUp, cartPopUp, data }) {
                             })
                         }
                     </div>
-                    <button className='addBtn' onClick={() =>{
-                         addToCart(data)
-                         setCartPopUp(false)
-                    }}>Add to cart</button>
+                    <button className='addBtn' onClick={handleAddToCart}>Add to cart</button>
                 </div>
             </div>
         </div>

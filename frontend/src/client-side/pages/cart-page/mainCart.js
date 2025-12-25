@@ -6,6 +6,7 @@ import axios from 'axios';
 import { AllProductDataContext } from '../../context/AllProductDataProvider';
 import { makePayment } from '../../functions/makePayment';
 import { UserCredentialContext } from '../../context/userCredentialProvider';
+import PayNow from '../../component/paynow';
 
 export default function MainCart() {
   const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false);
@@ -16,7 +17,9 @@ export default function MainCart() {
 
   const { cartItems, removeFromCart } = useContext(cartDataContext);
   const { coupons } = useContext(AllProductDataContext)
-  const { userCredential } = useContext(UserCredentialContext);
+  const { userCredential, userAddress } = useContext(UserCredentialContext);
+
+  const [choosedAddress, setChoosedAddress] = useState();
 
   const navigate = useNavigate();
   const handleBack = () => {
@@ -29,7 +32,11 @@ export default function MainCart() {
 
   const handlePayment = async (e) => {
     console.log(cartItems)
-    makePayment(total, cartItems, userCredential)
+    makePayment(total, cartItems, userCredential, choosedAddress)
+    .then(()=>{
+      console.log("Payment initiated successfully");
+      navigate("/profile/orders")
+    })
   }
 
   const subtotal = cartItems.reduce((acc, item) => acc + Number(item.discountPrice), 0);
@@ -150,10 +157,29 @@ export default function MainCart() {
           }
         </div>
 
+        <div className='address-choosing-section' >
+          <h3>Choose Address</h3>
+          <div className='address-slider' >
+            {
+              userAddress.map((data) => {
+                return (
+                  <div className='address-detail-box' onClick={()=>setChoosedAddress(data)} style={choosedAddress?.id === data.id ? { border: '1.5px solid #000' } : {}} key={data.id}>
+                    <h2>{data.addressType}</h2>
+                    <p>{data.houseDetails}</p>
+                    <p>{data.city}, {data.state}</p>
+                    <p>Pin Code - {data.pincode}</p>
+                  </div>
+                )
+              })
+            }
+          </div>
+        </div>
+
         <div className="complete-section">
           <button className="complete-button" onClick={handlePayment}>
             Complete Purchase
           </button>
+          <PayNow/>
 
           <p className="terms">
             By clicking "Complete Purchase", I accept Terms of Service and have

@@ -11,7 +11,7 @@
   font-weight: 500;
 }
 .shop-container .heading-container {
-  height: 150px;
+  height: 100px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .shop-container .heading-container .shop-heading {
-  font-size: 3.5rem;
+  font-size: 2rem;
   font-weight: 500;
   font-family: "Roboto", sans-serif;
 }
@@ -66,6 +66,7 @@
   font-size: 18px;
   font-weight: 600;
   border: none;
+  color: white;
 }
 @media screen and (max-width: 765px) {
   .shop-container .functional-header .filter-button {
@@ -79,7 +80,7 @@
     align-items: center;
     justify-content: center;
     height: 50px;
-    background: #d8ff68;
+    background: black;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
   }

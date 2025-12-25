@@ -82,7 +82,8 @@
 }
 
 .shop-btn {
-  padding: .7rem 1.5rem;
+  height: 50px;
+  width: fit-content;
   background: white;
   border-radius: 2rem;
   text-decoration: none;
@@ -92,6 +93,8 @@
   box-shadow: 4px 4px 20px rgba(0, 0, 0, .3);
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 0 1.2rem;
   gap: .5rem;
   overflow: hidden;
   position: relative;
@@ -119,15 +122,6 @@
   left: 70%;
  
   
-}
-.shop-btn {
-  color: black;
-  text-decoration: none;
-  position: relative;
-  z-index: 9;
-}
-.shop-btn:hover  svg {
-  color: white
 }
 
 
@@ -205,12 +199,6 @@
     top: 80%;
   }
 
-  .shop-btn {
-    padding: .2rem 1rem;
-    font-size: 16px;
-    text-wrap: nowrap;
-    gap: .2rem;
-  }
 
   .button_container {
     gap: .3rem;

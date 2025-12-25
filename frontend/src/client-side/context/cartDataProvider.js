@@ -2,6 +2,7 @@ import { addDoc, collection, deleteDoc, doc, getDoc, onSnapshot, setDoc } from "
 import React, { createContext, useCallback, useEffect, useState } from "react"
 import { db } from "../../firebase/firebaseConfig";
 import { AddOrderToFirestore } from "../functions/placeOrder";
+import { useNavigate } from "react-router-dom";
 
 export const cartDataContext = createContext({
     cartItems: [],
@@ -14,6 +15,7 @@ export const CartDataProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const userId = window.localStorage.getItem("userId")
     const [totalAmount,setTotalAmount] = useState(0)
+    const [cartLength,setCartLength] = useState();
 
     // console.log(cartItems)
 
@@ -27,6 +29,7 @@ export const CartDataProvider = ({ children }) => {
                     ...doc.data(),
                 }));
                 setCartItems(fetchedCartItems);
+                setCartLength(fetchedCartItems.length)
             });
 
             return () => unsubscribeCart();
@@ -35,7 +38,8 @@ export const CartDataProvider = ({ children }) => {
         }
     }
 
-    const addToCart = useCallback(async (product) => {
+
+    const addToCart = useCallback(async (product) => {  
         const userDocRef = doc(db, 'users', userId);
         const ordersCollectionRef = collection(userDocRef, 'cart-products');
         const docRef = await addDoc(ordersCollectionRef, product);
@@ -74,7 +78,8 @@ export const CartDataProvider = ({ children }) => {
         addToCart: addToCart,
         removeFromCart: removeFromCart,
         fetchCartData: fetchCartData,
-        AddOrderTo: AddOrderTo
+        AddOrderTo: AddOrderTo,
+        cartLength: cartLength
     };
 
     return (

@@ -9,6 +9,7 @@ export const UserCredentialProvider = ({ children }) => {
     const [userCredential, setUserCredential] = useState([]);
     const [userAddress, setUserAddress] = useState([]);
     const [error, setError] = useState('');
+    console.log(userCredential)
     const [loading, setLoading] = useState(true);
 
     // console.log(userCredential)
@@ -27,6 +28,7 @@ export const UserCredentialProvider = ({ children }) => {
                     ...doc.data(), // Spread the address data
                 });
             });
+            console.log(fetchedAddresses)
             setUserAddress(fetchedAddresses)
         } catch (error) {
 

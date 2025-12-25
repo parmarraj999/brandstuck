@@ -3,6 +3,7 @@ import './carousel.css'
 import Shery from "sheryjs";
 import { Link } from 'react-router-dom'
 import { useRef } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
   {
@@ -64,18 +65,18 @@ export default function Carousel() {
 
 
 
-  
-    const btnRef = useRef(null);
-  
-    useEffect(() => {
-      if (btnRef.current) {
-        Shery.makeMagnet(btnRef.current);
-      }
-  
-      return () => {
-        // Cleanup function (if needed)
-      };
-    }, []);
+
+  const btnRef = useRef(null);
+
+  useEffect(() => {
+    if (btnRef.current) {
+      Shery.makeMagnet(btnRef.current);
+    }
+
+    return () => {
+      // Cleanup function (if needed)
+    };
+  }, []);
 
 
   return (
@@ -114,17 +115,20 @@ export default function Carousel() {
         ))}
       </div>
       <div className='button_container' >
-        <Link to='/shop' className='shop-btn' >Shop Now
-          <svg style={{width:"25px"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
+        <Link to='/shop' className='shop-btn' >
+          Shop Now
+         <ChevronRight size={25}/>
         </Link>
-        <Link className='custome-btn' >
+
+        {/* add after the page is ready  */}
+        {/* <Link className='custome-btn' >
           <div>
             Customize Your
           </div>
           <div className='icon'  >
             <svg style={{ width: "25px", height: "25px" ,color:"white"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M15.7279 9.57627L14.3137 8.16206L5 17.4758V18.89H6.41421L15.7279 9.57627ZM17.1421 8.16206L18.5563 6.74785L17.1421 5.33363L15.7279 6.74785L17.1421 8.16206ZM7.24264 20.89H3V16.6473L16.435 3.21231C16.8256 2.82179 17.4587 2.82179 17.8492 3.21231L20.6777 6.04074C21.0682 6.43126 21.0682 7.06443 20.6777 7.45495L7.24264 20.89Z"></path></svg>
           </div>
-        </Link>
+        </Link> */}
       </div>
     </div>
   )

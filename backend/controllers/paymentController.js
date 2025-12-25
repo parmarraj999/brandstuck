@@ -2,53 +2,33 @@ const instance = require("../config/razorpayInstance");
 const db = require("../config/firebaseConfig");
 const crypto = require("crypto");
 
-// Create order
-exports.createOrder = async (req, res) => {
-  const { amount, currency, receipt } = req.body;
 
-  const options = {
-    amount: amount * 100, // Amount in paise
-    currency,
-    receipt,
-  };
+const createOrder = async (req, res) => {
+  const { amount } = req.body;
 
-  try {
-    const order = await instance.orders.create(options);
-    res.status(200).json(order);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  const order = await instance.orders.create({
+    amount: amount * 100,
+    currency: "INR",
+  });
+
+  res.json(order);
 };
 
-// Handle Razorpay Webhook
-exports.verifyPayment = async (req, res) => {
-  const secret = 'webhookSecret5122';
+const verifyPayment = (req, res) => {
+  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
 
-  const shasum = crypto.createHmac("sha256", secret);
-  shasum.update(JSON.stringify(req.body));
-  const digest = shasum.digest("hex");
+  const body = razorpay_order_id + "|" + razorpay_payment_id;
 
-  if (digest === req.headers["x-razorpay-signature"]) {
-    console.log("✔️ Payment verified successfully");
+  const expectedSignature = crypto
+    .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+    .update(body)
+    .digest("hex");
 
-    const paymentData = req.body.payload.payment.entity;
-
-    // Add data to Firestore 'payments' collection
-    await db.collection("payments").doc('payment-doc').add({
-      payment_id: paymentData.id,
-      order_id: paymentData.order_id,
-      email: paymentData.email,
-      contact: paymentData.contact,
-      amount: paymentData.amount,
-      status: paymentData.status,
-      created_at: new Date()
-    })
-    .then(() => {
-      console.log("✔️ Payment recorded in Firestore");
-    })
-    res.status(200).json({ status: "Payment recorded in Firestore" });
+  if (expectedSignature === razorpay_signature) {
+    res.json({ success: true });
   } else {
-    console.log("❌ Invalid signature");
-    res.status(400).json({ status: "Invalid signature" });
+    res.status(400).json({ success: false });
   }
 };
+
+module.exports = { createOrder, verifyPayment };

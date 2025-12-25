@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './address.css'
 import { Link, useNavigate } from 'react-router-dom';
 import AddAddressPage from './addAddress/addAddress';
@@ -49,6 +49,10 @@ export default function AddressPage() {
   }
 
   const [showAddress, setShowAddress] = useState(false);
+
+  useEffect(()=>{
+    fetchUserAddresses();
+  },[])
 
   return (
     <div className='address-container' >

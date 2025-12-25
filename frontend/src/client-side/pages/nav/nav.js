@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import './nav.css';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useNavigation } from 'react-router-dom';
 import { ThemeContext } from '../../context/ThemeContext';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -17,44 +17,39 @@ function Nav() {
     const { pathname } = useLocation();
     const {cartItems} = useContext( cartDataContext )
 
-    const tl = gsap.timeline();
-
-
-    const screenWidth = window.innerWidth;
-
-    const openCartFunc = () => {
-        setOpenCart(true)
-        if (screenWidth < 765) {
-            gsap.to(".nav_container", {
-                background: 'white',
-                boxShadow: "7px 7px 10px rgba(0,0,0,.3)"
-            })
-        }
-    }
-
-    // hide nav bar when cart page open 
-
-
-
-    const navigate = useNavigate();
+     const navigate = useNavigate();
     const backBtn = () => {
         navigate(-1)
     }
 
+    const tl = gsap.timeline();
+
+    const screenWidth = window.innerWidth;
+
+    const openCartFunc = () => {
+        navigate('/cart')
+        // setOpenCart(true)
+        // if (screenWidth < 765) {
+        //     gsap.to(".nav_container", {
+        //         background: 'white',
+        //         boxShadow: "7px 7px 10px rgba(0,0,0,.3)"
+        //     })
+        // }
+    }
+
+    // hide nav bar when cart page open 
     return (
         <div className='nav_container' style={pathname === '/profile' || pathname === '/profile/information' || pathname === '/profile/address' || pathname === '/profile/orders' || pathname === '/cart' ? {display:"none"} : {}}  >
             {/* {
                 openCart ? */}
-            <CartSmall openCart={openCart} setOpenCart={setOpenCart} />
+            {/* <CartSmall openCart={openCart} setOpenCart={setOpenCart} /> */}
             {/* : ""
             } */}
             <div onClick={backBtn} className='back-btn'>
                 <svg style={{ width: "25px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
             </div>
             <div className='nav_links' >
-                {/* <button onClick={toggleTheme} >Toggle Theme</button> */}
                 <Link to='/shop' className='nav_link'>Shop</Link>
-                <Link to='/brands' className='nav_link'>Brands</Link>
                 <Link className='nav_link'>Accessories</Link>
                 <Link className='nav_link'>Shoes</Link>
             </div>
@@ -97,13 +92,6 @@ function Nav() {
                         </div>
                 }
             </div>
-
-            {/* {
-                menu === 'open' ?
-                   <NavMen/>
-                    :
-                    ''
-            } */}
         </div >
     )
 }

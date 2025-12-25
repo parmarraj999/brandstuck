@@ -23,7 +23,7 @@ function ProductCard({ data }) {
                     : ""
             }
             <div className='product-image' >
-                <Link to={`/product/${data.productId}`} >
+                <Link to={`/product/${data.id}`} >
                     <img src={data.imageUrls[0].imageUrl} />
                 </Link>
                 <div className='cart-button' onClick={() => {

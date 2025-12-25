@@ -19,9 +19,11 @@ function Footer() {
             </div>
             <div className='box-two' >
                 <ul>
-                    <Link className='item'>Contact Us</Link>
+                    <Link to='/contact' className='item'>Contact Us</Link>
                     <Link to='/privacy-policy' className='item'>Privacy Policy</Link>
                     <Link to='/terms-and-conditions' className='item'>Terms and Conditions</Link>
+                    <Link to='/refund-policy' className='item'>Refund Policy</Link>
+                    <Link to='/shipping-policy' className='item'>Shipping Policy</Link>
                 </ul>
                 <div className='detail-box' >
                     <div>
@@ -30,7 +32,7 @@ function Footer() {
                     </div>
                     <div>
                         <h6>Contact No.</h6>
-                        <p>1234567890 <br /> 1234567890</p>
+                        <p>7479542309</p>
                     </div>
                 </div>
             </div>
