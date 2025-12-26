@@ -7,7 +7,6 @@
     width: 35%;
     margin: 0 auto;
     padding: 16px;
-    font-family: Arial, sans-serif;
     background-color: white;
   }
 
@@ -44,10 +43,11 @@
   
   /* Title */
   .orders-title {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 600;
     text-align: center;
-    margin-bottom: 24px;
+    margin-top: 10px;
+    margin-bottom: 15px;
   }
   
   /* Tabs */
@@ -107,10 +107,13 @@
     border-radius: 50%;
   }
   
-  .status-dot.pending {
+  .status-dot.Pending {
     background-color: #EF4444; /* red */
   }
   
+  .status-dot.confirm {
+    background-color: #5906ff; /* blue */
+  }
   .status-dot.shipped {
     background-color: #0091ff; /* blue */
   }
@@ -187,6 +190,7 @@
     background-color: #000;
     color: #fff;
     border-radius: 8px;
+    margin-left: 10px;
     border: none;
     display: flex;
     align-items: center;

@@ -20,7 +20,7 @@
         align-items: center;
         justify-content: center;
         background: rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
+        border-radius: 10px;
         @media screen and (max-width:765px) {
             display: flex;
         }
@@ -60,9 +60,9 @@
             }
             h1{
                 font-size: 22px;
-                font-weight: 500;
+                font-weight: 600;
                 margin-top: .6rem;
-                text-transform: capitalize;
+                text-transform: uppercase;
             }
             p{
                 font-size: 15px;
@@ -158,7 +158,7 @@
                 padding: .7rem 0;
                 background: red;
                 border-radius: 1rem;
-                margin: 1rem auto;
+                margin: 1rem auto 0 auto;
                 border: none;
                 font-size: 16px;
                 color: white;

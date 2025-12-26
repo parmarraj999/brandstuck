@@ -26,7 +26,7 @@ function Text() {
         );
     }, []);
 
-    const paragraph = "Brandstuck Your one-stop shop for the hottest styles and must-have brands, all under one roof. Discover a curated collection of apparel, accessories, and more, at prices you'll love. Find your perfect look today at Brandstuck!";
+    const paragraph = "Brandstuck Your one-stop shop for the hottest styles and must-have fashion, all under one roof. Discover a curated collection of apparel, accessories, and more, at prices you'll love. Find your perfect look today at Brandstuck!";
     const words = paragraph.split(" ");
 
     return (

@@ -45,7 +45,7 @@ export default function AddressPage() {
 
   const navigate = useNavigate();
   const handleBack = () => {
-    navigate('/profile')
+    navigate(-1)
   }
 
   const [showAddress, setShowAddress] = useState(false);

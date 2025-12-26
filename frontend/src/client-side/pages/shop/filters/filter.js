@@ -58,61 +58,60 @@ function Filter({ setFilterPop }) {
         { text: '40' },
     ]
 
-    const brandFilter = [
-        // Clothing Brands (30)
-        { text: "Nike" },
-        { text: "Adidas" },
-        { text: "Levi's" },
-        { text: "Zara" },
-        { text: "H&M" },
-        { text: "Uniqlo" },
-        { text: "Gap" },
-        { text: "Mango" },
-        { text: "Puma" },
-        { text: "Reebok" },
-        { text: "Forever 21" },
-        { text: "American Eagle" },
-        { text: "Tommy Hilfiger" },
-        { text: "Calvin Klein" },
-        { text: "Ralph Lauren" },
-        { text: "Gucci" },
-        { text: "Prada" },
-        { text: "Versace" },
-        { text: "Dolce & Gabbana" },
-        { text: "Burberry" },
-        { text: "Armani" },
-        { text: "Diesel" },
-        { text: "Wrangler" },
-        { text: "Lee" },
-        { text: "Pepe Jeans" },
-        { text: "Benetton" },
-        { text: "Superdry" },
-        { text: "Jack & Jones" },
-        { text: "Only" },
-        { text: "Vero Moda" },
-        { text: "Converse" },
-        { text: "Vans" },
-        { text: "Sketchers" },
-        { text: "Crocs" },
-        { text: "Ray-Ban" },
-        { text: "Oakley" },
-        { text: "Casio" },
-        { text: "Fossil" },
-        { text: "Michael Kors" },
-        { text: "Titan" },
-    ];
+    // const brandFilter = [
+    //     { text: "Nike" },
+    //     { text: "Adidas" },
+    //     { text: "Levi's" },
+    //     { text: "Zara" },
+    //     { text: "H&M" },
+    //     { text: "Uniqlo" },
+    //     { text: "Gap" },
+    //     { text: "Mango" },
+    //     { text: "Puma" },
+    //     { text: "Reebok" },
+    //     { text: "Forever 21" },
+    //     { text: "American Eagle" },
+    //     { text: "Tommy Hilfiger" },
+    //     { text: "Calvin Klein" },
+    //     { text: "Ralph Lauren" },
+    //     { text: "Gucci" },
+    //     { text: "Prada" },
+    //     { text: "Versace" },
+    //     { text: "Dolce & Gabbana" },
+    //     { text: "Burberry" },
+    //     { text: "Armani" },
+    //     { text: "Diesel" },
+    //     { text: "Wrangler" },
+    //     { text: "Lee" },
+    //     { text: "Pepe Jeans" },
+    //     { text: "Benetton" },
+    //     { text: "Superdry" },
+    //     { text: "Jack & Jones" },
+    //     { text: "Only" },
+    //     { text: "Vero Moda" },
+    //     { text: "Converse" },
+    //     { text: "Vans" },
+    //     { text: "Sketchers" },
+    //     { text: "Crocs" },
+    //     { text: "Ray-Ban" },
+    //     { text: "Oakley" },
+    //     { text: "Casio" },
+    //     { text: "Fossil" },
+    //     { text: "Michael Kors" },
+    //     { text: "Titan" },
+    // ];
 
     const [searchTerm, setSearchTerm] = useState('');
-    const [filterBrand, setFilterBrand] = useState(brandFilter);
+    // const [filterBrand, setFilterBrand] = useState(brandFilter);
 
     const handleSearch = (event) => {
         const term = event.target.value;
         setSearchTerm(term);
 
-        const results = brandFilter.filter((item) =>
-            item.text.toLowerCase().includes(term.toLowerCase())
-        );
-        setFilterBrand(results);
+        // const results = brandFilter.filter((item) =>
+        //     item.text.toLowerCase().includes(term.toLowerCase())
+        // );
+        // setFilterBrand(results);
     };
 
     const [minPrice, setMinPrice] = useState(0);
@@ -207,7 +206,7 @@ function Filter({ setFilterPop }) {
                         onChange={handleSearch}
                         value={searchTerm}
                     />
-                    <div className='wrapper' >
+                    {/* <div className='wrapper' >
                         {
                             brandFilter.map((data) => {
                                 return (
@@ -217,7 +216,7 @@ function Filter({ setFilterPop }) {
                                 )
                             })
                         }
-                    </div>
+                    </div> */}
                 </div>
                 <div className='default-box-class ' >
                     <h3>Price ( up to )</h3>

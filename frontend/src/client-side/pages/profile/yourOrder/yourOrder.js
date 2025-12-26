@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './yourOrder.css';
 import { useNavigate } from 'react-router-dom';
 import OrderDetail from './orderDetail/orderDetail';
@@ -6,8 +6,7 @@ import { OrderDataContext } from '../../../context/getOrderData';
 
 export default function YourOrder() {
 
-
-  const { orderData } = useContext(OrderDataContext)
+  const { orderData, fetchOrders } = useContext(OrderDataContext)
   const [activeTab, setActiveTab] = useState('all');
   const [currentData, setCurrentData] = useState([])
 
@@ -37,6 +36,38 @@ export default function YourOrder() {
     const year = date.getFullYear();
 
     return `${day} ${month} ${year}`;
+  }
+
+  useEffect(()=>{
+    fetchOrders();
+  },[])
+
+  function formatServerTime(dateInput) {
+    let date;
+
+    // Firestore Timestamp handle
+    if (dateInput?.seconds) {
+      date = new Date(dateInput.seconds * 1000);
+    }
+    // Normal Date / string
+    else {
+      date = new Date(dateInput);
+    }
+
+    if (isNaN(date.getTime())) return "Invalid date";
+
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = date.toLocaleString("en-IN", { month: "short" });
+    const year = date.getFullYear();
+
+    let hours = date.getHours();
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const ampm = hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12 || 12;
+    hours = hours.toString().padStart(2, "0");
+
+    return `${day} ${month} ${year}, ${hours}:${minutes} ${ampm}`;
   }
 
   return (
@@ -89,23 +120,23 @@ export default function YourOrder() {
 
         <div className="orders-list">
           {filteredOrders.map((order, index) => (
-            <div key={`${order.id}-${index}`} className="order-card" onClick={() => {
+            <div key={`${order?.orderId}-${index}`} className="order-card" onClick={() => {
               setDetailPop(true)
               setCurrentData(order)
-            }} style={order.orderStatus === 'delivered' ? { display: 'none' } : {}}>
+            }} style={order?.order_status === 'delivered' ? { display: 'none' } : {}}>
               <div className="order-info">
-                <div className={`status-${order.orderStatus}`} >
-                  <div className={`status-dot ${order.orderStatus}`}></div>
+                <div className={`status-${order?.order_status}`} >
+                  <div className={`status-dot ${order?.order_status}`}></div>
                 </div>
                 <div>
-                  <div className="order-id">Order #{order.orderId}</div>
-                  <div className="order-date">{formatDateFromTimestamp(order.orderDate)}</div>
+                  <div className="order-id">Order #{order?.orderId}</div>
+                  <div className="order-date">{formatDateFromTimestamp(order?.orderAt)}</div>
                 </div>
               </div>
               <div className="order-details">
                 <div className="amount-container">
-                  <div className="amount">RS.{order.totalAmount}</div>
-                  <div className="items">{order.products.length} Items</div>
+                  <div className="amount">RS.{order?.amount}</div>
+                  <div className="items">{order?.product?.length} Items</div>
                 </div>
                 <button className="nav-button">
                   <ChevronRight />
@@ -118,27 +149,28 @@ export default function YourOrder() {
         {
           activeTab === 'all' || activeTab === "delivered" ?
             <div className="complete-orders-section">
-              <h2 className="section-title">Complete Orders</h2>
+              {/* <h2 className="section-title">Complete Orders</h2> */}
+              <hr/>
               <div className='orders-list' >
                 {orderData.map((order, index) => (
-                  <div key={`${order.id}-${index}`} className="order-card" onClick={() => {
+                  <div key={`${order?.userId}-${index}`} className="order-card" onClick={() => {
                     setDetailPop(true)
                     setCurrentData(order)
                   }}
-                    style={order.orderStatus === 'delivered' ? { display: 'flex' } : { display: 'none' }} >
+                    style={order?.order_status === 'delivered' ? { display: 'flex' } : { display: 'none' }} >
                     <div className="order-info" >
-                      <div className={`status-${order.orderStatus}`}  >
-                        <div className={`status-dot ${order.orderStatus}`}></div>
+                      <div className={`status-${order?.order_status}`}  >
+                        <div className={`status-dot ${order?.order_status}`}></div>
                       </div>
                       <div>
-                        <div className="order-id">Order #{order.orderId}</div>
-                        <div className="order-date">{formatDateFromTimestamp(order.orderDate)}</div>
+                        <div className="order-id">Order #{order?.orderId}</div>
+                        <div className="order-date">{formatDateFromTimestamp(order?.orderAt)}</div>
                       </div>
                     </div>
                     <div className="order-details">
                       <div className="amount-container">
-                        <div className="amount">RS.{order.totalAmount}</div>
-                        <div className="items">{order.products.length} Items</div>
+                        <div className="amount">RS.{order?.amount}</div>
+                        <div className="items">{order?.product?.length} Items</div>
                       </div>
                       <button className="nav-button">
                         <ChevronRight />

@@ -14,8 +14,8 @@ export const CartDataProvider = ({ children }) => {
 
     const [cartItems, setCartItems] = useState([]);
     const userId = window.localStorage.getItem("userId")
-    const [totalAmount,setTotalAmount] = useState(0)
-    const [cartLength,setCartLength] = useState();
+    const [totalAmount, setTotalAmount] = useState(0)
+    const [cartLength, setCartLength] = useState();
 
     // console.log(cartItems)
 
@@ -39,7 +39,7 @@ export const CartDataProvider = ({ children }) => {
     }
 
 
-    const addToCart = useCallback(async (product) => {  
+    const addToCart = useCallback(async (product) => {
         const userDocRef = doc(db, 'users', userId);
         const ordersCollectionRef = collection(userDocRef, 'cart-products');
         const docRef = await addDoc(ordersCollectionRef, product);
@@ -50,13 +50,18 @@ export const CartDataProvider = ({ children }) => {
         await deleteDoc(cartItemRef);
     }, []);
 
-    const AddOrderTo = () =>{
+    const AddOrderTo = () => {
         AddOrderToFirestore(cartItems, totalAmount);
     }
 
     useEffect(() => {
         fetchCartData();
     }, [])
+
+    const isProductInCart = (productId) => {
+        return cartItems?.some(item => item.productId === productId);
+    };
+
 
     useEffect(() => {
         // Calculate the total amount whenever the products array changes
@@ -79,7 +84,8 @@ export const CartDataProvider = ({ children }) => {
         removeFromCart: removeFromCart,
         fetchCartData: fetchCartData,
         AddOrderTo: AddOrderTo,
-        cartLength: cartLength
+        cartLength: cartLength,
+        isProductInCart: isProductInCart
     };
 
     return (

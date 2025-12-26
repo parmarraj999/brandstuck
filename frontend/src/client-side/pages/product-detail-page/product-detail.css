@@ -178,6 +178,9 @@
   border: 1px solid black;
   cursor: pointer;
 }
+.product-detail-container .product-details-wrapper .product-detail .add-to-cart-box-container .inCart {
+  opacity: 0.8;
+}
 .product-detail-container .product-details-wrapper .product-detail .add-to-cart-box-container p {
   font-size: 14px;
   text-transform: uppercase;

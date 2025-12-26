@@ -47,42 +47,46 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
             </div>
                 <div className='order-header' >
                     <img src='../../../../assets/images/pending.jpeg' />
-                    <h1>{currentData.orderStatus}...</h1>
+                    <h1>{currentData?.order_status}</h1>
                     {
-                        currentData.orderStatus === 'shipped'?
+                        currentData?.order_status === 'confirm'?
+                        <p>Your Order is Confirm</p>
+                        : ""
+                    }
+                    {
+                        currentData?.order_status === 'shipped'?
                         <p>Your Order is Shipped</p>
                         : ""
                     }
                     {
-                        currentData.orderStatus === 'pending'?
-                        <p>Your Order is Confirmed and Packaging</p>
+                        currentData?.order_status === 'Pending'?
+                        <p>Order is Waiting for Confirmation</p>
                         : ""
                     }
                     {
-                        currentData.orderStatus === 'delivered'?
+                        currentData?.order_status === 'delivered'?
                         <p>Your Order is Delivered</p>
                         : ""
                     }
-                    <p>{currentData.address}</p>
                 </div>
                 <div className='order-items' >
 
                     {
-                        currentData.products.map((data) => {
+                        currentData?.product.map((data) => {
                             return (
                                 <div className='item' >
                                     <div>
-                                        <h3>#{data.productId}</h3>
-                                        <h4>{data.name} // {data.brand}</h4>
+                                        <h3>#{data?.productId}</h3>
+                                        <h4>{data?.name} // {data?.brand}</h4>
                                         <h5 style={{display:'flex',gap:'.5rem'}}>size: {
-                                            data.sizes.map((data)=>{
+                                            data?.sizes.map((data)=>{
                                                 return(
                                                     <div>{data}</div>
                                                 )
                                             })
                                             }</h5>
                                     </div>
-                                    <h6>rs.{data.discountPrice}</h6>
+                                    <h6>rs.{data?.discountPrice}</h6>
                                 </div>
                             )
                         })
@@ -93,11 +97,11 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
                         <div className='order-details-summary' >
                             <div className='order-item-summary' >
                                 <h2>Total amount</h2>
-                                <h3>rs.{currentData.totalAmount}</h3>
+                                <h3>rs.{currentData?.amount}</h3>
                             </div>
                             <div className='order-item-summary' >
                                 <h2>Order ID</h2>
-                                <h3>#{currentData.orderId}</h3>
+                                <h3>#{currentData?.orderId}</h3>
                             </div>
                             <div className='order-item-summary' >
                                 <h2>Shipping Address</h2>
@@ -105,16 +109,16 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
                             </div>
                             <div className='order-item-summary' >
                                 <h2>tracking ID</h2>
-                                <h3>-</h3>
+                                <h3>{currentData?.trackingId}</h3>
                             </div>
                             <div className='order-item-summary' >
                                 <h2>estimate delivery date</h2>
-                                <h3>{formatDateFromTimestamp(currentData.orderDate)}</h3>
+                                <h3>{currentData?.estimate_date}</h3>
                             </div>
                         </div>
                     </div>
                     <button className='cancel-btn' >Cancel Order</button>
-                    <p style={{margin:'0 auto',fontSize:'14px',fontWeight:'400',color:'rgba(0,0,0,0.6)'}}>If order Shipped You can't cancel It</p>
+                    <p style={{margin:'0 auto',fontSize:'14px',fontWeight:'500',color:'rgba(0,0,0,0.6)'}}>If order Shipped You can't cancel It</p>
                 </div>
             </div>
         </div>

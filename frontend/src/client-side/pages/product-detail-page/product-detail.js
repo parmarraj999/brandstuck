@@ -11,13 +11,12 @@ import { cartDataContext } from '../../context/cartDataProvider'
 function ProductDetail() {
 
   const { id } = useParams()
-  
+
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const { addToCart } = useContext(cartDataContext)
+  const { addToCart, isProductInCart } = useContext(cartDataContext)
 
-  console.log(product)
 
   const fetchProduct = async () => {
     try {
@@ -94,10 +93,10 @@ function ProductDetail() {
               </div>
               <div className='size-box-container' >
                 {
-                  product?.sizes?.map((data)=>{
-                      return(
-                        <div className='size-box' >{data}</div>
-                      )
+                  product?.sizes?.map((data) => {
+                    return (
+                      <div className='size-box' >{data}</div>
+                    )
                   })
                 }
                 {/* <div className='size-box' >m</div>
@@ -105,7 +104,12 @@ function ProductDetail() {
                 <div className='size-box' >xl</div>
                 <div className='size-box' >xxl</div> */}
               </div>
-              <button onClick={()=>addToCart(product)}>Add to cart</button>
+              {
+                isProductInCart(product.productId) ?
+                  <button className='inCart'>Added to Cart</button>
+                  :
+                  <button onClick={() => addToCart(product)}>Add to cart</button>
+              }
               <p>NOTE : YOU CAN APPLY COUPON CODE WHILE CONFIrMING ORDER IN CART </p>
             </div>
 
