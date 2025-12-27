@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Card from '../../../component/product-card/card';
+import { fetchNewDropProducts } from '../../../functions/newDropProduct';
+import ProductCard from '../../../component/product-card/card';
 
 function NewProduct() {
 
@@ -12,8 +14,6 @@ function NewProduct() {
     const [settings, setSettings] = useState({})
 
     const width = window.innerWidth;
-
-    console.log(width)
 
     useEffect(() => {
         if (width < 768) {
@@ -33,7 +33,7 @@ function NewProduct() {
                 slidesToScroll: 1,
             })
         }
-    },[])
+    }, [])
 
     const next = () => {
         sliderRef.slickNext();
@@ -42,45 +42,16 @@ function NewProduct() {
         sliderRef.slickPrev();
     };
 
-    const data = [
-        {
-            "id": 1,
-            "name": "Classic T-Shirt",
-            "price": 19.99,
-            "imageUrl": "https://i.pinimg.com/736x/27/b5/a1/27b5a1602087a7113d58118e357bdc54.jpg"
-        },
-        {
-            "id": 2,
-            "name": "Slim Fit Jeans",
-            "price": 49.99,
-            "imageUrl": "https://i.pinimg.com/736x/32/e8/8a/32e88acc2d35c3a4b12eec4fc3ade1db.jpg"
-        },
-        {
-            "id": 3,
-            "name": "Hooded Sweatshirt",
-            "price": 34.50,
-            "imageUrl": "https://i.pinimg.com/474x/1d/b7/d8/1db7d8cf4523592c5a37ef155cf01596.jpg"
-        },
-        {
-            "id": 4,
-            "name": "Running Shoes",
-            "price": 79.95,
-            "imageUrl": "https://i.pinimg.com/474x/09/57/0f/09570fb2ee1d67c7ca94bc473a490f2f.jpg"
-        },
-        {
-            "id": 5,
-            "name": "Baseball Cap",
-            "price": 14.99,
-            "imageUrl": "https://i.pinimg.com/474x/c0/ef/70/c0ef7067d94118e5520134cf40da63da.jpg"
-        },
-        {
-            "id": 6,
-            "name": "Leather Jacket",
-            "price": 129.00,
-            "imageUrl": "https://i.pinimg.com/474x/f1/1c/a0/f11ca0a792419a24ecdd1ed293c87b10.jpg "
-        }
-    ]
+    const [productIds, setProductIds] = useState([]);
 
+    useEffect(() => {
+        const loadNewDrop = async () => {
+            const ids = await fetchNewDropProducts();
+            setProductIds(ids);
+        };
+
+        loadNewDrop();
+    }, []);
 
     return (
         <div className='new-product-container' >
@@ -93,9 +64,9 @@ function NewProduct() {
                     }}
                     {...settings}>
                     {
-                        data.map((data, index) => {
+                        productIds.map((data, index) => {
                             return (
-                                <Card imageUrl={data.imageUrl} name={data.name} price={data.price} />
+                                <ProductCard productId={data} />
                             )
                         })
                     }

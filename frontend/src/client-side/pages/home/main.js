@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { ThemeContext } from '../../context/ThemeContext'
 // import "../../styles/theme/theme.css";
 import './main.css'
@@ -15,8 +15,13 @@ import Store from './store-section/store'
 import Why from './why-section/why'
 import Map from './map/map'
 import Footer from '../footer/footer'
+import { fetchNewDropProducts } from '../../functions/newDropProduct'
 
 function Home() {
+
+  // useEffect(()=>{
+  //   fetchNewDropProducts();
+  // },[])
 
   return (
     <div className='home-container' >

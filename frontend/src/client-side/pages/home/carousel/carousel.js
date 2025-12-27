@@ -4,6 +4,7 @@ import Shery from "sheryjs";
 import { Link } from 'react-router-dom'
 import { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { fetchHeaderImages } from '../../../functions/fetchCarouselImage';
 
 const slides = [
   {
@@ -44,10 +45,6 @@ const slides2 = [
 
 export default function Carousel() {
 
-
-
-
-
   const [currentSlide, setCurrentSlide] = useState(0)
   const slideInterval = 4000 // 3 seconds
 
@@ -78,6 +75,30 @@ export default function Carousel() {
     };
   }, []);
 
+  const [mobileImage,setMobileImages] = useState([])
+  const [desktopImage,setDesktopImages] = useState([])
+
+
+  useEffect(() => {
+    const loadImages = async () => {
+      const res = await fetchHeaderImages();
+
+      setMobileImages(
+        Object.values(res.mobile).map((url) => ({
+          preview: url,
+        }))
+      );
+
+      setDesktopImages(
+        Object.values(res.desktop).map((url) => ({
+          preview: url,
+        }))
+      );
+    };
+
+    loadImages();
+  }, []);
+
 
   return (
     <div style={{ width: '100%', }} className='carousel-wrapper'>
@@ -86,11 +107,11 @@ export default function Carousel() {
           className="carousel-track"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
-          {slides.map((slide) => (
+          {desktopImage.map((slide) => (
             <div key={slide.id} className="carousel-slide">
-              <img src={slide.img} />
+              <img src={slide.preview} />
             </div>
-          ))}
+          ))} 
         </div>
       </div>
       <div className="carousel-container-mobile">
@@ -98,9 +119,9 @@ export default function Carousel() {
           className="carousel-track"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
-          {slides2.map((slide) => (
+          {mobileImage.map((slide) => (
             <div key={slide.id} className="carousel-slide">
-              <img src={slide.img} />
+              <img src={slide.preview} />
             </div>
           ))}
         </div>
@@ -117,7 +138,7 @@ export default function Carousel() {
       <div className='button_container' >
         <Link to='/shop' className='shop-btn' >
           Shop Now
-         <ChevronRight size={25}/>
+          <ChevronRight size={25} />
         </Link>
 
         {/* add after the page is ready  */}
