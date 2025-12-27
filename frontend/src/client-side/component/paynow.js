@@ -29,18 +29,8 @@ export const handlePayment = async (amount, orderData, navigate, userId) => {
         // adding data to firestore
         try {
           const docRef = doc(collection(db, 'Orders')); // Replace with your collection and document ID
-          const userOrders = collection(db, 'users', userId, 'orders');
 
           await setDoc(docRef, {
-            ...orderData,
-            orderId: orderId,
-            paymentId: response.razorpay_payment_id,
-            trackingId: 'not available',
-            order_status: 'Pending',
-            estimate_date: 'not available',
-            amount: amount
-          })
-          await addDoc(userOrders, {
             ...orderData,
             orderId: orderId,
             paymentId: response.razorpay_payment_id,

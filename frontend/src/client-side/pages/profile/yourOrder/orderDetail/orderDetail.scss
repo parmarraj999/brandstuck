@@ -4,11 +4,15 @@
     background: rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 9999;
+    padding-right: 20px;
+    @media screen and (max-width:765px) {
+        padding-right: 0;
+    }
     .backBtn{
         position: absolute;
         top: 2%;
@@ -50,13 +54,15 @@
         }
         .order-header{
             width: 100%;
-            height: 300px;
+            height: 320px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             img{
                 width: 30%;
+                margin-top: 2rem;
+                margin-bottom: 1rem;
             }
             h1{
                 font-size: 22px;
@@ -69,6 +75,7 @@
                 color: rgba(0, 0, 0, 0.5);
                 font-weight: 500;
                 margin-top: .2rem;
+                margin-bottom: 1rem;
             }
         }
         .order-items{

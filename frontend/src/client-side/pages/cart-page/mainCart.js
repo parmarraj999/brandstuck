@@ -2,13 +2,11 @@ import { useContext, useEffect, useState } from 'react';
 import './cart.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { cartDataContext } from '../../context/cartDataProvider';
-import axios from 'axios';
-import { AllProductDataContext } from '../../context/AllProductDataProvider';
-import { makePayment } from '../../functions/makePayment';
 import { UserCredentialContext } from '../../context/userCredentialProvider';
-import PayNow, { handlePayment } from '../../component/paynow';
+import { handlePayment } from '../../component/paynow';
 import { Plus } from 'lucide-react'
 import { serverTimestamp } from 'firebase/firestore';
+import { applyCoupon } from '../../functions/applyCouponFunction';
 
 export default function MainCart() {
   const [couponCode, setCouponCode] = useState("");
@@ -17,7 +15,6 @@ export default function MainCart() {
   const [message, setMessage] = useState("");
 
   const { cartItems, removeFromCart } = useContext(cartDataContext);
-  const { coupons } = useContext(AllProductDataContext)
   const { userCredential, userAddress } = useContext(UserCredentialContext);
 
   const [choosedAddress, setChoosedAddress] = useState();
@@ -33,45 +30,61 @@ export default function MainCart() {
 
   console.log(cartItems, userCredential, choosedAddress)
 
-  const orderData = {
-    product: cartItems,
-    userData: userCredential,
-    shippingAddress: choosedAddress,
-    orderAt: serverTimestamp(),
-  }
+  
   const userId = window.localStorage.getItem('userId')
 
   const subtotal = cartItems.reduce((acc, item) => acc + Number(item.discountPrice), 0);
   const tax = cartItems?.length > 0 ? 150 : 0;
   const total = subtotal + tax - discountAmount;
 
-  const applyCoupon = () => {
-    const coupon = coupons.find(c => c.couponName.toLowerCase() === couponCode.toLowerCase());
+  const [finalAmount, setFinalAmount] = useState(total);
+  const [appliedCoupon, setAppliedCoupon] = useState(null)
 
-    if (coupon) {
-      let discountValue = 0;
+  console.log(appliedCoupon)
 
-      // if discount percentage available
-      if (coupon.discount > 0) {
-        discountValue = Math.round((subtotal * coupon.discount) / 100);
-        setMessage(`${coupon.discount}% discount applied! You saved ₹${discountValue}`);
-      }
-      // else use fixed amount
-      else if (coupon.amount > 0) {
-        discountValue = coupon.amount;
-        setMessage(`₹${coupon.amount} discount applied!`);
-      }
-      else {
-        setMessage("This coupon has no discount.");
-      }
+  const [showApply, setShowApply] = useState(true)
 
-      setDiscountAmount(discountValue);
-    } else {
-      setMessage("Invalid coupon code!");
-      setDiscountAmount(0);
-      setShippingCharge(150); // reset shipping
+  const handleApplyCoupon = async () => {
+    const res = await applyCoupon(
+      couponCode,
+      total,
+      cartItems.length
+    );
+
+    if (!res.success) {
+      alert(res.message);
+      return;
     }
+    if (res.success) {
+      setShowApply(false)
+    }
+
+    setAppliedCoupon({
+      code: couponCode.toUpperCase(),
+      ...res.coupon,
+    });
+
+    console.log(res.message)
+    setMessage(res.message);
+    setDiscountAmount(res.discount);
+    setFinalAmount(res.finalAmount);
   };
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null);
+    setCouponCode('')
+    setShowApply(true)
+    setDiscountAmount(0);
+    setFinalAmount(total);
+  };
+
+  const orderData = {
+    product: cartItems,
+    userData: userCredential,
+    shippingAddress: choosedAddress,
+    orderAt: serverTimestamp(),
+    coupon: appliedCoupon ? appliedCoupon : []
+  }
 
   return (
     <>
@@ -162,26 +175,52 @@ export default function MainCart() {
                   </div>
                   <div className="summary-row total">
                     <span>Total</span>
-                    <span>RS.{total.toFixed(2)}</span>
+                    <span>RS.{finalAmount}</span>
                   </div>
                 </div>
               </div>
 
               <div className="promo-section">
                 <h3 className="promo-title">Promo code</h3>
-                <div className="promo-input">
-                  <input
-                    type="text"
-                    value={couponCode}
-                    placeholder="Enter coupon code"
-                    onChange={(e) => setCouponCode(e.target.value)}
-                  />
-                  <button className="apply-button" onClick={applyCoupon}>Apply</button>
-                </div>
                 {
+                  showApply ?
+                    <div className="promo-input">
+                      <input
+                        type="text"
+                        value={couponCode}
+                        placeholder="Enter coupon code"
+                        onChange={(e) => setCouponCode(e.target.value)}
+                      />
+                      <button className="apply-button" onClick={handleApplyCoupon}>Apply</button>
+                    </div>
+                    : ''
+                }
+                {/* {
                   message ?
                     <div className='promo-message' >
                       <p>{message}</p>
+                    </div>
+                    : ''
+                } */}
+                {
+                  appliedCoupon ?
+                    <div className="coupon-applied-card">
+                      <div className="coupon-card-left">
+                        <div className="icon">🏷️</div>
+                        <div>
+                          <p className="title">Coupon Applied</p>
+                          <p className="subtitle">
+                            <b>{couponCode}</b> applied successfully
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="card-right">
+                        <p className="discount">- ₹{discountAmount}</p>
+                        <button className="remove-btn" onClick={handleRemoveCoupon}>
+                          Remove
+                        </button>
+                      </div>
                     </div>
                     : ''
                 }
