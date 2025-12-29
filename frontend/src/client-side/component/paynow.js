@@ -14,6 +14,17 @@ export const handlePayment = async (amount, orderData, navigate, userId) => {
 
   const { data: order } = await createOrder(`${amount}`);
 
+  const getRefundEligibleTill = () => {
+    const now = new Date();
+    const refundTill = new Date(now);
+
+    refundTill.setDate(refundTill.getDate() + 5);
+
+    return refundTill;
+  };
+
+  const refundEligibleTill = getRefundEligibleTill();
+
   const options = {
     key: "rzp_test_RvsB2MOcwdhZtz",
     amount: order.amount,
@@ -21,6 +32,7 @@ export const handlePayment = async (amount, orderData, navigate, userId) => {
     name: "My Website",
     description: "Payment Test",
     order_id: order.id,
+
 
     handler: async (response) => {
       console.log(response)
@@ -37,7 +49,8 @@ export const handlePayment = async (amount, orderData, navigate, userId) => {
             trackingId: 'not available',
             order_status: 'Pending',
             estimate_date: 'not available',
-            amount: amount
+            amount: amount,
+            refund_eligible_date: refundEligibleTill,
           })
             .then(() => {
               navigate('/profile/orders')

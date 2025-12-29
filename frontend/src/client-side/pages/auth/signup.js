@@ -31,8 +31,8 @@ function Signup({ setLogin, setError, setLoading }) {
             <h2>sign up</h2>
             <input type='text' placeholder='Name' onChange={(e) => setName(e.target.value)} />
             <input type='text' placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
-            <input type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
             <input type='type' placeholder='Phone' onChange={(e) => setNumber(e.target.value)} />
+            <input type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
 
             <button className='sign-btn' onClick={handleSignUp}>Create New Account</button>
 

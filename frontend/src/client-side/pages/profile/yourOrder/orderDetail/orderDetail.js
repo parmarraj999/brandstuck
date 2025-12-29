@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import './orderDetail.css';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../../../firebase/firebaseConfig';
+import RefundPopup from '../../../../component/refund/refundModal';
 
 function OrderDetail({ setDetailPop, detailPop, currentData }) {
 
@@ -50,9 +51,51 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
         }
     };
 
+    const [showRefund, setShowRefund] = useState(false)
+
+    const refundHandle = () => {
+        setShowRefund(true)
+    }
+
+    const formatRefundDateTime = (timestampInput) => {
+        const date = new Date(timestampInput);
+
+        const datePart = date.toLocaleDateString("en-IN", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            timeZone: "Asia/Kolkata",
+        });
+
+        const timePart = date.toLocaleTimeString("en-IN", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+            timeZone: "Asia/Kolkata",
+        });
+
+        return `${datePart}, ${timePart}`;
+    };
+
+    const isRefundEligible = (refundEligibleTill) => {
+        if (!refundEligibleTill) return false;
+
+        const now = new Date();
+        const eligibleTill = refundEligibleTill.toDate(); // 🔥 MOST IMPORTANT
+
+        return now <= eligibleTill;
+    };
+
+    const isRefund = isRefundEligible(currentData?.refund_eligible_date)
+    console.log(isRefund)
 
     return (
         <div className='order-detail-container' >
+            {
+                showRefund ?
+                    <RefundPopup onClose={() => setShowRefund(false)} order={currentData} />
+                    : ''
+            }
             <div className='order-detail-card' ref={cardRef} >
                 <div className='backBtn' onClick={() => {
                     setDetailPop(false)
@@ -147,9 +190,19 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
                                 <h3>saket nagar, bhopal</h3>
                             </div>
                             <div className='order-item-summary' >
+                                <h2>Refund Till</h2>
+                                {
+                                    isRefund ?
+                                        <h3>{formatDateFromTimestamp(currentData?.refund_eligible_date)}</h3>
+                                        :
+                                        <h3>Expired</h3>
+                                }
+                            </div>
+                            <div className='order-item-summary' >
                                 <h2>tracking ID</h2>
                                 <h3>{currentData?.trackingId}</h3>
                             </div>
+
                             {
                                 currentData?.order_status === 'delivered' ?
                                     <div className='order-item-summary' >
@@ -163,7 +216,7 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
                                     </div>
                             }
                             {
-                                currentData?.coupon ?
+                                currentData?.coupon !== null ?
                                     <div className='order-item-summary' >
                                         <h2>Coupon Code</h2>
                                         <h3>{currentData?.coupon?.code}</h3>
@@ -171,11 +224,15 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
                                     :
                                     ''
                             }
+
                         </div>
                     </div>
                     {
                         currentData?.order_status === 'Pending' || currentData?.order_status === 'confirm' ?
-                            <button className='cancel-btn' onClick={cancelOrder} >Cancel Order</button>
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+                                <button className='cancel-btn' onClick={cancelOrder} >Cancel Order</button>
+                                <p style={{ margin: '0 auto', fontSize: '14px', fontWeight: '500', color: 'rgba(0,0,0,0.6)' }}>If order Shipped You can't cancel It</p>
+                            </div>
                             : ''
 
                     }
@@ -183,7 +240,14 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
                         currentData?.order_status === 'cancel' ?
                             <p style={{ margin: '0 auto', fontSize: '14px', fontWeight: '500', color: 'rgba(0,0,0,0.6)' }}>Your Order Is Canceled</p>
                             :
-                            <p style={{ margin: '0 auto', fontSize: '14px', fontWeight: '500', color: 'rgba(0,0,0,0.6)' }}>If order Shipped You can't cancel It</p>
+                            ''
+                    }
+                    {
+                        currentData?.order_status === 'delivered' ?
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+                                <button className='refund-btn' onClick={refundHandle} >Refund</button>
+                            </div>
+                            : ''
                     }
                 </div>
             </div>

@@ -352,3 +352,14 @@
   cursor: pointer;
   margin-top: 4px;
 }
+
+
+.explore-btn{
+  padding: .5rem 1.2rem;
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+}

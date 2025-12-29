@@ -43,8 +43,6 @@ export const handleEmailPasswordAuth = (async (setError, setLoading, name, email
 
 export const handleLogInWithEmail = (async (setError, setLoading, email, password, setStatus) => {
 
-    
-
     try {
         if (email, password) {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);

@@ -1,13 +1,16 @@
 import React from 'react'
 import './footer.css'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 function Footer() {
+
+    const { pathname } = useLocation();
+
     return (
-        <div className='footer-container' >
+        <div className='footer-container' style={pathname === '/profile/orders' || pathname === '/profile' ? { display: "none" } : {display:'flex'}}>
             <div className='box-one' >
                 <div>
-                        <img src='../../../../assets/images/logo-white.png' style={{width:'150px'}} />
+                    <img src='../../../../assets/images/logo-white.png' style={{ width: '150px' }} />
                     <h3> Your ultimate destination for diverse,<br />
                         quality brands.</h3>
                     <h2>Brandstuck1@gmail.com</h2>

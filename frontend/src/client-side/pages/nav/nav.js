@@ -28,13 +28,6 @@ function Nav() {
 
     const openCartFunc = () => {
         navigate('/cart')
-        // setOpenCart(true)
-        // if (screenWidth < 765) {
-        //     gsap.to(".nav_container", {
-        //         background: 'white',
-        //         boxShadow: "7px 7px 10px rgba(0,0,0,.3)"
-        //     })
-        // }
     }
 
     // hide nav bar when cart page open 

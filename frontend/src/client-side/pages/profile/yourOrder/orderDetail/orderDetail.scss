@@ -12,6 +12,7 @@
     padding-right: 20px;
     @media screen and (max-width:765px) {
         padding-right: 0;
+        height: fit-content
     }
     .backBtn{
         position: absolute;
@@ -40,17 +41,13 @@
         grid-template-rows: 3fr 9fr;
         position: relative;
         @media screen and (max-width:765px) {
-            height: 100vh;
+            padding-bottom:2rem;
+            height: fit-content;
+            overflow: hidden;
             width: 100%;
-            // background: red;
-        }
-        @media screen and (max-width:765px) {
-            width: 100%;
-            height: 100vh;
             border-radius: 0;
             display: flex;
             flex-direction: column;
-
         }
         .order-header{
             width: 100%;
@@ -164,6 +161,18 @@
                 width: 200px;
                 padding: .7rem 0;
                 background: red;
+                border-radius: 1rem;
+                margin: 1rem auto 0 auto;
+                border: none;
+                font-size: 16px;
+                color: white;
+                font-weight: 500;
+                cursor: pointer;
+            }
+            .refund-btn{
+                width: 200px;
+                padding: .7rem 0;
+                background: rgb(0, 149, 255);
                 border-radius: 1rem;
                 margin: 1rem auto 0 auto;
                 border: none;

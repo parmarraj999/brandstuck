@@ -83,7 +83,7 @@ export default function MainCart() {
     userData: userCredential,
     shippingAddress: choosedAddress,
     orderAt: serverTimestamp(),
-    coupon: appliedCoupon ? appliedCoupon : []
+    coupon: appliedCoupon ? appliedCoupon : null
   }
 
   return (
@@ -110,8 +110,9 @@ export default function MainCart() {
                 <path d="m15 18-6-6 6-6" />
               </svg>
             </div>
-            <div>
-              <h3></h3>
+            <div style={{display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:'15px'}}>
+              <img src='../../../../../assets/images/no-item.png' style={{width:'60%'}}/>
+              <button className='explore-btn' onClick={()=>navigate('/shop')}>Shop Now</button>
             </div>
           </div>
           :
