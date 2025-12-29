@@ -11,7 +11,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Footer from './client-side/pages/footer/footer';
 import Shop from './client-side/pages/shop/shop';
-import Marquee from './client-side/pages/home/marquee/marquee';
 import { useEffect } from 'react';
 import MainCart from './client-side/pages/cart-page/mainCart';
 import ProductDetail from './client-side/pages/product-detail-page/product-detail';
@@ -31,6 +30,8 @@ import AddAddressPage from './client-side/pages/profile/address/addAddress/addAd
 import RefundPolicy from './client-side/pages/legal-page/refundPolicy';
 import ShippingPolicy from './client-side/pages/legal-page/shippingPolicy';
 import ContactPage from './client-side/pages/contactUs/contact';
+import { OrderDetailStoreProvider } from './client-side/context/orderDetailStore';
+import Wallet from './client-side/pages/profile/wallet/wallet';
 function App() {
 
 
@@ -54,38 +55,41 @@ function App() {
     <OrderDataProvider>
       <CartDataProvider>
         <UserCredentialProvider>
-          <AllProductDataProvider>
-            <ThemeProvider>
-              <div className="App">
-                <BrowserRouter>
-                  <ScrollToTop />
-                  <Nav />
-                  {/* <Marquee /> */}
-                  <Routes>
-                    <Route path='/' element={<Main />} />
-                    <Route path='/shop' element={<Shop />} />
-                    <Route path='/product/:id' element={<ProductDetail />} />
-                    <Route path='/cart' element={<MainCart />} />
-                    {/* <Route path='/brands' element={<Brands />} /> */}
-                    <Route path='/auth' element={<Auth />} />
-                    <Route path='/profile' element={<Profile />} />
-                    <Route path='/profile/information' element={<Information />} />
-                    <Route path='/profile/address' element={<Address />} />
-                    <Route path='/profile/orders' element={<YourOrder />} />
-                    <Route path='*' element={<h1>404</h1>} />
-                    <Route path='/razorpay' element={<Payment/>} />
-                    <Route path='/privacy-policy' element={<PrivacyPolicy/>} />
-                    <Route path='/terms-and-conditions' element={<TermsAndConditions/>} />
-                    <Route path='/refund-policy' element={<RefundPolicy/>} />
-                    <Route path='/shipping-policy' element={<ShippingPolicy/>} />
-                    <Route path='/shipping-policy' element={<ShippingPolicy/>} />
-                    <Route path='/contact' element={<ContactPage/>} />
-                  </Routes>
-                  <Footer />
-                </BrowserRouter>
-              </div>
-            </ThemeProvider>
-          </AllProductDataProvider>
+          <OrderDetailStoreProvider>
+            <AllProductDataProvider>
+              <ThemeProvider>
+                <div className="App">
+                  <BrowserRouter>
+                    <ScrollToTop />
+                    <Nav />
+                    {/* <Marquee /> */}
+                    <Routes>
+                      <Route path='/' element={<Main />} />
+                      <Route path='/shop' element={<Shop />} />
+                      <Route path='/product/:id' element={<ProductDetail />} />
+                      <Route path='/cart' element={<MainCart />} />
+                      {/* <Route path='/brands' element={<Brands />} /> */}
+                      <Route path='/auth' element={<Auth />} />
+                      <Route path='/profile' element={<Profile />} />
+                      <Route path='/profile/information' element={<Information />} />
+                      <Route path='/profile/address' element={<Address />} />
+                      <Route path='/profile/orders' element={<YourOrder />} />
+                      <Route path='/profile/my-wallet' element={<Wallet />} />
+                      <Route path='*' element={<h1>404</h1>} />
+                      <Route path='/razorpay' element={<Payment />} />
+                      <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+                      <Route path='/terms-and-conditions' element={<TermsAndConditions />} />
+                      <Route path='/refund-policy' element={<RefundPolicy />} />
+                      <Route path='/shipping-policy' element={<ShippingPolicy />} />
+                      <Route path='/shipping-policy' element={<ShippingPolicy />} />
+                      <Route path='/contact' element={<ContactPage />} />
+                    </Routes>
+                    <Footer />
+                  </BrowserRouter>
+                </div>
+              </ThemeProvider>
+            </AllProductDataProvider>
+          </OrderDetailStoreProvider>
         </UserCredentialProvider>
       </CartDataProvider>
     </OrderDataProvider>

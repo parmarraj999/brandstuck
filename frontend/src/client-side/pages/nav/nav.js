@@ -32,7 +32,7 @@ function Nav() {
 
     // hide nav bar when cart page open 
     return (
-        <div className='nav_container' style={pathname === '/profile' || pathname === '/profile/information' || pathname === '/profile/address' || pathname === '/profile/orders' || pathname === '/cart' ? {display:"none"} : {}}  >
+        <div className='nav_container' style={pathname === '/profile' || pathname === '/profile/information' || pathname === '/profile/address' || pathname === '/profile/orders' || pathname === '/cart' || pathname === '/profile/my-wallet' ? {display:"none"} : {}}  >
             {/* {
                 openCart ? */}
             {/* <CartSmall openCart={openCart} setOpenCart={setOpenCart} /> */}

@@ -7,7 +7,7 @@ function Footer() {
     const { pathname } = useLocation();
 
     return (
-        <div className='footer-container' style={pathname === '/profile/orders' || pathname === '/profile' ? { display: "none" } : {display:'flex'}}>
+        <div className='footer-container' style={pathname === '/profile/orders' || pathname === '/profile' || pathname === '/profile/my-wallet' ? { display: "none" } : {display:'flex'}}>
             <div className='box-one' >
                 <div>
                     <img src='../../../../assets/images/logo-white.png' style={{ width: '150px' }} />

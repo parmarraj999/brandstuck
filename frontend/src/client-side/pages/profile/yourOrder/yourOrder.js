@@ -3,14 +3,16 @@ import './yourOrder.css';
 import { useNavigate } from 'react-router-dom';
 import OrderDetail from './orderDetail/orderDetail';
 import { OrderDataContext } from '../../../context/getOrderData';
-import { Ban, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Ban, ChevronLeft, ChevronRight, Undo2 } from 'lucide-react'
+import { OrderDetailStore } from '../../../context/orderDetailStore';
 
 
 export default function YourOrder() {
 
   const { orderData, fetchOrders } = useContext(OrderDataContext)
+  const { setCurrentOrder } = useContext(OrderDetailStore);
   const [activeTab, setActiveTab] = useState('all');
-  const [currentData, setCurrentData] = useState([])
+  // const [currentData, setCurrentData] = useState([])
 
   // Filter orders based on active tab
   const filteredOrders = orderData.filter(order => {
@@ -51,7 +53,7 @@ export default function YourOrder() {
     <div className='order-wrapper' >
       {
         detailPop ?
-          <OrderDetail setDetailPop={setDetailPop} currentData={currentData} />
+          <OrderDetail setDetailPop={setDetailPop} />
           : ''
       }
       <div className='back-btn' onClick={handleBack}>
@@ -101,16 +103,23 @@ export default function YourOrder() {
           {filteredOrders.map((order, index) => (
             <div key={`${order?.orderId}-${index}`} className="order-card" onClick={() => {
               setDetailPop(true)
-              setCurrentData(order)
+              setCurrentOrder(order)
             }} style={order?.order_status === 'delivered' ? { display: 'none' } : {}}>
               <div className="order-info">
                 {
-                  order?.order_status === 'cancel' ?
-                    <Ban size={25} color='red' />
+                  order?.refund ?
+                    <Undo2 size={20} color='red' />
                     :
-                    <div className={`status-${order?.order_status}`}  >
-                      <div className={`status-dot ${order?.order_status}`}></div>
-                    </div>
+                    <>
+                      {
+                        order?.order_status === 'cancel' ?
+                          <Ban size={25} color='red' />
+                          :
+                          <div className={`status-${order?.order_status}`}  >
+                            <div className={`status-dot ${order?.order_status}`}></div>
+                          </div>
+                      }
+                    </>
                 }
                 <div>
                   <div className="order-id">Order #{order?.orderId}</div>
@@ -137,13 +146,25 @@ export default function YourOrder() {
                 {orderData.map((order, index) => (
                   <div key={`${order?.userId}-${index}`} className="order-card" onClick={() => {
                     setDetailPop(true)
-                    setCurrentData(order)
+                    setCurrentOrder(order)
                   }}
                     style={order?.order_status === 'delivered' ? { display: 'flex' } : { display: 'none' }} >
                     <div className="order-info" >
-                      <div className={`status-${order?.order_status}`}  >
-                        <div className={`status-dot ${order?.order_status}`}></div>
-                      </div>
+                      {
+                        order?.refund ?
+                          <Undo2 size={20} color='red' />
+                          :
+                          <>
+                            {
+                              order?.order_status === 'cancel' ?
+                                <Ban size={25} color='red' />
+                                :
+                                <div className={`status-${order?.order_status}`}  >
+                                  <div className={`status-dot ${order?.order_status}`}></div>
+                                </div>
+                            }
+                          </>
+                      }
                       <div>
                         <div className="order-id">Order #{order?.orderId}</div>
                         <div className="order-date">{formatDateFromTimestamp(order?.orderAt)}</div>

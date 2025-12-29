@@ -167,6 +167,15 @@
   color: rgb(53, 53, 53);
   text-transform: capitalize;
 }
+.order-detail-container .order-detail-card .order-items .order-summary-2 .order-details-summary .label-btn {
+  padding: 10px 0;
+  margin-top: 5px;
+  border-radius: 10px;
+  background: black;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+}
 .order-detail-container .order-detail-card .order-items .cancel-btn {
   width: 200px;
   padding: 0.7rem 0;
@@ -190,4 +199,15 @@
   color: white;
   font-weight: 500;
   cursor: pointer;
+}
+.order-detail-container .order-detail-card .order-items .refund-box {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid rgb(255, 153, 0);
+}
+.order-detail-container .order-detail-card .order-items .refund-box p {
+  font-size: 16px;
+  color: rgb(255, 153, 0);
+  font-weight: 600;
 }/*# sourceMappingURL=orderDetail.css.map */

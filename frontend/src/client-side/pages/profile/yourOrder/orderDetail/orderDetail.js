@@ -3,10 +3,19 @@ import './orderDetail.css';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../../../firebase/firebaseConfig';
 import RefundPopup from '../../../../component/refund/refundModal';
+import { OrderDetailStore } from '../../../../context/orderDetailStore';
+import { OrderDataContext } from '../../../../context/getOrderData';
 
-function OrderDetail({ setDetailPop, detailPop, currentData }) {
+function OrderDetail({ setDetailPop, detailPop }) {
 
-    console.log(currentData);
+    // const { currentOrder } = useContext(OrderDetailStore);
+
+    const { orderData } = useContext(OrderDataContext);
+    const { currentOrderData } = useContext(OrderDetailStore);
+
+    const currentOrder = orderData.find(
+        (o) => o.orderId === currentOrderData.orderId
+    );
 
     const cardRef = useRef()
     useEffect(() => {
@@ -40,7 +49,7 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
 
     const cancelOrder = async () => {
         try {
-            const orderRef = doc(db, "Orders", currentData?.id);
+            const orderRef = doc(db, "Orders", currentOrder?.id);
 
             await updateDoc(orderRef, {
                 order_status: 'cancel',
@@ -86,14 +95,14 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
         return now <= eligibleTill;
     };
 
-    const isRefund = isRefundEligible(currentData?.refund_eligible_date)
+    const isRefund = isRefundEligible(currentOrder?.refund_eligible_date)
     console.log(isRefund)
 
     return (
         <div className='order-detail-container' >
             {
                 showRefund ?
-                    <RefundPopup onClose={() => setShowRefund(false)} order={currentData} />
+                    <RefundPopup onClose={() => setShowRefund(false)} order={currentOrder} />
                     : ''
             }
             <div className='order-detail-card' ref={cardRef} >
@@ -104,49 +113,66 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left"><path d="m15 18-6-6 6-6" /></svg>
                 </div>
                 <div className='order-header' >
+
+                    {/* setting image according to status  */}
                     {
-                        currentData?.order_status === 'Pending' ?
+                        currentOrder?.order_status === 'Pending' ?
                             <img src='../../../../assets/images/pending.jpeg' />
                             : ''
                     }
                     {
-                        currentData?.order_status === 'confirm' ?
+                        currentOrder?.order_status === 'confirm' ?
                             <img src='../../../../assets/images/confirm.jpeg' />
                             : ''
                     }
                     {
-                        currentData?.order_status === 'shipped' ?
+                        currentOrder?.order_status === 'shipped' ?
                             <img src='../../../../assets/images/shipping.png' />
                             : ''
                     }
                     {
-                        currentData?.order_status === 'delivered' ?
-                            <img src='../../../../assets/images/deliverd.png' />
-                            : ''
-                    }
-                    {
-                        currentData?.order_status === 'cancel' ?
+                        currentOrder?.order_status === 'cancel' ?
                             <img src='../../../../assets/images/cancel.jpeg' />
                             : ''
                     }
-                    <h1>{currentData?.order_status}</h1>
                     {
-                        currentData?.order_status === 'confirm' ?
+                        currentOrder?.refund ?
+                            <img src='../../../../assets/images/refund-pending.jpeg' />
+                            :
+                            <>
+                                {
+                                    currentOrder?.order_status === 'delivered' ?
+                                        <img src='../../../../assets/images/deliverd.png' />
+                                        : ''
+                                }
+                            </>
+                    }
+                    {/* setting heading according to status  */}
+
+                    {
+                        currentOrder?.refund ?
+                            <h1>Refund {currentOrder?.refund?.refund_request}</h1>
+                            :
+                            <h1>{currentOrder?.order_status}</h1>
+                    }
+
+                    {
+                        currentOrder?.order_status === 'confirm' ?
                             <p>Your Order is Confirm</p>
                             : ""
                     }
                     {
-                        currentData?.order_status === 'shipped' ?
+                        currentOrder?.order_status === 'shipped' ?
                             <p>Your Order is Shipped</p>
                             : ""
                     }
                     {
-                        currentData?.order_status === 'Pending' ?
+                        currentOrder?.order_status === 'Pending' ?
                             <p>Order is Waiting for Confirmation</p>
                             : ""
                     }
                     {
-                        currentData?.order_status === 'delivered' ?
+                        currentOrder?.order_status === 'delivered' ?
                             <p>Your Order is Delivered</p>
                             : ""
                     }
@@ -154,7 +180,7 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
                 <div className='order-items' >
 
                     {
-                        currentData?.product.map((data) => {
+                        currentOrder?.product.map((data) => {
                             return (
                                 <div className='item' >
                                     <div>
@@ -179,11 +205,11 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
                         <div className='order-details-summary' >
                             <div className='order-item-summary' >
                                 <h2>Total amount</h2>
-                                <h3>rs.{currentData?.amount}</h3>
+                                <h3>rs.{currentOrder?.amount}</h3>
                             </div>
                             <div className='order-item-summary' >
                                 <h2>Order ID</h2>
-                                <h3>#{currentData?.orderId}</h3>
+                                <h3>#{currentOrder?.orderId}</h3>
                             </div>
                             <div className='order-item-summary' >
                                 <h2>Shipping Address</h2>
@@ -193,33 +219,33 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
                                 <h2>Refund Till</h2>
                                 {
                                     isRefund ?
-                                        <h3>{formatDateFromTimestamp(currentData?.refund_eligible_date)}</h3>
+                                        <h3>{formatDateFromTimestamp(currentOrder?.refund_eligible_date)}</h3>
                                         :
                                         <h3>Expired</h3>
                                 }
                             </div>
                             <div className='order-item-summary' >
                                 <h2>tracking ID</h2>
-                                <h3>{currentData?.trackingId}</h3>
+                                <h3>{currentOrder?.trackingId}</h3>
                             </div>
 
                             {
-                                currentData?.order_status === 'delivered' ?
+                                currentOrder?.order_status === 'delivered' ?
                                     <div className='order-item-summary' >
                                         <h2>delivery date</h2>
-                                        <h3>{formatDateFromTimestamp(currentData?.deliveredAt)}</h3>
+                                        <h3>{formatDateFromTimestamp(currentOrder?.deliveredAt)}</h3>
                                     </div>
                                     :
                                     <div className='order-item-summary' >
                                         <h2>estimate delivery date</h2>
-                                        <h3>{currentData?.estimate_date}</h3>
+                                        <h3>{currentOrder?.estimate_date}</h3>
                                     </div>
                             }
                             {
-                                currentData?.coupon !== null ?
+                                currentOrder?.coupon !== null ?
                                     <div className='order-item-summary' >
                                         <h2>Coupon Code</h2>
-                                        <h3>{currentData?.coupon?.code}</h3>
+                                        <h3>{currentOrder?.coupon?.code}</h3>
                                     </div>
                                     :
                                     ''
@@ -228,7 +254,7 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
                         </div>
                     </div>
                     {
-                        currentData?.order_status === 'Pending' || currentData?.order_status === 'confirm' ?
+                        currentOrder?.order_status === 'Pending' || currentOrder?.order_status === 'confirm' ?
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
                                 <button className='cancel-btn' onClick={cancelOrder} >Cancel Order</button>
                                 <p style={{ margin: '0 auto', fontSize: '14px', fontWeight: '500', color: 'rgba(0,0,0,0.6)' }}>If order Shipped You can't cancel It</p>
@@ -237,17 +263,51 @@ function OrderDetail({ setDetailPop, detailPop, currentData }) {
 
                     }
                     {
-                        currentData?.order_status === 'cancel' ?
+                        currentOrder?.order_status === 'cancel' ?
                             <p style={{ margin: '0 auto', fontSize: '14px', fontWeight: '500', color: 'rgba(0,0,0,0.6)' }}>Your Order Is Canceled</p>
                             :
                             ''
                     }
+                    {/* refund action on according to basis  */}
                     {
-                        currentData?.order_status === 'delivered' ?
-                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
-                                <button className='refund-btn' onClick={refundHandle} >Refund</button>
+                        currentOrder?.refund ?
+                            <div className='order-summary-2' >
+                                <div className='summary-header' >Refund Details</div>
+                                <div className='order-details-summary' >
+                                    <div className='order-item-summary' >
+                                        <h2>Request Id</h2>
+                                        <h3>#{currentOrder?.refund?.refund_id}</h3>
+                                    </div>
+                                    <div className='order-item-summary' >
+                                        <h2>Request Date</h2>
+                                        <h3>{formatDateFromTimestamp(currentOrder?.refund?.refund_request_date)}</h3>
+                                    </div>
+                                    <div className='order-item-summary' >
+                                        <h2>Return Address</h2>
+                                        <h3 style={{ textAlign: 'right',width:'80%' }}>Main Rd, Narsinghpur, Madhya Pradesh, 487001</h3>
+                                    </div>
+                                    <div className='order-item-summary' >
+                                        <h2>Contact No.</h2>
+                                        <h3>12312323</h3>
+                                    </div>
+                                    {
+                                        currentOrder?.refund?.label_url ?
+                                            <button className='label-btn'>Download Label</button>
+                                            : ''
+                                    }
+                                    <p></p>
+                                </div>
                             </div>
-                            : ''
+                            :
+                            <>
+                                {
+                                    currentOrder?.order_status === 'delivered' ?
+                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+                                            <button className='refund-btn' onClick={refundHandle} >Refund</button>
+                                        </div>
+                                        : ''
+                                }
+                            </>
                     }
                 </div>
             </div>

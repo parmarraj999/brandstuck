@@ -27,15 +27,24 @@ const RefundPopup = ({ onClose, order }) => {
 
     const [request, setRequest] = useState(false)
 
+    function generate8DigitNumber() {
+        return Math.floor(10000000 + Math.random() * 90000000);
+    }
+    const refundId = generate8DigitNumber();
+
     const handleWalletRefund = async () => {
         if (!isRefundEligible(order.refund_eligible_date)) {
             alert("Refund period expired");
             return;
         }
 
-        await addDoc(collection(db, "refund_requests"), {
-            orderId: order.id,
+        const docRef = await addDoc(collection(db, "refund_requests"), {
+            orderId: order.orderId, // 🔥 id sahi rakho
             userId: order.userData.uid,
+            delivery_date : order?.deliveredAt,
+            customer_name : order.userData.name,
+             refund_id: refundId,
+            customer_number : order.userData.number,
             amount: order.amount,
             refundType: "wallet",
             status: "Pending",
@@ -46,8 +55,10 @@ const RefundPopup = ({ onClose, order }) => {
 
         await updateDoc(orderRef, {
             refund: {
+                refund_id: refundId,
+                refund_doc_id: docRef.id,
                 refund_request: 'Pending',
-                refundType:' wallet',
+                refundType: 'wallet',
                 refund_request_date: serverTimestamp(),
             }
         })
@@ -55,7 +66,7 @@ const RefundPopup = ({ onClose, order }) => {
                 setRequest(true);
             })
 
-        alert("Wallet refund request submitted");
+        // alert("Wallet refund request submitted");
     };
 
     return (

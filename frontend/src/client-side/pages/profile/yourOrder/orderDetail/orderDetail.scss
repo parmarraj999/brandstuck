@@ -155,6 +155,15 @@
                             text-transform: capitalize;
                         }
                     }
+                    .label-btn{
+                        padding: 10px 0;
+                        margin-top: 5px;
+                        border-radius: 10px;
+                        background: black;
+                        color: white;
+                        font-size: 16px;
+                        font-weight: 600;
+                    }
                 }
             }
             .cancel-btn{
@@ -180,6 +189,17 @@
                 color: white;
                 font-weight: 500;
                 cursor: pointer;
+            }
+            .refund-box{
+                width: 100%;
+                padding: 10px;
+                border-radius: 10px;
+                border: 2px solid rgb(255, 153, 0);
+                p{
+                    font-size: 16px;
+                    color:  rgb(255, 153, 0);
+                    font-weight: 600;
+                }
             }
         }
     }
