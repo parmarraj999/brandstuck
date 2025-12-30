@@ -10,6 +10,17 @@ app.use(express.json());
 app.use(bodyParser.json());
 // app.use("/api/payment", paymentRoutes);
 
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://brandstuck-server.onrender.com",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+  })
+);
+
 app.use("/api/payment", paymentRoutes);
 
 const PORT = process.env.PORT || 5000;

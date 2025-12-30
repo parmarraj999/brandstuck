@@ -12,6 +12,21 @@ const Wallet = () => {
 
     const navigate = useNavigate()
 
+    function formatDateFromTimestamp(timestamp) {
+        if (!timestamp || !timestamp.seconds) {
+            return ''; // Handle cases where the timestamp might be missing or invalid
+        }
+
+        const date = new Date(timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000);
+        const day = date.getDate();
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const month = monthNames[date.getMonth()];
+        const year = date.getFullYear();
+
+        return `${day} ${month} ${year}`;
+    }
+
     return (
         <div className="wallet-container">
             <div className="wallet-card">
@@ -25,7 +40,7 @@ const Wallet = () => {
                 </div>
 
                 <div className="balance-section">
-                    <div className="balance-amount">₹{userCredential?.wallet}</div>
+                    <div className="balance-amount">₹{userCredential?.wallet || 0}</div>
                 </div>
 
                 {/* <div className="action-buttons">
@@ -56,18 +71,21 @@ const Wallet = () => {
                                 <div className="transaction-item">
                                     <div className="transaction-icon">
                                         {
+                                            data.refund_on === 'wallet' ?
+                                                <img src='../../../../assets/images/wallet.png' />
+                                                :
+                                                <img src='../../../../assets/images/bank.png' />
 
                                         }
-                                        <img src='../../../../assets/images/wallet.png' />
                                     </div>
                                     <div className="transaction-details">
-                                        <div className="transaction-title">Refund Order #12312323</div>
+                                        <div className="transaction-title">Refund Order #{data.orderId}</div>
                                         <div className="transaction-meta">
-                                            12 jan 2025, 03:00 am
+                                            {formatDateFromTimestamp(data.createdAt)}
                                         </div>
                                     </div>
                                     <div className="transaction-right">
-                                        <div className="transaction-amount">₹1200</div>
+                                        <div className="transaction-amount">₹{data.amount}</div>
                                     </div>
                                 </div>
                             )

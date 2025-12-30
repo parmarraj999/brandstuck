@@ -17,13 +17,13 @@ import { db } from "../../firebase/firebaseConfig";
 
 export const TransactionsContext = createContext();
 
-export const TransactionsProvider = ({ userDocId, children }) => {
+export const TransactionsProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const userId = window.localStorage.getItem("userId");
 
   useEffect(() => {
-    if (!userDocId) return;
+    if (!userId) return;
 
     const q = query(
       collection(db, "Transactions"),
@@ -50,44 +50,44 @@ export const TransactionsProvider = ({ userDocId, children }) => {
     );
 
     return () => unsubscribe();
-  }, [userDocId]);
+  }, [userId]);
 
-  const fetchUserTransactions = useCallback(
-    async () => {
-      try {
-        if (!userDocId) return [];
+  // const fetchUserTransactions = useCallback(
+  //   async () => {
+  //     try {
+  //       if (!userId) return [];
 
-        setLoading(true);
+  //       setLoading(true);
 
-        const q = query(
-          collection(db, "Transactions"),
-          where("userId", "==", userId),
-          orderBy("createdAt", "desc")
-        );
+  //       const q = query(
+  //         collection(db, "Transactions"),
+  //         where("userId", "==", userId),
+  //         orderBy("createdAt", "desc")
+  //       );
 
-        const snap = await getDocs(q);
+  //       const snap = await getDocs(q);
 
-        const data = snap.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+  //       const data = snap.docs.map(doc => ({
+  //         id: doc.id,
+  //         ...doc.data(),
+  //       }));
 
-        setTransactions(data);
-        console.log(data)
-        return data;
-      } catch (error) {
-        console.error("Manual txn fetch error:", error);
-        return [];
-      } finally {
-        setLoading(false);
-      }
-    },
-    [userDocId]
-  );
+  //       setTransactions(data);
+  //       console.log(data)
+  //       return data;
+  //     } catch (error) {
+  //       console.error("Manual txn fetch error:", error);
+  //       return [];
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   },
+  //   [userId]
+  // );
 
-  useEffect(()=>{
-    fetchUserTransactions();
-  },[])
+  // useEffect(()=>{
+  //   fetchUserTransactions();
+  // },[])
 
   return (
     <TransactionsContext.Provider
