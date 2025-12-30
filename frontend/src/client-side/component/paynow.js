@@ -40,7 +40,7 @@ export const handlePayment = async (amount, orderData, navigate, userId) => {
       if (verify.data.success) {
         // adding data to firestore
         try {
-          const docRef = doc(collection(db, 'Orders')); // Replace with your collection and document ID
+          const docRef = doc(collection(db, 'Orders'));   
 
           await setDoc(docRef, {
             ...orderData,

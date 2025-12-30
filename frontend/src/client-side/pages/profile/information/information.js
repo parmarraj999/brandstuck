@@ -6,6 +6,7 @@ import { UserCredentialContext } from '../../../context/userCredentialProvider';
 export default function Information() {
 
   const { userCredential } = useContext(UserCredentialContext)
+  console.log(userCredential)
 
   const [formData, setFormData] = useState({
     name: 'Raj Parmar',
@@ -53,7 +54,7 @@ export default function Information() {
               type="text"
               id="name"
               name="name"
-              value={formData.name}
+              value={userCredential?.name}
               onChange={handleChange}
             />
           </div>
@@ -64,7 +65,7 @@ export default function Information() {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
+              value={userCredential?.email}
               onChange={handleChange}
             />
           </div>
@@ -75,7 +76,7 @@ export default function Information() {
               type="tel"
               id="number"
               name="number"
-              value={formData.number}
+              value={userCredential.number}
               onChange={handleChange}
             />
           </div>

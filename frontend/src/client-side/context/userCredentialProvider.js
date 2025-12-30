@@ -9,7 +9,7 @@ export const UserCredentialProvider = ({ children }) => {
     const [userCredential, setUserCredential] = useState([]);
     const [userAddress, setUserAddress] = useState([]);
     const [error, setError] = useState('');
-    console.log(userCredential)
+    console.log('user credentail data fetched')
     const [loading, setLoading] = useState(true);
 
     // console.log(userCredential)
@@ -28,7 +28,6 @@ export const UserCredentialProvider = ({ children }) => {
                     ...doc.data(), // Spread the address data
                 });
             });
-            console.log(fetchedAddresses)
             setUserAddress(fetchedAddresses)
         } catch (error) {
 
@@ -48,7 +47,7 @@ export const UserCredentialProvider = ({ children }) => {
                 const userDoc = querySnapshot.docs[0];
                 const data = userDoc.data();
                 setUserCredential(data);
-                console.log('User credentials:', data);
+                // console.log('User credentials:', data);
             } else {
                 setError('No user data found for this user.');
             }

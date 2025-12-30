@@ -41,14 +41,15 @@ const RefundPopup = ({ onClose, order }) => {
         const docRef = await addDoc(collection(db, "refund_requests"), {
             orderId: order.orderId, // 🔥 id sahi rakho
             userId: order.userData.uid,
-            delivery_date : order?.deliveredAt,
-            customer_name : order.userData.name,
-             refund_id: refundId,
-            customer_number : order.userData.number,
+            order_doc_id : order.id,
+            delivery_date: order?.deliveredAt,
+            customer_name: order.userData.name,
+            refund_id: refundId,
+            customer_number: order.userData.number,
             amount: order.amount,
             refundType: "wallet",
-            status: "Pending",
-            createdAt: serverTimestamp(),
+            status: "pending",
+            createdAt: serverTimestamp(), 
         })
 
         const orderRef = doc(db, "Orders", order.id);
@@ -57,7 +58,7 @@ const RefundPopup = ({ onClose, order }) => {
             refund: {
                 refund_id: refundId,
                 refund_doc_id: docRef.id,
-                refund_request: 'Pending',
+                refund_request: 'pending',
                 refundType: 'wallet',
                 refund_request_date: serverTimestamp(),
             }

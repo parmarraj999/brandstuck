@@ -16,7 +16,7 @@ function OrderDetail({ setDetailPop, detailPop }) {
     const currentOrder = orderData.find(
         (o) => o.orderId === currentOrderData.orderId
     );
-
+    console.log(currentOrder)
     const cardRef = useRef()
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -96,7 +96,23 @@ function OrderDetail({ setDetailPop, detailPop }) {
     };
 
     const isRefund = isRefundEligible(currentOrder?.refund_eligible_date)
-    console.log(isRefund)
+
+    const handleDownload = async (url) => {
+        if (!url) {
+            console.error("Download URL missing");
+            return;
+        }
+
+        const cleanUrl = url.split("?")[0]; // remove firebase token
+        const fileName = cleanUrl.substring(cleanUrl.lastIndexOf("/") + 1);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = fileName || "refund-label";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
 
     return (
         <div className='order-detail-container' >
@@ -137,7 +153,7 @@ function OrderDetail({ setDetailPop, detailPop }) {
                     }
                     {
                         currentOrder?.refund ?
-                            <img src='../../../../assets/images/refund-pending.jpeg' />
+                            ''
                             :
                             <>
                                 {
@@ -145,6 +161,28 @@ function OrderDetail({ setDetailPop, detailPop }) {
                                         <img src='../../../../assets/images/deliverd.png' />
                                         : ''
                                 }
+                            </>
+                    }
+                    {
+                        currentOrder?.refund?.refund_request === 'pending' ?
+                            <img src='../../../../assets/images/refund-pending.jpeg' />
+                            :
+                            ''
+                    }
+                    {
+                        currentOrder?.refund?.refund_request === 'confirm' ?
+                            <img src='../../../../assets/images/confirm-refund.png' />
+                            :
+                            <>
+
+                            </>
+                    }
+                    {
+                        currentOrder?.refund?.refund_request === 'successfull' ?
+                            <img src='../../../../assets/images/tick.png' />
+                            :
+                            <>
+
                             </>
                     }
                     {/* setting heading according to status  */}
@@ -173,7 +211,7 @@ function OrderDetail({ setDetailPop, detailPop }) {
                     }
                     {
                         currentOrder?.order_status === 'delivered' ?
-                            <p>Your Order is Delivered</p>
+                            <p style={currentOrder?.refund ? { display: 'none' } : {}}>Your Order is Delivered</p>
                             : ""
                     }
                 </div>
@@ -284,15 +322,43 @@ function OrderDetail({ setDetailPop, detailPop }) {
                                     </div>
                                     <div className='order-item-summary' >
                                         <h2>Return Address</h2>
-                                        <h3 style={{ textAlign: 'right',width:'80%' }}>Main Rd, Narsinghpur, Madhya Pradesh, 487001</h3>
+                                        <h3 style={{ textAlign: 'right', width: '80%' }}>Main Rd, Narsinghpur, Madhya Pradesh, 487001</h3>
                                     </div>
                                     <div className='order-item-summary' >
                                         <h2>Contact No.</h2>
                                         <h3>12312323</h3>
                                     </div>
                                     {
+                                        currentOrder?.refund?.refund_request === 'successfull' ?
+                                            <>
+                                                <div className='order-item-summary' >
+                                                    <h2>Refund Date.</h2>
+                                                    <h3>{formatDateFromTimestamp(currentOrder?.refund?.refund_complete_date)}</h3>
+                                                </div>
+                                                <div className='order-item-summary' >
+                                                    <h2>Amount Refund</h2>
+                                                    <h3>RS.{currentOrder.amount - 150}</h3>
+                                                </div>
+                                                <div className='order-item-summary' >
+                                                    <h2>Received On</h2>
+                                                    <h3>{currentOrder?.refund?.refundType}</h3>
+                                                </div>
+                                            </>
+                                            : ''
+                                    }
+                                    {
                                         currentOrder?.refund?.label_url ?
-                                            <button className='label-btn'>Download Label</button>
+                                            <a
+                                                href={currentOrder?.refund?.label_url}
+                                                download={currentOrder?.refund?.label_url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className='label-btn'
+                                            >
+
+                                                Download Label
+
+                                            </a>
                                             : ''
                                     }
                                     <p></p>
@@ -311,7 +377,7 @@ function OrderDetail({ setDetailPop, detailPop }) {
                     }
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -13,7 +13,7 @@ export const OrderDataContext = createContext();
 
 export const OrderDataProvider = ({ children }) => {
   const [orderData, setOrderData] = useState([]);
-  console.log(orderData)
+  console.log('order data fetched')
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -44,7 +44,7 @@ export const OrderDataProvider = ({ children }) => {
       }));
 
       setOrderData(orders);
-      console.log('order data', orders)
+      // console.log('order data', orders)
       setLoading(false);
     } catch (err) {
       console.error(err);

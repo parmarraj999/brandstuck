@@ -80,7 +80,7 @@ export const AllProductDataProvider = ({ children }) => {
         const querySnapshot = await getDocs(collection(db, "coupons"));
         const couponsData = querySnapshot.docs.map(doc => doc.data());
         setCoupons(couponsData);
-        console.log("Coupons fetched:", couponsData);
+        // console.log("Coupons fetched:", couponsData);
     };
 
     useEffect(() => {

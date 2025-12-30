@@ -12,23 +12,6 @@ export default function AddressPage() {
   const userId = localStorage.getItem('userId');
   console.log(userAddress)
 
-  const addresses = [
-    {
-      id: 1,
-      type: 'Main Address',
-      streetAddress: '374/3 Saket Nagar,',
-      cityState: 'Bhopal, Madhya Pradesh',
-      zipCode: '482024'
-    },
-    {
-      id: 2,
-      type: 'Office Address',
-      streetAddress: 'Mariyus Colony, Station ganj,',
-      cityState: 'Narsinghpur, Madhya Pradesh',
-      zipCode: '482024'
-    }
-  ];
-
   const handleAddNewAddress = () => {
     setShowAddress(true);
   };
