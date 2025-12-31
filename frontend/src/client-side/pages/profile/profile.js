@@ -48,11 +48,11 @@ function Profile() {
                 <div className="profileLabel">Brandstuck Member<br /></div>
                 <div className='option-list' >
                     <Link to='/profile/information' className='profileOption'>
-                        <div className="profileName">My Information</div>
+                        <div className="profileName">Information</div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right-icon lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg>
                     </Link>
                     <Link className='profileOption' to='/profile/my-wallet'>
-                        <div className="profileName">My Wallet</div>
+                        <div className="profileName">Transactions</div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right-icon lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg>
                     </Link>
                     <Link to='/profile/address' className='profileOption'>
@@ -63,10 +63,6 @@ function Profile() {
                         <div className="profileName">Your Orders</div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right-icon lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg>
                     </Link>
-                    <div className='profileOption'>
-                        <div className="profileName">Payment History</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right-icon lucide-chevron-right"><path d="m9 18 6-6-6-6" /></svg>
-                    </div>
                 </div>
             </div>
         </div>

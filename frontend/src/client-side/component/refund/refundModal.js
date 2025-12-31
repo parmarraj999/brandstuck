@@ -32,7 +32,17 @@ const RefundPopup = ({ onClose, order }) => {
     }
     const refundId = generate8DigitNumber();
 
-    const handleWalletRefund = async () => {
+    const [accNumber, setAccNumber] = useState('');
+    const [accHolder, setAccHoldeer] = useState();
+    const [ifsc, setIfsc] = useState('');
+
+    const hanldeRefund = async () => {
+
+        if(!accNumber || !accHolder || !ifsc){
+            alert("fill all the bank details");
+            return;
+        }
+
         if (!isRefundEligible(order.refund_eligible_date)) {
             alert("Refund period expired");
             return;
@@ -41,15 +51,19 @@ const RefundPopup = ({ onClose, order }) => {
         const docRef = await addDoc(collection(db, "refund_requests"), {
             orderId: order.orderId, // 🔥 id sahi rakho
             userId: order.userData.uid,
-            order_doc_id : order.id,
+            order_doc_id: order.id,
             delivery_date: order?.deliveredAt,
             customer_name: order.userData.name,
             refund_id: refundId,
             customer_number: order.userData.number,
             amount: order.amount,
-            refundType: "wallet",
+            bank_detail: {
+                account_number: accNumber,
+                account_holder: accHolder,
+                ifsc: ifsc
+            },
             status: "pending",
-            createdAt: serverTimestamp(), 
+            createdAt: serverTimestamp(),
         })
 
         const orderRef = doc(db, "Orders", order.id);
@@ -59,7 +73,11 @@ const RefundPopup = ({ onClose, order }) => {
                 refund_id: refundId,
                 refund_doc_id: docRef.id,
                 refund_request: 'pending',
-                refundType: 'wallet',
+                bank_detail: {
+                    account_number: accNumber,
+                    account_holder: accHolder,
+                    ifsc: ifsc
+                },
                 refund_request_date: serverTimestamp(),
             }
         })
@@ -67,7 +85,7 @@ const RefundPopup = ({ onClose, order }) => {
                 setRequest(true);
             })
 
-        // alert("Wallet refund request submitted");
+        alert("Bank refund request submitted");
     };
 
     return (
@@ -95,9 +113,24 @@ const RefundPopup = ({ onClose, order }) => {
                             <h2>Order #213923502</h2>
                             <p className="muted">Delivered • Eligible for refund</p>
 
-                            <div className="refund-actions">
-                                <button className="primary" onClick={handleWalletRefund}>Refund to Wallet</button>
-                                <button className="secondary" style={{ border: '1px solid black', color: 'black' }}>Refund to Bank Account</button>
+                            <div style={{ marginTop: '1rem' }}>
+                                <div className="bank_detail_field">
+                                    <h4>Account Number</h4>
+                                    <input placeholder="Account Number" 
+                                    onChange={(e)=>setAccNumber(e.target.value)}
+                                        />
+                                </div>
+                                <div className="bank_detail_field">
+                                    <h4>Account Holder</h4>
+                                    <input placeholder="Holder Name"
+                                     onChange={(e)=>setAccHoldeer(e.target.value)} />
+                                </div>
+                                <div className="bank_detail_field">
+                                    <h4>IFSC Code</h4>
+                                    <input placeholder="IFSC Code" 
+                                     onChange={(e)=>setIfsc(e.target.value)}/>
+                                </div>
+                                <button className="refund_btn" onClick={hanldeRefund}> Proceed to Refund</button>
                             </div>
 
                             <div className="info-box">

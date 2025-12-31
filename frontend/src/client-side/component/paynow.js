@@ -29,7 +29,7 @@ export const handlePayment = async (amount, orderData, navigate, userId) => {
     key: "rzp_test_RvsB2MOcwdhZtz",
     amount: order.amount,
     currency: "INR",
-    name: "My Website",
+    name: "Brandstuck",
     description: "Payment Test",
     order_id: order.id,
 

@@ -329,6 +329,25 @@ function OrderDetail({ setDetailPop, detailPop }) {
                                         <h3>12312323</h3>
                                     </div>
                                     {
+                                        currentOrder?.refund?.bank_detail ?
+                                            <>
+                                                <div className='order-item-summary' >
+                                                    <h2>Account number</h2>
+                                                    <h3>{currentOrder?.refund?.bank_detail?.account_number}</h3>
+                                                </div>
+                                                <div className='order-item-summary' >
+                                                    <h2>Account Holder</h2>
+                                                    <h3>{currentOrder?.refund?.bank_detail?.account_holder}</h3>
+                                                </div>
+                                                <div className='order-item-summary' >
+                                                    <h2>IFSC code</h2>
+                                                    <h3>{currentOrder?.refund?.bank_detail?.ifsc}</h3>
+                                                </div>
+                                            </>
+                                            : ''
+                                    }
+
+                                    {
                                         currentOrder?.refund?.refund_request === 'successfull' ?
                                             <>
                                                 <div className='order-item-summary' >
@@ -338,10 +357,6 @@ function OrderDetail({ setDetailPop, detailPop }) {
                                                 <div className='order-item-summary' >
                                                     <h2>Amount Refund</h2>
                                                     <h3>RS.{currentOrder.amount - 150}</h3>
-                                                </div>
-                                                <div className='order-item-summary' >
-                                                    <h2>Received On</h2>
-                                                    <h3>{currentOrder?.refund?.refundType}</h3>
                                                 </div>
                                             </>
                                             : ''
