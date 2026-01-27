@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './trendingProduct.css'
 import TrendingCard from '../../../component/product-card/trendingCard/trendingCard'
 import { fetchTrendingProducts } from '../../../functions/trendingProductFetch';
+import { Link } from 'react-router-dom';
 
 function TrendingProduct() {
 
@@ -32,7 +33,9 @@ function TrendingProduct() {
                     })
                 }
             </div>
-            <button>Show Now</button>
+            <Link to='/shop'>
+            <button>Shop Now</button>
+            </Link>
         </div>
     )
 }

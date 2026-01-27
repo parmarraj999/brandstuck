@@ -1,0 +1,57 @@
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    overflow: hidden;
+    /* clip-path: circle(0% at 50% 50%); Initial state for animation */
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-content h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2rem, 8vw, 5rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -2px;
+    display: flex;
+    overflow: hidden;
+}
+
+.loader-content h1 span {
+    display: inline-block;
+    white-space: pre;
+}
+
+.loader-line {
+    width: 0;
+    height: 2px;
+    background: #fff;
+    margin: 1rem auto 0;
+    animation: lineExpand 2s ease-in-out forwards;
+}
+
+@keyframes lineExpand {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100px;
+    }
+}
+
+/* Exit animation class */
+.loader-exit {
+    transform: translateY(-100%);
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}

@@ -7,12 +7,12 @@ import { handlePayment } from '../../component/paynow';
 import { Plus } from 'lucide-react'
 import { serverTimestamp } from 'firebase/firestore';
 import { applyCoupon } from '../../functions/applyCouponFunction';
+import { createOrder, pingServer } from '../../../api/paymentApi';
 
 export default function MainCart() {
+
   const [couponCode, setCouponCode] = useState("");
   const [discountAmount, setDiscountAmount] = useState(0);
-  const [shippingCharge, setShippingCharge] = useState(150);
-  const [message, setMessage] = useState("");
 
   const { cartItems, removeFromCart } = useContext(cartDataContext);
   const { userCredential, userAddress } = useContext(UserCredentialContext);
@@ -30,8 +30,6 @@ export default function MainCart() {
 
   console.log(cartItems, userCredential, choosedAddress)
 
-  
-  const userId = window.localStorage.getItem('userId')
 
   const subtotal = cartItems.reduce((acc, item) => acc + Number(item.discountPrice), 0);
   const tax = cartItems?.length > 0 ? 150 : 0;
@@ -65,7 +63,6 @@ export default function MainCart() {
     });
 
     console.log(res.message)
-    setMessage(res.message);
     setDiscountAmount(res.discount);
     setFinalAmount(res.finalAmount);
   };
@@ -85,6 +82,36 @@ export default function MainCart() {
     orderAt: serverTimestamp(),
     coupon: appliedCoupon ? appliedCoupon : null
   }
+
+  const [loading, setLoading] = useState(false);
+  const [preCreatedOrder, setPreCreatedOrder] = useState(null);
+
+  // Wake up the server on mount
+  useEffect(() => {
+    pingServer().catch(() => { }); // Quietly ping the server
+  }, []);
+
+  // Pre-create order when conditions are met
+  useEffect(() => {
+    const initiatePreCreation = async () => {
+      if (choosedAddress && finalAmount > 0 && !preCreatedOrder) {
+        try {
+          const res = await createOrder(`${finalAmount}`);
+          setPreCreatedOrder(res.data);
+          console.log("Order pre-created successfully");
+        } catch (error) {
+          console.log("Pre-creation failed:", error);
+        }
+      }
+    };
+
+    initiatePreCreation();
+  }, [choosedAddress, finalAmount, preCreatedOrder]);
+
+  // Reset pre-created order if amount changes
+  useEffect(() => {
+    setPreCreatedOrder(null);
+  }, [finalAmount]);
 
   return (
     <>
@@ -110,9 +137,9 @@ export default function MainCart() {
                 <path d="m15 18-6-6 6-6" />
               </svg>
             </div>
-            <div style={{display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:'15px'}}>
-              <img src='../../../../../assets/images/no-item.png' style={{width:'60%'}}/>
-              <button className='explore-btn' onClick={()=>navigate('/shop')}>Shop Now</button>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '15px' }}>
+              <img src='../../../../../assets/images/no-item.png' alt="No items in cart" style={{ width: '60%' }} />
+              <button className='explore-btn' onClick={() => navigate('/shop')}>Shop Now</button>
             </div>
           </div>
           :
@@ -253,8 +280,13 @@ export default function MainCart() {
               <div className="complete-section">
                 {
                   choosedAddress && total !== 0 ?
-                    <button className="complete-button" onClick={() => handlePayment(total, orderData, navigate, userId)}>
-                      Complete Purchase
+                    <button className="complete-button" onClick={() => handlePayment(total, orderData, navigate, setLoading, preCreatedOrder)}>
+                      {
+                        loading ?
+                          <p>Proceeding...</p>
+                          :
+                          <p>Complete Purchase</p>
+                      }
                     </button>
                     : ''
                 }

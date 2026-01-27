@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./card.css";
 import { AllProductDataContext } from "../../context/AllProductDataProvider";
+import { Link } from "react-router-dom";
 
 function ProductCard({ productId }) {
   const [product, setProduct] = useState(null);
@@ -22,7 +23,7 @@ function ProductCard({ productId }) {
 
 
   return (
-    <div className="default-card">
+    <Link to={`/product/${product?.id}`} className='default-card' style={{ textDecoration: 'none', color: 'inherit' }}>
       <div className="card">
         <img src={product?.imageUrls?.[0]?.imageUrl} />
 
@@ -43,7 +44,7 @@ function ProductCard({ productId }) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

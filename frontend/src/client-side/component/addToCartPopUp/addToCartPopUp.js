@@ -7,7 +7,7 @@ function AddToCartPopUp({ setCartPopUp, cartPopUp, data }) {
 
     const [top, setTop] = useState(0);
 
-    const { addToCart } = useContext(cartDataContext)
+    const { addToCart, isProductInCart } = useContext(cartDataContext)
 
     useEffect(() => {
         if (cartPopUp) {
@@ -19,12 +19,14 @@ function AddToCartPopUp({ setCartPopUp, cartPopUp, data }) {
     const navigate = useNavigate();
 
     const handleAddToCart = () => {
-        if(!userId) {   
+        if (!userId) {
             alert("Please login to add items to cart");
+            document.body.style.overflow = 'auto';
             navigate('/auth');
             return;
         }
         addToCart(data)
+        document.body.style.overflow = 'auto';
         setCartPopUp(false)
     }
 
@@ -69,7 +71,12 @@ function AddToCartPopUp({ setCartPopUp, cartPopUp, data }) {
                             })
                         }
                     </div>
-                    <button className='addBtn' onClick={handleAddToCart}>Add to cart</button>
+                    {
+                        isProductInCart(data.productId) ?
+                            <button className='inCart'>Added to Cart</button>
+                            :
+                            <button className='addBtn' onClick={handleAddToCart}>Add to cart</button>
+                    }
                 </div>
             </div>
         </div>

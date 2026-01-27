@@ -16,27 +16,36 @@ import Why from './why-section/why'
 import Map from './map/map'
 import Footer from '../footer/footer'
 import { fetchNewDropProducts } from '../../functions/newDropProduct'
+import Loader from '../../component/loader/Loader'
+import { useState } from 'react'
 
 function Home() {
 
-  // useEffect(()=>{
-  //   fetchNewDropProducts();
-  // },[])
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2800); // Wait for animation to mostly complete
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className='home-container' >
+      {loading && <Loader />}
       {/* <Marquee/> */}
-      <Carousel/>
-      <Text/>
-      <NewProduct/>
-      <MiddleImage/>
-      <TrendingProduct/>
-      <Outfit/>
-      <Customize/>
-      <Category/>
-      <Store/>
-      <Why/>
-      <Map/>
+      <Carousel />
+      <Text />
+      <NewProduct />
+      <MiddleImage />
+      <TrendingProduct />
+      <Outfit />
+      {/* <Customize /> */}
+      <Category />
+      <Store />
+      <Why />
+      <Map />
     </div>
   )
 }

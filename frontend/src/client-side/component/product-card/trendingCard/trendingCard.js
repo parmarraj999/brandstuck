@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './trendingCard.css'
+import { Link } from 'react-router-dom';
 import { AllProductDataContext } from '../../../context/AllProductDataProvider';
 
-function TrendingCard({productId}) {
+function TrendingCard({ productId }) {
 
     const [product, setProduct] = useState(null);
 
@@ -10,8 +11,7 @@ function TrendingCard({productId}) {
 
     const getProductById = (products, productId) => {
         if (!products || products.length === 0 || !productId) return null;
-        console.log(products.find((p) => p.id === productId))
-        return products.find((p) => p.id === productId) || null;
+        return products.find((p) => p.id === productId || p.productId === productId) || null;
     };
 
     useEffect(() => {
@@ -19,16 +19,18 @@ function TrendingCard({productId}) {
         setProduct(found);
     }, [AllProductList, productId]);
 
+    if (!product) return null;
+
     return (
-        <div className='default-card'>
-            <div className='card' >
-                <img src={product?.imageUrls[0]?.imageUrl} />
+        <Link to={`/product/${product.id}`} className='default-card' style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div className='trend-card' >
+                <img src={product?.imageUrls[0]?.imageUrl} alt={product.name} />
                 <div className='card-detail' >
                     <h2>{product?.name}</h2>
                     <h3>RS.{product?.discountPrice}</h3>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 

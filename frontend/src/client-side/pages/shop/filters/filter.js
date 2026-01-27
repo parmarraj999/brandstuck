@@ -101,34 +101,6 @@ function Filter({ setFilterPop }) {
     //     { text: "Titan" },
     // ];
 
-    const [searchTerm, setSearchTerm] = useState('');
-    // const [filterBrand, setFilterBrand] = useState(brandFilter);
-
-    const handleSearch = (event) => {
-        const term = event.target.value;
-        setSearchTerm(term);
-
-        // const results = brandFilter.filter((item) =>
-        //     item.text.toLowerCase().includes(term.toLowerCase())
-        // );
-        // setFilterBrand(results);
-    };
-
-    const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(20000);
-
-    const handleMinChange = (event) => {
-        const value = Math.min(Number(event.target.value), maxPrice);
-        setMinPrice(value);
-    };
-
-    const priceFilter = [
-        { text: '1000' },
-        { text: '5000' },
-        { text: '10000' },
-        { text: '15000' },
-        { text: '20000' },
-    ]
 
     function ScrollToTop() {
         const { pathname } = useLocation();
@@ -140,20 +112,60 @@ function Filter({ setFilterPop }) {
         return null;
     }
 
-    const { AllProductList, filterProductList, setFilterProductList } = useContext(AllProductDataContext)
+    const {
+        filters,
+        setFilters,
+        fetchProducts,
+        resetPagination
+    } = useContext(AllProductDataContext);
 
-    const handleFilterChange = (category) => {
-        // setSelectedCategory(category);
-        if (category === "all") {
-            setFilterProductList(AllProductList);
-        } else {
-            const filtered = AllProductList.filter(product => product.subCategory === category);
-            setFilterProductList(filtered);
-            console.log(filtered);
-            setFilterPop(false)
-            document.body.style.overflow = '';
+    const [tempFilters, setTempFilters] = useState({ ...filters });
 
+    const handleFilterSelection = (type, value) => {
+        setTempFilters(prev => ({
+            ...prev,
+            [type]: prev[type] === value ? null : value // Toggle filter
+        }));
+    };
+
+    const handleApply = async () => {
+        setFilters(tempFilters);
+        resetPagination();
+        setFilterPop(false);
+        document.body.style.overflow = '';
+        // fetchProducts will be triggered by useEffect in Provider if we move the fetch there, 
+        // but for now, we'll call it manually after state update or rely on the user clicking.
+        // Actually, since setState is async, we should ideally trigger fetch in a useEffect in the provider.
+    };
+
+    useEffect(() => {
+        if (filters !== tempFilters) {
+            setTempFilters(filters);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [filters]);
+
+    // Re-fetch when filters change (Ideally in Provider, but let's ensure it happens)
+    useEffect(() => {
+        fetchProducts("next");
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [filters]);
+
+    const handleClearAll = () => {
+        const cleared = {
+            subCategory: null,
+            brand: null,
+            size: null,
+            minPrice: 0,
+            maxPrice: 20000
+        };
+        setFilters(cleared);
+        setTempFilters(cleared);
+        resetPagination();
+    };
+
+    const handlePriceChange = (e) => {
+        setTempFilters(prev => ({ ...prev, minPrice: Number(e.target.value) }));
     };
 
     return (
@@ -162,21 +174,30 @@ function Filter({ setFilterPop }) {
             <div className='filter-wrapper' >
                 <div className='filter-header'>
                     <h2>Filter</h2>
-                    <div onClick={() => {
-                        setFilterPop(false)
-                        document.body.style.overflow = '';
-                    }} >
-                        <svg style={{ width: "25px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>
+                    <div className='header-actions' style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                        <button className='clear-btn' onClick={handleClearAll} style={{ background: 'none', border: 'none', cursor: 'pointer', fontWeight: 600 }}>Clear All</button>
+                        <div onClick={() => {
+                            setFilterPop(false)
+                            document.body.style.overflow = '';
+                        }} style={{ cursor: 'pointer' }}>
+                            <svg style={{ width: "25px" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>
+                        </div>
                     </div>
                 </div>
-                <p style={{fontSize:'14px',color:"white"}}>Some Filters Is Not Working we Are Working On It!</p>
+
                 <div className='default-box-class' >
                     <h3>Category</h3>
                     <div className='wrapper' >
                         {
                             categoryFilter.map((data) => {
+                                const isSelected = tempFilters.subCategory === data.text;
                                 return (
-                                    <div className='box' onClick={() => handleFilterChange(data.text)} >
+                                    <div
+                                        key={data.text}
+                                        className='box'
+                                        style={isSelected ? { background: 'black', color: 'white' } : {}}
+                                        onClick={() => handleFilterSelection('subCategory', data.text)}
+                                    >
                                         {data.text}
                                     </div>
                                 )
@@ -184,13 +205,20 @@ function Filter({ setFilterPop }) {
                         }
                     </div>
                 </div>
+
                 <div className='default-box-class' >
                     <h3>Size</h3>
                     <div className='wrapper' >
                         {
                             sizeFilter.map((data) => {
+                                const isSelected = tempFilters.size === data.text;
                                 return (
-                                    <div className='box' >
+                                    <div
+                                        key={data.text}
+                                        className='box'
+                                        style={isSelected ? { background: 'black', color: 'white' } : {}}
+                                        onClick={() => handleFilterSelection('size', data.text)}
+                                    >
                                         {data.text}
                                     </div>
                                 )
@@ -198,59 +226,48 @@ function Filter({ setFilterPop }) {
                         }
                     </div>
                 </div>
+
                 <div className='default-box-class' >
-                    <h3>Brands</h3>
-                    <input
-                        className='search-box'
-                        placeholder='Search Brand'
-                        onChange={handleSearch}
-                        value={searchTerm}
-                    />
-                    {/* <div className='wrapper' >
-                        {
-                            brandFilter.map((data) => {
-                                return (
-                                    <div className='box' >
-                                        {data.text}
-                                    </div>
-                                )
-                            })
-                        }
-                    </div> */}
-                </div>
-                <div className='default-box-class ' >
-                    <h3>Price ( up to )</h3>
+                    <h3>Price Range</h3>
                     <div className='price-wrapper' >
                         <div className='price-slider'>
                             <h4>&#8377;0</h4>
                             <input
                                 type="range"
                                 min="0"
-                                max={maxPrice}
-                                value={minPrice}
-                                onChange={handleMinChange}
+                                max="10000"
+                                value={tempFilters.minPrice}
+                                onChange={handlePriceChange}
+                                style={{ accentColor: 'black' }}
                             />
-                            <h4>&#8377;20000</h4>
+                            <h4>&#8377;10000</h4>
                         </div>
                         <div className='price-show' >
-                            <div>&#8377; {minPrice}</div>
+                            <div>&#8377; {tempFilters.minPrice} - &#8377; 10000</div>
                         </div>
                     </div>
-                    <div className='wrapper' >
-                        {
-                            priceFilter.map((data) => {
-                                return (
-                                    <div className='box' onClick={() => setMinPrice(data.text)} >
-                                        &#8377; {data.text}
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
                 </div>
+
+                <button
+                    className='apply-filters-btn'
+                    onClick={handleApply}
+                    style={{
+                        padding: '1rem',
+                        background: 'white',
+                        color: 'black',
+                        border: 'none',
+                        borderRadius: '10px',
+                        fontSize: '18px',
+                        fontWeight: 600,
+                        marginTop: '1rem',
+                        cursor: 'pointer'
+                    }}
+                >
+                    Apply Filters
+                </button>
             </div>
         </div>
     )
 }
 
-export default Filter
+export default Filter;

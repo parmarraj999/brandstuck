@@ -1,18 +1,30 @@
 // import { createOrder, verifyPayment } from "../../api/paymentApi";
 
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { createOrder, verifyPayment } from "../../api/paymentApi";
 import { db } from "../../firebase/firebaseConfig";
-import { useNavigate } from "react-router-dom";
 
-export const handlePayment = async (amount, orderData, navigate, userId) => {
+export const handlePayment = async (amount, orderData, navigate, setLoading, preCreatedOrder = null) => {
+  setLoading(true);
 
   function generate8DigitNumber() {
     return Math.floor(10000000 + Math.random() * 90000000);
   }
   const orderId = generate8DigitNumber();
 
-  const { data: order } = await createOrder(`${amount}`);
+  let order = preCreatedOrder;
+
+  if (!order) {
+    try {
+      const response = await createOrder(`${amount}`);
+      order = response.data;
+    } catch (error) {
+      console.log("Error creating order:", error);
+      setLoading(false);
+      alert("Failed to initiate payment. Please try again.");
+      return;
+    }
+  }
 
   const getRefundEligibleTill = () => {
     const now = new Date();
@@ -35,13 +47,14 @@ export const handlePayment = async (amount, orderData, navigate, userId) => {
 
 
     handler: async (response) => {
-      console.log(response)
+      // console.log(response)
+      // setLoading(true)
       const verify = await verifyPayment(response);
       if (verify.data.success) {
         // adding data to firestore
         try {
-          const docRef = doc(collection(db, 'Orders'));   
-
+          const docRef = doc(collection(db, 'Orders'));
+          console.log("set1")
           await setDoc(docRef, {
             ...orderData,
             orderId: orderId,
@@ -53,16 +66,28 @@ export const handlePayment = async (amount, orderData, navigate, userId) => {
             refund_eligible_date: refundEligibleTill,
           })
             .then(() => {
+              document.body.style.overflow = 'auto'; // Ensure scrollable
+              setLoading(false);
               navigate('/profile/orders')
             })
         } catch (error) {
           console.log('error in adding data to firester', error)
+          setLoading(false);
+          document.body.style.overflow = 'auto';
         }
-        alert("Payment Successful ✅");
+        // setLoading(false)
+        // alert("Payment Successful ✅"); // Removed alert as requested
       } else {
+        setLoading(false);
         alert("Payment Failed ❌");
       }
     },
+    modal: {
+      ondismiss: function () {
+        setLoading(false);
+        document.body.style.overflow = 'auto';
+      }
+    }
   };
 
   const rzp = new window.Razorpay(options);
