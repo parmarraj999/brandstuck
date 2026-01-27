@@ -362,10 +362,10 @@ function OrderDetail({ setDetailPop, detailPop }) {
                                             : ''
                                     }
                                     {
-                                        currentOrder?.refund?.label_url ?
+                                        currentOrder?.refund?.returnLabelUrl ?
                                             <a
-                                                href={currentOrder?.refund?.label_url}
-                                                download={currentOrder?.refund?.label_url}
+                                                href={currentOrder?.refund?.returnLabelUrl}
+                                                download={currentOrder?.refund?.returnLabelUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className='label-btn'

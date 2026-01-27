@@ -11,13 +11,13 @@ function Profile() {
         navigate('/shop')
     }
 
-    const isLogIn = window.localStorage.getItem('isLogIn')
+    const isLogIn = window.localStorage.getItem('isLogIn') === 'true';
 
     useEffect(() => {
         if (!isLogIn) {
-            navigate('/shop')
+            navigate('/auth');
         }
-    }, [])
+    }, [isLogIn, navigate]);
 
     const logoutUser = async () => {
         try {

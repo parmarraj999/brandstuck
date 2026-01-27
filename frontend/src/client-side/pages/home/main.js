@@ -1,5 +1,4 @@
-import React, { useContext, useEffect } from 'react'
-import { ThemeContext } from '../../context/ThemeContext'
+import React, { useEffect } from 'react'
 // import "../../styles/theme/theme.css";
 import './main.css'
 import Marquee from './marquee/marquee'

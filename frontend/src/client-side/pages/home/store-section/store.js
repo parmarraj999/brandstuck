@@ -1,36 +1,44 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './store.css'
 import Slider from "react-slick";
+import { fetchStoreImages } from '../../../functions/fetchStoreImages';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function Store() {
 
-     const [settings, setSettings] = useState({})
-     const width = window.innerWidth;
+    const [settings, setSettings] = useState({})
+    const [storeImages, setStoreImages] = useState([]);
+    const width = window.innerWidth;
 
-     useEffect(() => {
-             if (width < 768) {
-                 setSettings({
-                     dots: false,
-                     infinite: true,
-                     centerMode :true,
-                     slidesToShow: 1,
-                     slidesToScroll: 1,
-                     centerPadding:'20px'
-                 })
-             } else {
-                 setSettings({
-                    className: "center",
-                    centerMode: true,
-                    infinite: true,
-                    centerPadding: "60px",
-                    slidesToShow: 3,
-                    speed: 500,
-                 })
-             }
-         },[])
+    useEffect(() => {
+        const getImages = async () => {
+            const imgs = await fetchStoreImages();
+            setStoreImages(imgs);
+        }
+        getImages();
+
+        if (width < 768) {
+            setSettings({
+                dots: false,
+                infinite: true,
+                centerMode: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                centerPadding: '20px'
+            })
+        } else {
+            setSettings({
+                className: "center",
+                centerMode: true,
+                infinite: true,
+                centerPadding: "60px",
+                slidesToShow: 3,
+                speed: 500,
+            })
+        }
+    }, [])
 
     let sliderRef = useRef(null);
 
@@ -40,27 +48,6 @@ function Store() {
     const prev = () => {
         sliderRef.slickPrev();
     };
-
-    const data = [
-        {
-            img: 'https://i.pinimg.com/474x/d9/7e/42/d97e42759bb04ddaee4e9f46f8024468.jpg'
-        },
-        {
-            img: 'https://i.pinimg.com/474x/a3/c8/99/a3c89901e8a7c6a4564edab12a4d94ea.jpg'
-        },
-        {
-            img: 'https://i.pinimg.com/474x/53/7c/67/537c67cb4e9de686d87f8a5a65996640.jpg'
-        },
-        {
-            img: 'https://i.pinimg.com/474x/04/d2/c6/04d2c61806de79bbb9eb973ba52e7314.jpg'
-        },
-        {
-            img: 'https://i.pinimg.com/474x/9f/e2/dd/9fe2dd10d5d483438d5f82d3c9775815.jpg'
-        },
-        {
-            img: 'https://i.pinimg.com/474x/42/f2/8a/42f28a5c4868b35cc36849c42b6ddbfd.jpg'
-        },
-    ]
 
     return (
         <div className='store-section' >
@@ -75,10 +62,10 @@ function Store() {
                     }}
                 >
                     {
-                        data.map((data) => {
+                        storeImages.map((item, index) => {
                             return (
-                                <div className='store-image' >
-                                    <img src={data.img} alt='store' />
+                                <div className='store-image' key={index}>
+                                    <img src={item} alt='store' />
                                 </div>
                             )
                         })

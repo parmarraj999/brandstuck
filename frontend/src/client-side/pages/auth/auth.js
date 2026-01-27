@@ -9,18 +9,18 @@ import { useLocation, useNavigate } from 'react-router-dom';
 function Auth() {
 
   const [login, setLogin] = useState(true)
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
   const navigate = useNavigate();
-  const {pathname} = useLocation();
-  const isLogin = window.localStorage.getItem("isLogIn")
+  const { pathname } = useLocation();
+  const isLogin = window.localStorage.getItem("isLogIn") === 'true';
 
-  useEffect(()=>{
-    if(isLogin){
-      navigate('/profile')
+  useEffect(() => {
+    if (isLogin) {
+      navigate('/profile');
     }
-  },[pathname])
+  }, [isLogin, navigate]);
 
   return (
     <div className='auth-container' >

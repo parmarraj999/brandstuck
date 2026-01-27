@@ -27,7 +27,7 @@ export const AllProductDataProvider = ({ children }) => {
     });
 
     const fetchProducts = async (direction = "next") => {
-        setLoading(true);
+        // setLoading(true);
 
         try {
             let q = collection(db, "All-Product");
@@ -94,7 +94,7 @@ export const AllProductDataProvider = ({ children }) => {
             // If index is required, Firestore will throw error with a link
         }
 
-        setLoading(false);
+        // setLoading(false);
     };
 
     const resetPagination = () => {

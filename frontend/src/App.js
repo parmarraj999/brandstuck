@@ -33,6 +33,7 @@ import ContactPage from './client-side/pages/contactUs/contact';
 import { OrderDetailStoreProvider } from './client-side/context/orderDetailStore';
 import Wallet from './client-side/pages/profile/wallet/wallet';
 import { TransactionsProvider } from './client-side/context/transactoinProvider';
+import ProtectedRoute from './client-side/component/ProtectedRoute';
 function App() {
 
 
@@ -72,11 +73,13 @@ function App() {
                         <Route path='/cart' element={<MainCart />} />
                         {/* <Route path='/brands' element={<Brands />} /> */}
                         <Route path='/auth' element={<Auth />} />
-                        <Route path='/profile' element={<Profile />} />
-                        <Route path='/profile/information' element={<Information />} />
-                        <Route path='/profile/address' element={<Address />} />
-                        <Route path='/profile/orders' element={<YourOrder />} />
-                        <Route path='/profile/my-wallet' element={<Wallet />} />
+                        <Route element={<ProtectedRoute />}>
+                          <Route path='/profile' element={<Profile />} />
+                          <Route path='/profile/information' element={<Information />} />
+                          <Route path='/profile/address' element={<Address />} />
+                          <Route path='/profile/orders' element={<YourOrder />} />
+                          <Route path='/profile/my-wallet' element={<Wallet />} />
+                        </Route>
                         <Route path='*' element={<h1>404</h1>} />
                         <Route path='/razorpay' element={<Payment />} />
                         <Route path='/privacy-policy' element={<PrivacyPolicy />} />
