@@ -6,27 +6,24 @@ import {
   orderBy,
   getDocs,
 } from "firebase/firestore";
-import { createContext, useEffect, useState, useRef } from "react";
+import { createContext, useEffect, useState, useRef, useContext } from "react";
 import { db } from "../../firebase/firebaseConfig";
+import { UserCredentialContext } from "./userCredentialProvider";
 
 export const OrderDataContext = createContext();
 
 export const OrderDataProvider = ({ children }) => {
   const [orderData, setOrderData] = useState([]);
-  console.log('order data fetched')
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const userId = window.localStorage.getItem("userId");
-
-   useEffect(()=>{
-        fetchOrders();
-    },[])
+  const { userId } = useContext(UserCredentialContext);
 
   const unsubscribeRef = useRef(null);
 
   /* ================= MANUAL FETCH (CALLABLE) ================= */
   const fetchOrders = async () => {
+    if (!userId) return;
     try {
       setLoading(true);
 
@@ -44,7 +41,6 @@ export const OrderDataProvider = ({ children }) => {
       }));
 
       setOrderData(orders);
-      // console.log('order data', orders)
       setLoading(false);
     } catch (err) {
       console.error(err);
@@ -56,6 +52,7 @@ export const OrderDataProvider = ({ children }) => {
   /* ================= REALTIME LISTENER ================= */
   useEffect(() => {
     if (!userId) {
+      setOrderData([]);
       setLoading(false);
       return;
     }
@@ -83,8 +80,6 @@ export const OrderDataProvider = ({ children }) => {
         setLoading(false);
       }
     );
-
-   
 
     return () => {
       if (unsubscribeRef.current) unsubscribeRef.current();

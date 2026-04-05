@@ -80,6 +80,10 @@ function Category() {
             img: 'https://i.pinimg.com/474x/a9/a0/27/a9a02710d58bd2d2f5886e8080c1efac.jpg',
         },
         {
+            name: 'Track Pants',
+            img: 'https://i.pinimg.com/736x/52/40/6d/52406d017f83446e05d0e59bd3705bd4.jpg',
+        },
+        {
             name: 'Socks',
             img: 'https://i.pinimg.com/474x/5c/d7/40/5cd740d2dcba90f7d5abf8df533624f1.jpg',
         },
@@ -90,6 +94,18 @@ function Category() {
         {
             name: 'Wallet',
             img: 'https://i.pinimg.com/474x/d2/0f/b3/d20fb322f6edae48eb0beb4c24b33252.jpg',
+        },
+        {
+            name: 'Watches',
+            img: 'https://i.pinimg.com/736x/36/18/79/361879aae0ebd7e22af746d931a94979.jpg',
+        },
+        {
+            name: 'Glares',
+            img: 'https://i.pinimg.com/736x/7e/ef/6d/7eef6d90c59121e72f289c32ee91f2f5.jpg',
+        },
+        {
+            name: 'Bag',
+            img: 'https://i.pinimg.com/736x/18/e3/17/18e3170f32d5cc6de34871ddd7fbc345.jpg',
         },
     ]
 

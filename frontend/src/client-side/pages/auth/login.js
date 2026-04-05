@@ -17,13 +17,12 @@ function Login({ setLogin, setError, setLoading }) {
 
   const navigate = useNavigate();
 
-  const { fetchCredentials } = useContext(UserCredentialContext)
+  const { userId } = useContext(UserCredentialContext)
 
   useEffect(() => {
     if (status === 'signUp') {
       window.localStorage.setItem("isLogIn", true)
       navigate('/profile')
-      fetchCredentials();
     }
   }, [status])
 

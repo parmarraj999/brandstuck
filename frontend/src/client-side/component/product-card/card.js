@@ -22,10 +22,13 @@ function ProductCard({ productId }) {
   console.log(product)
 
 
+  const isSold = product?.status === 'sold';
+
   return (
-    <Link to={`/product/${product?.id}`} className='default-card' style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Link to={`/product/${product?.id}`} className='default-card' style={{ textDecoration: 'none', color: 'inherit', position: 'relative' }}>
       <div className="card">
-        <img src={product?.imageUrls?.[0]?.imageUrl} />
+        {isSold && <div className="card-sold-badge">Sold Out</div>}
+        <img src={product?.imageUrls?.[0]?.imageUrl} alt={product?.name} />
 
         <div className="product-detail">
           <h2>{product?.name}</h2>
@@ -38,7 +41,7 @@ function ProductCard({ productId }) {
 
             {product?.discountPrice && (
               <h4>
-                {Math.round(((product?.price - product?.discountPrice) / product?.price) * 100)}% off
+                {product?.price ? Math.round(((product?.price - product?.discountPrice) / product?.price) * 100) : 0}% off
               </h4>
             )}
           </div>

@@ -4,9 +4,9 @@ import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 
 
 export const handleEmailPasswordAuth = (async (setError, setLoading, name, email, password, number, setStatus) => {
-
+    setLoading(true);
     try {
-        if (email, password) {
+        if (email && password) {
             // Sign Up
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
@@ -32,6 +32,7 @@ export const handleEmailPasswordAuth = (async (setError, setLoading, name, email
 
         } else {
             console.log('error in signup')
+            setError('Please provide all details')
         }
     } catch (error) {
         setError(error.message);
@@ -42,9 +43,9 @@ export const handleEmailPasswordAuth = (async (setError, setLoading, name, email
 
 
 export const handleLogInWithEmail = (async (setError, setLoading, email, password, setStatus) => {
-
+    setLoading(true);
     try {
-        if (email, password) {
+        if (email && password) {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             console.log("User login in:", user);
@@ -53,6 +54,8 @@ export const handleLogInWithEmail = (async (setError, setLoading, email, passwor
                 window.localStorage.setItem("userId", user.uid);
                 setStatus('signUp')
             }
+        } else {
+            setError('Please provide email and password')
         }
     } catch (error) {
         setError(error.message);

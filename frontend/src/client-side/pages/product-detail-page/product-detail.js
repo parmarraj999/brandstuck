@@ -25,8 +25,7 @@ function ProductDetail() {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        // Sirf product ka data
-        setProduct(docSnap.data());
+        setProduct({ id: docSnap.id, ...docSnap.data() });
         console.log('product data fetched')
       } else {
         console.log("No such product!");
@@ -35,7 +34,6 @@ function ProductDetail() {
       console.error("Error fetching product:", error);
     } finally {
       setLoading(false);
-      console.log(product)
     }
   };
 
@@ -56,6 +54,8 @@ function ProductDetail() {
     </div>
   }
 
+  const isSold = product?.status === 'sold';
+
   return (
     <>
 
@@ -63,12 +63,12 @@ function ProductDetail() {
         <SmallNav />
         <div className='product-details-wrapper' >
           <div className='product-image' >
-            <img src={product?.imageUrls[0]?.imageUrl} />
+            {isSold && <div className="sold-badge">SOLD</div>}
+            <img src={product?.imageUrls?.[0]?.imageUrl} alt={product?.name} />
             <div className='more-img' >
-              <img src={product?.imageUrls[1]?.imageUrl} />
-              <img src={product?.imageUrls[2]?.imageUrl} />
-              <img src={product?.imageUrls[3]?.imageUrl} />
-              <img src={product?.imageUrls[4]?.imageUrl} />
+              {product?.imageUrls?.slice(1, 5).map((img, index) => (
+                <img key={index} src={img.imageUrl} alt={`${product?.name} view ${index + 1}`} />
+              ))}
             </div>
           </div>
           <div className='product-detail' >
@@ -84,31 +84,31 @@ function ProductDetail() {
                 </div>
                 <p>tax included</p>
               </div>
-              <h5>50% off</h5>
+              <h5>{Math.round(((product?.price - product?.discountPrice) / product?.price) * 100)}% off</h5>
             </div>
             <div className='add-to-cart-box-container' >
               <div style={{ display: "flex", alignItems: "center", justifyContent: 'space-between' }}>
                 <h2>choose size</h2>
-                {/* <h4>[size chart]</h4> */}
               </div>
               <div className='size-box-container' >
                 {
-                  product?.sizes?.map((data) => {
+                  product?.sizes?.map((data, index) => {
                     return (
-                      <div className='size-box' >{data}</div>
+                      <div key={index} className='size-box' >{data}</div>
                     )
                   })
                 }
-                {/* <div className='size-box' >m</div>
-                <div className='size-box' >l</div>
-                <div className='size-box' >xl</div>
-                <div className='size-box' >xxl</div> */}
               </div>
               {
-                isProductInCart(product.productId) ?
-                  <button className='inCart'>Added to Cart</button>
-                  :
-                  <button onClick={() => addToCart(product)}>Add to cart</button>
+                isSold ? (
+                  <button className='sold-out-btn' disabled>Sold Out</button>
+                ) : (
+                  isProductInCart(product.id) ? (
+                    <button className='inCart'>Added to Cart</button>
+                  ) : (
+                    <button onClick={() => addToCart(product)}>Add to cart</button>
+                  )
+                )
               }
               <p>NOTE : YOU CAN APPLY COUPON CODE WHILE CONFIrMING ORDER IN CART </p>
             </div>

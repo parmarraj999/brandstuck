@@ -5,6 +5,7 @@ import SmallNav from '../nav/smallNav';
 import Login from './login';
 import Signup from './signup';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Loader from '../../component/loader/Loader';
 
 function Auth() {
 
@@ -23,29 +24,33 @@ function Auth() {
   }, [isLogin, navigate]);
 
   return (
-    <div className='auth-container' >
+    <>
+      {loading && <Loader />}
+      <div className='auth-container' >
 
-      <SmallNav />
-      <div className='auth-wrapper' >
-        <h1>account</h1>
-        <div className='auth-form-container' >
-          {
-            login ?
-              <Login
-                setError={setError}
-                setLogin={setLogin}
-                setLoading={setLoading}
-              />
-              :
-              <Signup
-                setError={setError}
-                setLoading={setLoading}
-                setLogin={setLogin} />
-          }
+        <SmallNav />
+        <div className='auth-wrapper' >
+          <h1>account</h1>
+          {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
+          <div className='auth-form-container' >
+            {
+              login ?
+                <Login
+                  setError={setError}
+                  setLogin={setLogin}
+                  setLoading={setLoading}
+                />
+                :
+                <Signup
+                  setError={setError}
+                  setLoading={setLoading}
+                  setLogin={setLogin} />
+            }
+          </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   )
 }
 

@@ -67,7 +67,6 @@
   font-weight: 600;
   border: none;
   color: white;
-  background-color: black;
 }
 @media screen and (max-width: 765px) {
   .shop-container .functional-header .filter-button {

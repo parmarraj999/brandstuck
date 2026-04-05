@@ -62,7 +62,7 @@ function Shop() {
                 }
             </div> */}
             <div className='functional-header' >
-                <button className='filter-button' onClick={() => {
+                <button className='filter-button' style={{backgroundColor:'black'}} onClick={() => {
                     setFilterPop(true)
                     document.body.style.overflow = 'hidden'
                 }}>

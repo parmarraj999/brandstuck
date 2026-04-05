@@ -1,6 +1,6 @@
 // import { createOrder, verifyPayment } from "../../api/paymentApi";
 
-import { collection, doc, setDoc } from "firebase/firestore";
+import { collection, doc, setDoc, writeBatch, query, getDocs } from "firebase/firestore";
 import { createOrder, verifyPayment } from "../../api/paymentApi";
 import { db } from "../../firebase/firebaseConfig";
 
@@ -42,7 +42,7 @@ export const handlePayment = async (amount, orderData, navigate, setLoading, pre
     amount: order.amount,
     currency: "INR",
     name: "Brandstuck",
-    description: "Payment Test",
+    description: "Brandstuck Payment Successfully",
     order_id: order.id,
 
 
@@ -54,8 +54,12 @@ export const handlePayment = async (amount, orderData, navigate, setLoading, pre
         // adding data to firestore
         try {
           const docRef = doc(collection(db, 'Orders'));
-          console.log("set1")
-          await setDoc(docRef, {
+
+          // Start a batch for atomicity
+          const batch = writeBatch(db);
+
+          // 1. Add order to Orders collection
+          batch.set(docRef, {
             ...orderData,
             orderId: orderId,
             paymentId: response.razorpay_payment_id,
@@ -64,14 +68,37 @@ export const handlePayment = async (amount, orderData, navigate, setLoading, pre
             estimate_date: 'not available',
             amount: amount,
             refund_eligible_date: refundEligibleTill,
-          })
-            .then(() => {
-              document.body.style.overflow = 'auto'; // Ensure scrollable
-              setLoading(false);
-              navigate('/profile/orders')
-            })
+          });
+
+          // 2. Mark products as sold in All-Product collection
+          if (orderData.product && orderData.product.length > 0) {
+            orderData.product.forEach((product) => {
+              const productId = product.id || product.productId;
+              if (productId) {
+                const productRef = doc(db, "All-Product", productId);
+                batch.update(productRef, { status: "sold" });
+              }
+            });
+          }
+
+          // 3. Clear user's cart
+          const userId = orderData.userData?.userId || window.localStorage.getItem('userId');
+          if (userId) {
+            const cartRef = collection(db, 'users', userId, 'cart-products');
+            const cartSnapshot = await getDocs(cartRef);
+            cartSnapshot.forEach((doc) => {
+              batch.delete(doc.ref);
+            });
+          }
+
+          // Commit all changes
+          await batch.commit();
+
+          document.body.style.overflow = 'auto'; // Ensure scrollable
+          setLoading(false);
+          navigate('/profile/orders');
         } catch (error) {
-          console.log('error in adding data to firester', error)
+          console.log('Error processing successful order:', error)
           setLoading(false);
           document.body.style.overflow = 'auto';
         }

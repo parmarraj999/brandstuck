@@ -38,8 +38,6 @@ export default function MainCart() {
   const [finalAmount, setFinalAmount] = useState(total);
   const [appliedCoupon, setAppliedCoupon] = useState(null)
 
-  console.log(appliedCoupon)
-
   const [showApply, setShowApply] = useState(true)
 
   const handleApplyCoupon = async () => {

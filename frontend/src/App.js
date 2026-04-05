@@ -54,9 +54,9 @@ function App() {
 
 
   return (
-    <OrderDataProvider>
-      <CartDataProvider>
-        <UserCredentialProvider>
+    <UserCredentialProvider>
+      <OrderDataProvider>
+        <CartDataProvider>
           <OrderDetailStoreProvider>
             <TransactionsProvider>
               <AllProductDataProvider>
@@ -96,9 +96,9 @@ function App() {
               </AllProductDataProvider>
             </TransactionsProvider>
           </OrderDetailStoreProvider>
-        </UserCredentialProvider>
-      </CartDataProvider>
-    </OrderDataProvider>
+        </CartDataProvider>
+      </OrderDataProvider>
+    </UserCredentialProvider>
   );
 }
 

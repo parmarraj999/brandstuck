@@ -14,16 +14,21 @@ import {
   useState,
 } from "react";
 import { db } from "../../firebase/firebaseConfig";
+import { UserCredentialContext } from "./userCredentialProvider";
 
 export const TransactionsContext = createContext();
 
 export const TransactionsProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
-  const userId = window.localStorage.getItem("userId");
+  const { userId } = useContext(UserCredentialContext);
 
   useEffect(() => {
-    if (!userId) return;
+    if (!userId) {
+      setTransactions([]);
+      setLoading(false);
+      return;
+    }
 
     const q = query(
       collection(db, "Transactions"),
@@ -40,7 +45,6 @@ export const TransactionsProvider = ({ children }) => {
         }));
 
         setTransactions(data);
-        console.log(data)
         setLoading(false);
       },
       (error) => {
@@ -51,43 +55,6 @@ export const TransactionsProvider = ({ children }) => {
 
     return () => unsubscribe();
   }, [userId]);
-
-  // const fetchUserTransactions = useCallback(
-  //   async () => {
-  //     try {
-  //       if (!userId) return [];
-
-  //       setLoading(true);
-
-  //       const q = query(
-  //         collection(db, "Transactions"),
-  //         where("userId", "==", userId),
-  //         orderBy("createdAt", "desc")
-  //       );
-
-  //       const snap = await getDocs(q);
-
-  //       const data = snap.docs.map(doc => ({
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       }));
-
-  //       setTransactions(data);
-  //       console.log(data)
-  //       return data;
-  //     } catch (error) {
-  //       console.error("Manual txn fetch error:", error);
-  //       return [];
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   },
-  //   [userId]
-  // );
-
-  // useEffect(()=>{
-  //   fetchUserTransactions();
-  // },[])
 
   return (
     <TransactionsContext.Provider
